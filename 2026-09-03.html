@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC/ETH 日报 2026-09-03</title>
+<style>
+:root{--bg:#faf9f7;--card:#fff;--ink:#1f2430;--sub:#6b7280;--accent:#1a7f4e;--line:#e8e6e1;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+header{background:linear-gradient(135deg,#10243e,#1a7f4e);color:#fff;border-radius:14px;
+padding:20px 22px;margin-bottom:18px}
+header h1{margin:0 0 6px;font-size:22px}header .meta{opacity:.85;font-size:13px}
+.back{font-size:13px;color:var(--sub);text-decoration:none;display:inline-block;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+padding:16px 20px;margin-bottom:14px}
+h2{font-size:17px;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #eef1ec}
+h3{font-size:15px;margin:14px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:#f3f5f2;font-weight:600}tr:nth-child(2n) td{background:#fafbfa}
+ul{margin:8px 0;padding-left:22px}li{margin:3px 0}
+blockquote{margin:10px 0;padding:8px 14px;background:#f6f8f5;border-left:4px solid var(--accent);
+border-radius:0 8px 8px 0;color:var(--sub);font-size:14px}
+.note{font-size:13px;color:var(--sub)}
+b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+</style></head><body><div class="wrap">
+<header><h1>BTC/ETH 日报 2026-09-03</h1><div class='meta'>每日研究员级日报 · btc_quant 研究包</div></header><a class='back' href='index.html'>← 全部日报</a><h1>2026-09-03 BTC/ETH 每日研究日报</h1>
+<blockquote>修订说明：本版为<strong>对账修订稿</strong>。原稿（09:28 落盘）引用的引擎值来自被同日 09:30 重跑覆盖的前一轮快照（composite +0.1/-3.0），与权威快照不符，违反 04 §5 对账规则。本版以最终权威快照 <code style='background:#eef1ec;padding:1px 5px;border-radius:4px'>data/snapshots/2026-09-03/</code>（引擎 UTC 时点 2026-09-03T01:30Z）为准逐项修订，⑧ 引擎值已逐字对齐，可复现可回测。<br>补跑背景：本份由每日流水线产出（引擎实际运行 2026/09/03 09:24-09:30 北京）；E 维源 binance_fapi 在本执行环境不可达，见 ⑪。</blockquote>
+<h2>① 市场状态</h2>
+<ul><li>BTC: 77,472 USD（24h <strong>+0.43%</strong>）</li><li>ETH: 2,394 USD（24h <strong>-0.63%</strong>）</li><li>数据时间: 2026-09-03T01:30Z（引擎 UTC 时点，最终快照轮）</li></ul>
+<h2>② 核心趋势（A 价格动量 + B 成交量）</h2>
+<p>BTC：短周期动量转正——1h +0.52%、4h +0.24%、24h +0.43%，昨日阴跌后企稳回升；但 7d 仍 -3.46%，中期下行未逆转。RSI14 65.7 回升至偏强区，价格高于 MA50 约 1.44σ。量比 0.95 贴常态偏缩，反弹无放量确认，定性<strong>超跌企稳而非反转</strong>。<br>ETH：明显弱于 BTC——1h +0.58% 短暂修复，但 24h -0.63%、7d -4.66%；量比 1.03 平平。<strong>B3 量价背离连续 2 日（价跌量增结构）</strong>，空头结构比 BTC 更实，反弹仍无量。</p>
+<h2>③ 衍生品（E）</h2>
+<p>无数据（E 维源 binance_fapi 在本次执行环境不可达）。E 维权重 25% 缺失——主信号仅由 A/B 驱动，<strong>信号可信度打折</strong>（见 ⑪）。</p>
+<h2>④ 链上（C）</h2>
+<p>BTC（免费源代理读数）：24h 交易数 <strong>57.1 万</strong>（较前日 <strong>-7.3%</strong>，链上活跃度降温）；平均手续费 <strong>$0.40</strong>；24h 最大单笔转账 <strong>$15.7 亿</strong>。活跃度回落、无异常大额集中异动。注：代理口径（交易数/费用/最大转账），非指标书 C1 活跃地址；大额转账净流向/交易所流入待 Tier-2 key。<br>ETH：TVL <strong>$478 亿</strong>（DeFiLlama 日级；当日缺 24h 变化数据）。</p>
+<h2>⑤ 宏观（F）</h2>
+<p>F&amp;G 恐惧贪婪指数 = <strong>65（Greed）</strong>，较昨日 63 微升，仍处贪婪区未到极端（&gt;80 才预警反向）；F6 映射背景分 -37.5（贪婪背景偏空）。其余 F 维（美债/DXY/美股）无数据（FRED/Yahoo 在本环境不可达/被限流）。贪婪高位 + 两币中期走弱的背离仍在，风险偏好收缩迹象未解除。</p>
+<h2>⑥ 情绪（D）</h2>
+<p>无数据（需 LunarCrush 付费层，未启用；D 维降辅助层 5% 不阻塞日报）。</p>
+<h2>⑦ 事件（G）</h2>
+<p>无数据（G1 需 Whale Alert API/公开归档；G2/G3 走人工通道未录入）。今日无已知重大事件条目。</p>
+<h2>⑧ 引擎信号（权威，不改写）</h2>
+<table><thead><tr><th>币</th><th>composite(-100~+100)</th><th>方向三分</th><th>强度</th><th>A</th><th>B</th><th>E</th></tr></thead><tbody><tr><td>BTC</td><td>3.1</td><td>横盘</td><td>0.10x</td><td>4.6</td><td>0.0</td><td>无数据</td></tr><tr><td>ETH</td><td>-8.6</td><td>横盘</td><td>0.29x</td><td>2.2</td><td>-30.0</td><td>无数据</td></tr></tbody></table>
+<h2>⑨ 未来 24h 判断</h2>
+<ul><li><strong>BTC：横盘（无方向倾向）</strong>。依据：引擎 composite 3.1 处中性带（±30 内），方向三分=横盘；短线动量企稳但 7d 下行未改、量比 0.95 反弹无量，不支持反转。参考区间：76,400~78,400。</li><li><strong>ETH：横盘偏弱</strong>。依据：引擎 composite -8.6 贴近中性带下沿，A 维 2.2 弱于 BTC、B 维 -30.0（量价背离连续 2 日）构成压制；相对弱势与无量反弹不支持独立走强。参考区间：2,350~2,430。</li><li>关键警示：<strong>E 维缺失</strong>，杠杆拥挤度未知——若衍生品端存在极端仓位，仅凭 A/B 无法察觉；ETH 的 B3 背离是结构性偏空佐证，但当前量能级别低，不构成强反转信号。</li></ul>
+<h2>⑩ 风险</h2>
+<p>1. <strong>E 维（衍生品）整维缺失</strong>：最强短线信号族缺席，主信号可信度系统性下降。<br>2. 情绪与价格背离：F&amp;G 65（贪婪）处高位而两币 7d 仍为负——情绪一旦转弱可能放大回调。<br>3. ETH 相对 BTC 持续走弱 + 量价背离连续 2 日（B3），若延续可能触发 ETH 独立补跌。</p>
+<h2>⑪ 置信度与数据覆盖度</h2>
+<ul><li>数据覆盖度：BTC <strong>13/34</strong> 项指标可用（A 7 + B 2 + F6 + C 链上代理 3）；ETH <strong>11/34</strong>（A 7 + B 2 + F6 + C6 TVL）。缺失：E/D/G 全维 + F 维宏观大部 + C 维完整指标（活跃地址/大额流向）。</li><li>对 ⑨ 判断置信度：<strong>低</strong>。理由：① 主信号缺 E 维(25% 权重)，仅由 A/B 驱动；② 两币 composite 均近中性，本身指向"无方向"，对方向性结论的支撑天然弱；③ 历史上下文仅 2 天（分位/回测仍不可用，需持续归档至 ≥30 日）；④ C 维仅背景代理，不参与信号。</li></ul>
+<hr>
+<p>*引擎：scripts/compute.py v0.3 | 口径：config/strategy.yaml | 数据覆盖：Tier-0/1 源（binance_vision/alternative.me/blockchair/blockchain.info/defillama）| 生成：run_daily + harness + LLM | 本版经 verify_report.py 对账校验*</p>
+<footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
+生成: btc_quant 研究包 run_daily + LLM</footer>
+</div></body></html>
