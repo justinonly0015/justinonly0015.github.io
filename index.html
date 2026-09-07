@@ -1,30 +1,62 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BTC/ETH 日报归档</title>
+<title>BTC/ETH 每日研究日报</title>
 <style>
-:root{--bg:#faf9f7;--card:#fff;--ink:#1f2430;--sub:#6b7280;--accent:#1a7f4e;--line:#e8e6e1;}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
-font:16px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
-header{background:linear-gradient(135deg,#10243e,#1a7f4e);color:#fff;border-radius:14px;
-padding:20px 22px;margin-bottom:18px}
-header h1{margin:0 0 6px;font-size:22px}header .meta{opacity:.85;font-size:13px}
-.back{font-size:13px;color:var(--sub);text-decoration:none;display:inline-block;margin-bottom:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
-padding:16px 20px;margin-bottom:14px}
-h2{font-size:17px;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #eef1ec}
-h3{font-size:15px;margin:14px 0 6px}
-table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
-th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
-th{background:#f3f5f2;font-weight:600}tr:nth-child(2n) td{background:#fafbfa}
-ul{margin:8px 0;padding-left:22px}li{margin:3px 0}
-blockquote{margin:10px 0;padding:8px 14px;background:#f6f8f5;border-left:4px solid var(--accent);
-border-radius:0 8px 8px 0;color:var(--sub);font-size:14px}
-.note{font-size:13px;color:var(--sub)}
-b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18px 0}
-</style></head><body><div class="wrap">
-<header><h1>BTC/ETH 每日日报</h1><div class='meta'>btc_quant 研究包产出 · 最新置顶</div></header><div class='card'><ul><li><a href='2026-09-07.html'>2026-09-07</a></li><li><a href='2026-09-06.html'>2026-09-06</a></li><li><a href='2026-09-05.html'>2026-09-05</a></li><li><a href='2026-09-04.html'>2026-09-04</a></li><li><a href='2026-09-03.html'>2026-09-03</a></li><li><a href='2026-09-02.html'>2026-09-02</a></li></ul></div>
-<footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
-生成: btc_quant 研究包 run_daily + LLM</footer>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--up:#d64541;--down:#178a56;--line:#e5e8ec;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 44px}
+.hero{background:linear-gradient(135deg,#0d1f38 0%,#143a5e 55%,#14614a 100%);color:#fff;
+text-align:center;padding:42px 16px 30px;margin-bottom:22px}
+.hero h1{margin:0;font-size:26px;letter-spacing:2px}
+.hero .sub{margin-top:8px;font-size:13px;opacity:.72;letter-spacing:1px}
+.hero .latest{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:1px;
+background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+padding:4px 16px;border-radius:999px}
+.stats{display:flex;gap:14px;margin-bottom:6px}
+.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;
+padding:16px 18px 12px;box-shadow:0 1px 3px rgba(16,36,62,.05)}
+.stat .coin{font-size:12px;color:var(--sub);letter-spacing:3px;font-weight:600}
+.stat .px{font-size:26px;font-weight:700;margin-top:2px;letter-spacing:.5px}
+.stat .px small{font-size:13px;color:var(--sub);font-weight:400;margin-left:3px}
+.stat .chgline{font-size:13px;color:var(--sub)}
+.chg{font-weight:600}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
+.stat .sig{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub)}
+.badge{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:6px}
+.badge.up{background:#fbe9e7;color:#c0392b}
+.badge.down{background:#e6f4ec;color:#178a56}
+.badge.flat{background:#edeff2;color:#69737f}
+.sec{font-size:15px;font-weight:700;margin:26px 4px 12px;display:flex;align-items:center;gap:10px}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:14px;
+padding:16px 14px 10px;box-shadow:0 1px 3px rgba(16,36,62,.05)}
+.legend{display:flex;gap:18px;font-size:12px;color:var(--sub);padding:0 6px 10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.list{display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:92px 1fr auto;align-items:center;gap:10px;
+background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;
+text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(16,36,62,.05);transition:border-color .15s}
+.row:hover{border-color:#9db4c8}
+.row .d{font-weight:700;font-size:16px}
+.row .d small{display:block;font-weight:400;color:var(--sub);font-size:11px}
+.row .m{font-size:13px;color:var(--sub)}
+.row .m b{font-weight:600}
+.row .arr{color:#b6bec9;font-size:20px}
+footer{margin-top:32px;text-align:center;font-size:12px;color:#9aa1ab}
+@media (max-width:560px){.stats{flex-direction:column}
+.row{grid-template-columns:76px 1fr}.row .arr{display:none}}
+</style></head><body>
+<div class="hero"><h1>BTC / ETH 每日研究日报</h1>
+<div class="sub">btc_quant 研究包 · 7 维度 34 指标 · 引擎信号权威口径</div>
+<div class="latest">Latest 2026-09-07</div></div>
+<div class="wrap">
+<div class="stats"><div class="stat"><div class="coin">BTC</div><div class="px">80,250<small>USD</small></div><div class="chgline">24h <span class="chg up">+0.4%</span></div><div class="sig">composite <span class="chg down">-6.1</span><span class="badge flat">横盘</span></div></div><div class="stat"><div class="coin">ETH</div><div class="px">2,512<small>USD</small></div><div class="chgline">24h <span class="chg up">+1.2%</span></div><div class="sig">composite <span class="chg down">-4.9</span><span class="badge flat">横盘</span></div></div></div>
+<div class="sec">信号走势 · composite（A/B/E 加权，涨红跌绿）</div>
+<div class="chart"><div class="legend"><span><i style="background:#14406b"></i>BTC</span><span><i style="background:#2e8b74"></i>ETH</span></div><svg viewBox="0 0 436 190" style="width:100%;height:auto;display:block"><line x1="40" y1="82.0" x2="428" y2="82.0" stroke="#c9ced6" stroke-dasharray="4 3"/><rect x="50" y="82.0" width="20" height="38.4" rx="2.5" fill="#14406b"><title>2026-09-02 BTC -28.2</title></rect><rect x="76" y="82.0" width="20" height="57.8" rx="2.5" fill="#2e8b74"><title>2026-09-02 ETH -42.5</title></rect><text x="70" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/02</text><rect x="114" y="77.8" width="20" height="4.2" rx="2.5" fill="#14406b"><title>2026-09-03 BTC 3.1</title></rect><rect x="140" y="82.0" width="20" height="11.7" rx="2.5" fill="#2e8b74"><title>2026-09-03 ETH -8.6</title></rect><text x="134" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/03</text><rect x="178" y="82.0" width="20" height="6.5" rx="2.5" fill="#14406b"><title>2026-09-04 BTC -4.8</title></rect><rect x="204" y="77.9" width="20" height="4.1" rx="2.5" fill="#2e8b74"><title>2026-09-04 ETH 3.0</title></rect><text x="198" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/04</text><rect x="242" y="82.0" width="20" height="11.4" rx="2.5" fill="#14406b"><title>2026-09-05 BTC -8.4</title></rect><rect x="268" y="82.0" width="20" height="9.9" rx="2.5" fill="#2e8b74"><title>2026-09-05 ETH -7.3</title></rect><text x="262" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/05</text><rect x="306" y="82.0" width="20" height="14.0" rx="2.5" fill="#14406b"><title>2026-09-06 BTC -10.3</title></rect><rect x="332" y="82.0" width="20" height="2.7" rx="2.5" fill="#2e8b74"><title>2026-09-06 ETH -2.0</title></rect><text x="326" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/06</text><rect x="370" y="82.0" width="20" height="8.3" rx="2.5" fill="#14406b"><title>2026-09-07 BTC -6.1</title></rect><rect x="396" y="82.0" width="20" height="6.7" rx="2.5" fill="#2e8b74"><title>2026-09-07 ETH -4.9</title></rect><text x="390" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/07</text><text x="36" y="17.0" text-anchor="end" font-size="9" fill="#b3bac3">50</text><text x="36" y="85.0" text-anchor="end" font-size="9" fill="#b3bac3">0</text><text x="36" y="150.0" text-anchor="end" font-size="9" fill="#b3bac3">-50</text></svg></div>
+<div class="sec">历史归档 · 最新置顶</div>
+<div class="list"><a class='row' href='2026-09-07.html'><div class='d'>09-07<small>2026</small></div><div class='m'>BTC 80,250 <span class="chg up">+0.4%</span> &nbsp;·&nbsp; ETH 2,512 <span class="chg up">+1.2%</span><br>composite · BTC <span class="chg down">-6.1</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg down">-4.9</span> 横盘</div><div class='arr'>›</div></a><a class='row' href='2026-09-06.html'><div class='d'>09-06<small>2026</small></div><div class='m'>BTC 79,903 <span class="chg up">+0.3%</span> &nbsp;·&nbsp; ETH 2,482 <span class="chg up">+1.1%</span><br>composite · BTC <span class="chg down">-10.3</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg down">-2.0</span> 横盘</div><div class='arr'>›</div></a><a class='row' href='2026-09-05.html'><div class='d'>09-05<small>2026</small></div><div class='m'>BTC 79,627 <span class="chg down">-2.1%</span> &nbsp;·&nbsp; ETH 2,454 <span class="chg down">-2.2%</span><br>composite · BTC <span class="chg down">-8.4</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg down">-7.3</span> 横盘</div><div class='arr'>›</div></a><a class='row' href='2026-09-04.html'><div class='d'>09-04<small>2026</small></div><div class='m'>BTC 80,703 <span class="chg up">+3.69%</span> &nbsp;·&nbsp; ETH 2,501 <span class="chg up">+3.92%</span><br>composite · BTC <span class="chg down">-4.8</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg up">+3.0</span> 横盘</div><div class='arr'>›</div></a><a class='row' href='2026-09-03.html'><div class='d'>09-03<small>2026</small></div><div class='m'>BTC 77,472 <span class="chg up">+0.43%</span> &nbsp;·&nbsp; ETH 2,394 <span class="chg down">-0.63%</span><br>composite · BTC <span class="chg up">+3.1</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg down">-8.6</span> 横盘</div><div class='arr'>›</div></a><a class='row' href='2026-09-02.html'><div class='d'>09-02<small>2026</small></div><div class='m'>BTC 76,506 <span class="chg down">-1.95%</span> &nbsp;·&nbsp; ETH 2,367 <span class="chg down">-3.52%</span><br>composite · BTC <span class="chg down">-28.2</span> 横盘 &nbsp;·&nbsp; ETH <span class="chg down">-42.5</span> 跌</div><div class='arr'>›</div></a></div>
+<footer>引擎 scripts/compute.py v1.0 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</footer>
 </div></body></html>
