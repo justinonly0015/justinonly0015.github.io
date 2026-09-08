@@ -1,147 +1,174 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Research Engine v2 — 落地评审 (btc_quant)</title>
+<title>Research Engine v2.1 — 架构冻结稿 (btc_quant)</title>
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;
 --accent:#14406b;--accent2:#2e8b74;--warn:#b7791f;--warn-soft:#fdf3e3;--bad:#c0392b;--bad-soft:#fbe9e7;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
 font:15px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:900px;margin:0 auto;padding:0 18px 50px}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px 50px}
 .hero{background:linear-gradient(135deg,#0d1f38 0%,#143a5e 55%,#14614a 100%);color:#fff;
 padding:38px 18px 26px;margin-bottom:22px}
-.hero h1{margin:0;font-size:23px;letter-spacing:1.5px;max-width:900px;margin:0 auto;padding:0 4px}
-.hero .sub{margin:8px auto 0;max-width:900px;font-size:13px;opacity:.75;letter-spacing:1px;padding:0 4px}
-.hero .meta{margin:14px auto 0;max-width:900px;font-size:12px;opacity:.6;padding:0 4px}
-h2{font-size:17px;margin:30px 0 10px;padding:6px 10px;background:#0d1f38;color:#fff;border-radius:8px;letter-spacing:1px}
-h3{font-size:15px;margin:20px 0 6px;color:var(--accent)}
+.hero h1{margin:0 auto;font-size:23px;letter-spacing:1.5px;max-width:920px;padding:0 4px}
+.hero .sub{margin:8px auto 0;max-width:920px;font-size:13px;opacity:.75;letter-spacing:1px;padding:0 4px}
+.hero .meta{margin:14px auto 0;max-width:920px;font-size:12px;opacity:.6;padding:0 4px}
+h2{font-size:16.5px;margin:30px 0 10px;padding:6px 10px;background:#0d1f38;color:#fff;border-radius:8px;letter-spacing:1px}
+h3{font-size:14.5px;margin:18px 0 6px;color:var(--accent)}
 p{margin:8px 0}
-table{border-collapse:collapse;width:100%;margin:10px 0;background:var(--card);font-size:13.5px}
-th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+table{border-collapse:collapse;width:100%;margin:10px 0;background:var(--card);font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
 th{background:#eef2f6;font-weight:600;white-space:nowrap}
 tr:nth-child(2n) td{background:#fafbfc}
-code{background:#eef1f4;border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+code{background:#eef1f4;border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
 .ok{color:var(--accent2);font-weight:600}.no{color:var(--bad);font-weight:600}
 .warn{color:var(--warn);font-weight:600}
-.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:5px;padding:0 7px;margin-right:6px}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:0 6px;margin-right:5px;white-space:nowrap}
 .tag.g{background:#e6f4ec;color:#178a56}.tag.r{background:var(--bad-soft);color:var(--bad)}
 .tag.y{background:var(--warn-soft);color:var(--warn)}.tag.b{background:#e7edf4;color:#14406b}
 blockquote{margin:10px 0;padding:8px 14px;background:#eef5f3;border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;font-size:13.5px}
-.phase{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
-.phase b{color:var(--accent)}
+.freeze{background:#0d1f38;color:#eaf1f8;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13.5px}
+.freeze b{color:#fff}
 footer{margin-top:36px;text-align:center;font-size:12px;color:#9aa1ab}
 </style></head><body>
 <div class="hero">
-<h1>Research Engine v2 — 落地评审（结合 btc_quant 仓库实况）</h1>
-<div class="sub">两份 ChatGPT 设计评审的逐条核验 · 数据源现状 · v2 落地方案</div>
-<div class="meta">作者：Hermes Agent（直接读取仓库快照核验，非纸面推演）· 数据截止：2026-09-08 · 来源代码：github.com/justin0109/btc_quant</div>
+<h1>Research Engine v2.1 — 架构冻结稿</h1>
+<div class="sub">三轮评审收敛 · Data Integrity First · 字段与规则定死 · 可直接落代码</div>
+<div class="meta">作者：Hermes Agent · 数据截止：2026-09-08 · 依据：btc_quant 仓库实况 + ChatGPT 三轮评审（含第三轮红队 5 条意见）· 本文为 v2-analysis 的修订版</div>
 </div>
 <div class="wrap">
 
-<h2>0. 评审对象</h2>
+<h2>0. 演进记录</h2>
 <table>
-<tr><th>输入</th><th>内容</th><th>本文核验方式</th></tr>
-<tr><td>ChatGPT 评审 #1</td><td>基于在线日报页(9/2~9/7)的整体评审：建议预测闭环、方向分级、补宏观等</td><td>对照仓库 scripts/ config/ data/ 逐条核对</td></tr>
-<tr><td>ChatGPT 评审 #2</td><td>v2 重新设计（永续合约升为独立数据层、9 层架构）→ 自带红队审查收敛为 v2.1（Anti-Overfitting）</td><td>对照仓库现有实现与数据源可达性核对</td></tr>
-<tr><td>仓库现状</td><td>btc_quant：日报流水线 7 维 34 指标框架，A/B/E 主信号加权 composite</td><td>snapshot / strategy.yaml / collect / compute / history</td></tr>
+<tr><th>轮次</th><th>来源</th><th>产出</th><th>去向</th></tr>
+<tr><td>评审 #1</td><td>ChatGPT（读 9/2~9/7 在线页）</td><td>预测闭环/方向分级/补宏观 等 22 条</td><td>Hermes 对照仓库核验</td></tr>
+<tr><td>评审 #2</td><td>ChatGPT（v2 设计 + 自带红队）</td><td>永续独立层/合约状态机/防泄漏 → 收敛 v2.1 Anti-Overfitting</td><td>Hermes 对照仓库核验</td></tr>
+<tr><td>落地评审</td><td>Hermes → v2-analysis.html（本页旧版）</td><td>仓库实况核验：E 维空窗、数据源现状、P0=数据可靠性</td><td>ChatGPT 读取</td></tr>
+<tr><td>第三轮红队</td><td>ChatGPT（读 v2-analysis.html 后）</td><td>5 条新意见 + P0-A/B/C 排序 + 冻结数据宇宙</td><td><b>本冻结稿吸收</b></td></tr>
 </table>
 
-<h2>1. 核心结论（先读这段）</h2>
-<blockquote>① ChatGPT 评审 #1 与 v2.1 红队收敛后的方向正确：<b>永续升为独立数据层 + 合约状态机 + 预测账本 + 防泄漏/防重复计权</b>，且当前阶段（仅 7 天数据）不应增加指标、不应上概率/ML。<br>
-② 但评审基于"只看网页"，仓库里已存在它列为 P0 的预测回看工具（review_history.py，L4 已实现）。<br>
-③ 真正的拦路问题它没看到：<b>E 维(合约) 9/5~9/7 连续三天打分空窗</b>——主源 binance_fapi 不可达时降级链未兜住；以及<b>多所数据源(OKX/Bybit/Deribit)在主执行机上全部未实测可达性</b>。<br>
-④ v2 第一刀不是写状态机，而是<b>数据可靠性 + 数据源实测</b>。</blockquote>
+<h2>1. 冻结总原则（v2.1 第一原则）</h2>
+<blockquote><b>任何研究结论，必须能沿"数据源 → 原始数据 → 标准化数据 → 指标 → 信号 → 日报"完整追溯。</b>任一环断裂，该数据不得作为研究结论使用。日报里的每个数字都应能追到 交易所 → 字段 → API → 时间戳。这一条比增加任何指标都重要。</blockquote>
+<div class="freeze">P0-A Data Integrity（数据完整性）≡ P0-B Prediction Ledger（预测账本）≡ P0-C Perpetual Core（永续核心：OI/Funding/Liquidation/Taker/Perp Premium）<br>
+P1 Regime（5~6 态，只出 evidence）→ P2 Forecast（≥30 天数据）→ P3 统计模型（60~90 天）→ P4 ML（最后一层，非卖点）</div>
 
-<h2>2. ChatGPT 评审 #1 的核验结果（已实现 vs 真缺口）</h2>
-<h3>2.1 它说对的（仓库实证）</h3>
+<h2>2. 仓库实况硬事实（已核验，2026-09-08）</h2>
 <table>
-<tr><th>它的判断</th><th>仓库实证</th></tr>
-<tr><td>"7维34指标实际只跑 A/B/E"</td><td><span class="ok">属实</span>。compute.py：composite = A/B/E 归一加权 <code>20:10:25</code>；dim_scores 中 C/D=None；F 仅 F6 单点背景。9/8 实际非空打分仅 10 个：A1/A2/A3/A5/A6 + B2/B3 + E1/E2/E3</td></tr>
-<tr><td>"横盘太宽泛，-6 与 -28 同档"</td><td><span class="ok">属实</span>。direction_threshold=±30 单阈值，|composite|≤30 全部"横盘"；9/2 BTC -28.2 判横盘实际 +1.26%，9/3 判横盘实际 +4.17%（后者即事件驱动行情）</td></tr>
-<tr><td>"引擎权威、LLM 只解读" 架构好</td><td><span class="ok">已是铁律</span>：strategy.yaml SSOT + verify_report 快照守卫 + "缺失禁止虚构" 口径</td></tr>
-<tr><td>"缺宏观 F；事件日 A/B 滞后"</td><td><span class="ok">属实</span>：yahoo/fred 未启用，F 维仅 alternative.me 的 F6</td></tr>
-<tr><td>"权重是人为经验"</td><td><span class="ok">成立</span>，但它自己也承认需 30~60 天数据后再学习——当前阶段不动</td></tr>
+<tr><th>事实</th><th>证据</th><th>状态</th></tr>
+<tr><td>E 维(合约) 9/5~9/7 连续三天打分空窗</td><td>snapshot E1~E5 全 None；日报文字却有"OI -2.6%"——<b>日报与引擎无法对账</b>，链路不可追溯</td><td><span class="no">P0-A 首案</span></td></tr>
+<tr><td>现货 A/B 维只有币安一家</td><td>Binance Vision 公开 API（data-api.binance.vision），1h×250 + 1d×90</td><td>单所口径</td></tr>
+<tr><td>合约 E 维 binance_fapi 主源 + gate 备援</td><td>9/8 source=binance_fapi；9/5 声称降级 gate 但未兜住</td><td><span class="warn">降级链失效</span></td></tr>
+<tr><td>OKX/Bybit/Deribit</td><td>代码零接入，可达性未实测</td><td><span class="no">待实测</span></td></tr>
+<tr><td>打分指标仅 10/34</td><td>A1/A2/A3/A5/A6 + B2/B3 + E1/E2/E3；C/D/G≈0，F 仅 F6</td><td>不加指标（冻结）</td></tr>
+<tr><td>review_history.py 已实跑</td><td>BTC 6 已判日 2 带内 4 失准；ETH 5 失准+1 反向；判读口径粗（±1% 带内即命中）</td><td>Ledger 起点</td></tr>
 </table>
 
-<h3>2.2 它没看到的（仓库已领先）</h3>
+<h2>3. 第三轮红队 5 条 → 吸收裁定</h2>
 <table>
-<tr><th>它的 P0 建议</th><th>仓库现状</th></tr>
-<tr><td>"预测复盘是最大产品缺口"</td><td><span class="tag g">已有雏形</span> scripts/review_history.py（L4，2026/09/07 定稿）：逐日 方向 vs 次日实际收益。但仅 CLI，未进日报/首页，判读口径粗（±1% 内算"横盘带内"），方向类判断样本仅 1 次（全押横盘）</td></tr>
-<tr><td>"方向分级 7 档"</td><td><span class="tag b">半成品</span> snapshot 已存 <code>strength=|composite|/threshold</code> 字段，但日报未使用——扩档只是展示层改动</td></tr>
-<tr><td>数据积累节奏 0-14/30-90/90+ 天</td><td><span class="tag g">预设一致</span> strategy.yaml failure_detection 已含 ic_rolling_days:90 / accuracy_min_pct:50</td></tr>
+<tr><th>#</th><th>GPT 红队意见</th><th>裁定</th><th>落地</th></tr>
+<tr><td>①</td><td>混合源（Binance OI + Gate 爆仓）必须标 source_exchange / aggregation_scope，不得伪装全市场</td><td><span class="ok">采纳</span></td><td>schema 升级为<b>每字段级</b> {value, exchange, scope}；聚合层标注 scope=binance_only/gate_only/partial</td></tr>
+<tr><td>②</td><td>现货-永续价差改名 perp_premium（或 spot_perp_basis），勿与季度期货 basis 混淆</td><td><span class="ok">采纳</span></td><td>字段定名 <code>perp_premium_bps = (perp_mark/spot − 1)×1e4</code>；mark_price 已在 derivatives.json、price_usd 已在 snapshot，零成本可算</td></tr>
+<tr><td>③</td><td>composite 更彻底降级；并行建 Market Factors</td><td><span class="ok">部分采纳+修正</span></td><td><b>factor vector 已存在 80%</b>：snapshot 每日本存 dim_scores{A,B,E,F6}。不另建第二套系统，把 dim_scores 提升为日报/LLM 输入一等公民；composite 保留为兼容输出+方向粗分，不再扩展</td></tr>
+<tr><td>④</td><td>regime v1 只出 evidence；rule_match ≠ probability</td><td><span class="ok">采纳</span></td><td>字段用 <code>rule_support</code>（如 3/4 规则命中），显式非统计概率；统计置信度等 ≥30 天用历史频率估</td></tr>
+<tr><td>⑤</td><td>Prediction Ledger 升为与 Data Integrity 同级 P0</td><td><span class="ok">采纳+补充</span></td><td>补：Ledger 化前先定死<b>判读口径</b>（见 §6），否则账本从第一天就是脏数据</td></tr>
 </table>
 
-<h3>2.3 预测轨迹实况（review_history 实跑，2026-09-08）</h3>
+<h2>4. 冻结数据宇宙（v2.1 第一阶段只跑这些）</h2>
 <table>
-<tr><th>币种</th><th>已判日</th><th>结果</th></tr>
-<tr><td>BTC</td><td>6 日（9/2~9/7）</td><td>2 日横盘带内（9/5、9/6）；4 日"失准"：9/2 +1.26%、9/3 +4.17%、9/4 -1.33%、9/7 -1.51%</td></tr>
-<tr><td>ETH</td><td>6 日</td><td>5 日失准 + 1 次反向（9/2 判"跌"实际 +1.13%）；仅 9/6 带内</td></tr>
-</table>
-<p>解读：方向判断退化到"几乎永远横盘"，±30 阈值带 + 样本 7 天，尚不具统计意义——这正好是 v2 预测账本要解决的。</p>
-
-<h2>3. 数据源现状（直接读 9/8 落盘文件核验）</h2>
-<table>
-<tr><th>数据</th><th>实际来源</th><th>覆盖</th></tr>
-<tr><td>现货 K线（A/B 维）</td><td><b>币安一家</b>：Binance Vision 公开数据 API <code>data-api.binance.vision</code>（免 key，国内可达），BTC/ETH USDT 1h×250 + 1d×90</td><td><span class="no">仅币安</span>，非 api.binance.com</td></tr>
-<tr><td>合约/衍生品（E 维）</td><td><b>binance_fapi 主源</b>（funding/OI/多空比，免 key 三接口）+ <b>gate.io futures 降级备援</b>。9/8 实际 source=binance_fapi</td><td><span class="warn">单所口径</span>；跨所聚合无</td></tr>
-<tr><td>OKX / Bybit / Deribit / Coinbase</td><td>代码零接入（仅 archive/ 旧文档将 OKX 列为"备用源设想"）</td><td><span class="no">无</span></td></tr>
-<tr><td>爆仓 E4/E5</td><td>collect.py gate 降级分支有爆仓聚合代码通路；但 binance 主源日（补采脚本）不采爆仓</td><td><span class="warn">主源日缺失</span></td></tr>
-<tr><td>Coinalyze（全市场聚合）</td><td>disabled（需 key）</td><td><span class="no">无</span></td></tr>
-<tr><td>宏观 F / 情绪 D / 事件 G / 链上 C</td><td>F 仅 F6 恐惧贪婪（alternative.me）；D/G 源未启用；C 为免费代理背景读数</td><td><span class="no">基本无</span></td></tr>
+<tr><th>层</th><th>字段</th><th>现状</th><th>动作</th></tr>
+<tr><td rowspan="3">SPOT</td><td>Price</td><td><span class="ok">已有</span>（币安 Vision 1h/1d）</td><td>不动</td></tr>
+<tr><td>Volume / Volume Ratio</td><td><span class="ok">已有</span>（B2/B3）</td><td>不动</td></tr>
+<tr><td>Volatility</td><td><span class="ok">已有</span>（A7 修饰）</td><td>不动</td></tr>
+<tr><td rowspan="5">PERPETUAL</td><td>OI（现/1h/4h/24h Δ）</td><td><span class="ok">已有</span>（E2）</td><td>补多周期变化率读数</td></tr>
+<tr><td>Funding（现/8h/24h 均/7d percentile）</td><td><span class="ok">已有</span>（E1）</td><td>补 7d 历史 → percentile</td></tr>
+<tr><td>Liquidation（24h，long/short 分列）</td><td><span class="warn">主源日缺失</span>（仅 gate 分支有代码通路）</td><td>爆仓常驻：gate 单拉聚合 或 coinalyze key；scope 标注</td></tr>
+<tr><td>Taker Buy/Sell</td><td><span class="no">无</span></td><td>klines 自带 takerBuyBaseAssetVolume → taker buy ratio（现货侧，免费）</td></tr>
+<tr><td>Perp Premium</td><td><span class="no">无</span></td><td>mark/spot − 1（见 §3-②）</td></tr>
+<tr><td>MACRO</td><td>F6 Fear&amp;Greed</td><td><span class="ok">已有并常驻打分</span></td><td><b>冻结清单显式保留</b>（修正项：避免已运行口径被截断、打断历史序列）</td></tr>
+<tr><td colspan="2">Macro 其余 / FLOW / ONCHAIN / OPTIONS / 情绪大维</td><td colspan="2"><span class="no">冻结不扩张</span>——等数据源实测与 30~60 天积累后再议</td></tr>
 </table>
 
-<h3>3.1 新发现的硬问题：E 维三天打分空窗</h3>
+<h2>5. P0-A：Data Integrity — 字段与门禁定死</h2>
+<h3>5.1 derivatives schema v2（每所原始读数独立存）</h3>
+<code>
+{"date":"2026-09-08","coin":"BTC",<br>
+ "fields":[{"name":"oi_usd","value":1.23e10,"exchange":"binance","scope":"binance_only","ts":"..."},<br>
+           {"name":"liq_24h_usd","value":1.84e8,"exchange":"gate","scope":"gate_only","ts":"..."}]}
+</code>
+<p>要点：<b>原始数据永远保存</b>（不覆盖）；聚合层另算并标注 scope；每字段带 exchange/scope/ts。任何"看起来像全市场"的输出必须能下钻到单所。</p>
+<h3>5.2 Data Quality Gate（每字段）</h3>
 <table>
-<tr><th>日期</th><th>derivatives 源</th><th>E1/E2/E3/E4/E5 快照分</th></tr>
-<tr><td>9/5 ~ 9/7</td><td>（9/5 日报自称"降级至 gate.io"）</td><td><span class="no">全部 None —— 引擎连续 3 天没吃到合约分</span></td></tr>
-<tr><td>9/8</td><td>binance_fapi（补采文件落盘）</td><td>E1=0 / E2=-40(BTC OI 降~10%) / E3 正常</td></tr>
-</table>
-<p>含义：主源不可达的日子，<b>降级链路没有真正兜住 E 维打分</b>；而日报中的 E 数字（如 GPT 引用的 9/7 "OI -2.6%"）与引擎快照对不上账，链路不可追溯。这是 v2"数据可靠性"要解决的第一个现实案例。</p>
-
-<h2>4. ChatGPT 评审 #2（v2 → 红队 → v2.1）的核验</h2>
-<h3>4.1 该保留的（与仓库实况一致）</h3>
-<table>
-<tr><th>v2.1 主张</th><th>核验</th></tr>
-<tr><td>永续从"一个维度"升为独立数据层（Spot/Perpetual/Macro/On-chain）</td><td><span class="ok">对</span>。E 维在权重表里是 25 的"皇冠"，但打分只有 3 个指标且读数不稳（见 3.1），确实配不上"核心桥梁"地位</td></tr>
-<tr><td>合约不输出总分，输出<b>状态机</b>（Long build-up / Short covering / Liquidation flush / Crowded long…）+ evidence + confidence</td><td><span class="ok">对</span>。直接替代现"LLM 看图说话"的 regime 描述，且可防"OI↓+价↑ 就称 short-covering"的伪因果（它红队自己也指出）</td></tr>
-<tr><td>防重复计权：OI/Funding/LS/Basis/CVD 高度相关，同组不重复加权</td><td><span class="ok">对</span>。打中 20:10:25 手工加权的要害；也支持"打分指标数不增加"的纪律</td></tr>
-<tr><td>预测账本 + available_time 防 look-ahead + 基准模型 + 删指标实验</td><td><span class="ok">对</span>。仓库已有 timeline 语义（T=UTC 00:00，日级源 T-1 完整日）基础，账本升级是自然延伸</td></tr>
-<tr><td>现阶段（7 天数据）禁止：概率/校准/ML/权重学习</td><td><span class="ok">对</span>。与仓库 failure_detection 的 90 天回测预设一致</td></tr>
-</table>
-<h3>4.2 该打折的（未结合仓库落地约束）</h3>
-<table>
-<tr><th>v2.1 设想</th><th>落地约束</th></tr>
-<tr><td>多所聚合 Binance/OKX/Bybit/Deribit</td><td>主执行机（北京网络）连 fapi.binance.com 都不通（仅 vision 通、gate 间歇通）——OKX/Bybit/Deribit <b>可达性全部未实测</b>。v2 数据宇宙边界由实测结果决定，不由设计决定</td></tr>
-<tr><td>Options IV/Skew、ETF Flow、MVRV/SOPR、稳定币供应</td><td>多数<b>无免费源</b>或需付费 key（glassnode/coinalyze 高级字段等）→ 明确延后</td></tr>
-<tr><td>4H/24H/7D 多周期层</td><td>会成倍放大日报/验证复杂度；仓库存储粒度（每日一行 history）暂不支持——列为远期</td></tr>
-<tr><td>"删除 composite"</td><td>红队自己也改为"保留做 UI"。仓库 v0.3 SSOT 结构支持演进：composite 降级为展示 + 方向粗分，信号层后续输出 factor vector</td></tr>
+<tr><th>属性</th><th>规则</th></tr>
+<tr><td>freshness</td><td>超过字段级阈值（如 OI ≤30min、日级源 T-1 完整日）→ 标 stale，不进打分</td></tr>
+<tr><td>fallback 记录</td><td>主源→备源切换必须落日志：哪一刻、为何、用了哪个 scope</td></tr>
+<tr><td>可追溯链</td><td>日报数字 → snapshot → reading → raw 文件 → API response + 时间戳；链断即弃用</td></tr>
+<tr><td>E 维空窗防护</td><td>主源不可达且备源无数据时：E 维输出 <b>NO DATA</b>（而非 0 或静默），日报与引擎强制一致</td></tr>
 </table>
 
-<h2>5. v2 落地方案（映射到本仓库文件）</h2>
+<h2>6. P0-B：Prediction Ledger — schema 与判读口径定死</h2>
+<h3>6.1 记录结构（每日每币）</h3>
+<code>{"date","coin","direction":"涨|横盘|跌","range_low","range_high","composite","dim_scores",<br>
+ "drivers":[..],"regime":"..","rule_support":"3/4",<br>
+ // 次日回填<br>
+ "actual":{"close","high","low","ret_24h_pct"},"result":{"direction_hit","range_hit","mae"}}</code>
+<h3>6.2 判读口径（Ledger 化第一步，先定死再记账）</h3>
 <table>
-<tr><th>层</th><th>改动</th><th>文件</th></tr>
-<tr><td>数据层</td><td>derivatives schema 升级：<b>每所原始读数分开存</b>（binance/gate 各自 funding/OI/LS/liq），聚合层另算，不做简单加总；funding 拉 7d 历史算 <b>funding percentile</b>；klines 的 taker buy 量落库（现货主动买卖倾向，免费）；现货价-永续 mark 价差 = <b>basis</b>（无需季度合约）</td><td>fetch_binance_e.py / collect.py / compute.py / strategy.yaml</td></tr>
-<tr><td>爆仓常驻</td><td>binance 主源日也从 gate 单独拉爆仓聚合（混合源），或申请 coinalyze 免费 key 一源解决 E4/E5 + 跨所 OI</td><td>collect.py / strategy.yaml sources</td></tr>
-<tr><td>状态机</td><td>新增 regime.py：OI 方向 × 价格方向 × funding × 爆仓 × taker → 输出 regime 标签 + evidence + confidence；LLM 只解读不发明</td><td><b>新增 scripts/regime.py</b></td></tr>
-<tr><td>预测账本</td><td>data/ledger/forecast_*.json：方向/区间/驱动/失效条件；次日回填 actual(high/low/close) 与 result(direction_hit/range_hit/MAE)；review_history 升级为命中率+区间命中率</td><td><b>新增</b> data/ledger/ + review_history.py v2</td></tr>
-<tr><td>护栏</td><td>打分指标数不增加（保持 ~10 常驻）；相关性分组防重复计权；数据缺失超阈值 → 输出 <b>NO EDGE</b>（不做强制预测）</td><td>strategy.yaml / compute.py</td></tr>
-<tr><td>文档</td><td>新规格文档把字段/口径/状态机规则定死，决策记入 05_决策与口径记录</td><td><b>新增 07_Research_Engine_v2_规格.md</b></td></tr>
+<tr><th>判项</th><th>口径</th></tr>
+<tr><td>方向准确率分母</td><td><b>仅非横盘预测</b>（涨/跌）计入；横盘预测不占方向准确率分母（解决"横盘承担太多"）</td></tr>
+<tr><td>横盘预测单独统计</td><td>横盘命中 = |ret_24h| ≤ 0.75%；超带记失准幅度，单独累计"横盘失准率"</td></tr>
+<tr><td>区间命中</td><td>actual close ∈ [range_low, range_high]</td></tr>
+<tr><td>误差</td><td>MAE = |actual close − 区间中值|</td></tr>
+</table>
+<p>样本纪律：≤14 天不出任何命中率数字；14~30 天可显示但标注"样本不足"。</p>
+
+<h2>7. P0-C：Perpetual Core 落地项（Phase 1 代码）</h2>
+<table>
+<tr><th>项</th><th>实现</th><th>文件</th></tr>
+<tr><td>schema 升级 + scope</td><td>derivatives.json 每字段带 exchange/scope/ts；gate 降级走同构字段</td><td>fetch_binance_e.py / collect.py / compute.py</td></tr>
+<tr><td>爆仓常驻</td><td>主源日也从 gate 单独拉 liq（scope=gate_only），或 coinalyze key；缺则 NO DATA 非静默</td><td>collect.py / strategy.yaml</td></tr>
+<tr><td>funding 7d percentile</td><td>拉 7d funding 历史算分位，替代绝对值口径</td><td>collect.py / compute.py</td></tr>
+<tr><td>taker buy ratio</td><td>从 1h klines takerBuyBaseAssetVolume 落库（现货侧代理，注明非合约 CVD）</td><td>collect.py / compute.py</td></tr>
+<tr><td>perp_premium_bps</td><td>perp_mark/spot − 1，×1e4</td><td>compute.py</td></tr>
+<tr><td>可达性实测</td><td>okx / bybit / deribit / coinalyze / gate-liq 各探一公开端点，实测决定是否入源</td><td>healthcheck.py 扩展</td></tr>
 </table>
 
-<h3>5.1 明确不做（与 v2.1 红队结论一致）</h3>
-<p>期权层、ETF flow、链上 MVRV/SOPR、7D 预测层、概率校准、权重学习、ML——全部等：① 数据源可达性实测；② 30~60 天历史积累。</p>
+<h2>8. P1：Regime v1 — 6 态规则表（只出 evidence，非概率）</h2>
+<table>
+<tr><th>Regime</th><th>Price</th><th>OI</th><th>Funding</th><th>Liquidation</th><th>Taker</th></tr>
+<tr><td>Long Build-up</td><td>↑</td><td>↑</td><td>↑/正</td><td>—</td><td>买 ↑</td></tr>
+<tr><td>Short Build-up</td><td>↓</td><td>↑</td><td>↓/负</td><td>—</td><td>卖 ↑</td></tr>
+<tr><td>Short Covering</td><td>↑</td><td>↓</td><td>中性/↓</td><td>空头爆仓 ↑</td><td>—</td></tr>
+<tr><td>Long Liquidation</td><td>↓</td><td>↓</td><td>↓</td><td>多头爆仓 ↑</td><td>—</td></tr>
+<tr><td>Leverage Flush</td><td>剧震</td><td>↓↓</td><td>—</td><td>↑↑</td><td>量 ↑↑</td></tr>
+<tr><td>Neutral</td><td colspan="5">其余（含数据缺失无法判定的情况）</td></tr>
+</table>
+<p><code>rule_support = 命中规则数 / 可用规则数</code>；某字段缺失（如 liq）则该规则不参与分子分母——E 维空窗日 regime 自动退化为 价格×OI 二维，且如实标注。禁止把 rule_support 写成 percentage/probability。</p>
 
-<h2>6. 执行顺序</h2>
-<div class="phase"><b>Phase 0</b> — v2 规格书入库（07_*.md，半天）：定死字段/口径/状态机规则/账本 schema</div>
-<div class="phase"><b>Phase 1</b> — 数据层：先做<b>可达性实测</b>（okx / bybit / deribit / coinalyze / gate 爆仓各探一个公开端点），实测决定源清单；再 schema 升级 + 爆仓常驻 + funding 分位 + taker 落库</div>
-<div class="phase"><b>Phase 2</b> — scripts/regime.py 合约状态机，替代 LLM 看图说话</div>
-<div class="phase"><b>Phase 3</b> — 预测账本闭环：昨日预测 → 今日验证 → 命中率/区间命中率进日报与首页</div>
-<div class="phase"><b>Phase 4+（30 天以后）</b> — 基准模型对比（Always Neutral / Momentum only / 前 24h 方向）、删指标实验、权重学习</div>
+<h2>9. 时间闸门（防止过早复杂化）</h2>
+<table>
+<tr><th>闸门</th><th>解锁条件</th><th>内容</th></tr>
+<tr><td>P2 Forecast 研究</td><td>≥30 天稳定历史</td><td>Baseline 对比（Always Neutral / Momentum only / 前 24h 方向）→ Factor → Forecast</td></tr>
+<tr><td>P3 统计</td><td>60~90 天</td><td>Logistic / calibration / IC / feature importance / weight learning</td></tr>
+<tr><td>P4 ML</td><td>最后</td><td>XGBoost/LightGBM——Research Engine 最后一层，不是 v2 卖点</td></tr>
+</table>
 
-<h2>7. 一句话总结</h2>
-<blockquote>v2 的正确路线 = ChatGPT v2.1 红队收敛后的框架（永续独立数据层 + 状态机 + 预测账本 + 护栏），但<b>第一步不是写状态机，而是把数据地基打牢</b>：解决 E 维空窗与降级兜底、实测多所可达性、让爆仓常驻。网页只是观察窗口，仓库里的流水线才是研究对象本身。</blockquote>
+<h2>10. 文件级改动清单（Phase 0 + Phase 1）</h2>
+<table>
+<tr><th>文件</th><th>动作</th></tr>
+<tr><td><b>新增 07_Research_Engine_v2_规格.md</b></td><td>本文全部字段/口径/规则定稿入库；05_决策与口径记录.md 记决策</td></tr>
+<tr><td>config/strategy.yaml</td><td>升 v2：perp_premium/taker/funding percentile 阈值与开关；scope 声明；NO DATA 规则</td></tr>
+<tr><td>scripts/fetch_binance_e.py / collect.py</td><td>每字段 exchange/scope/ts；gate liq 单拉；funding 历史；taker 落库</td></tr>
+<tr><td>scripts/compute.py</td><td>读新字段；dim_scores 提升为一等输出；E 维 NO DATA 非静默</td></tr>
+<tr><td><b>新增 scripts/regime.py</b></td><td>§8 六态规则表 → candidate + matched_rules + rule_support</td></tr>
+<tr><td><b>新增 data/ledger/</b> + review_history.py v2</td><td>§6 账本；次日回填；判读口径；命中率只列 ≥14 天样本</td></tr>
+<tr><td>scripts/healthcheck.py</td><td>扩展探测 okx/bybit/deribit/coinalyze/gate-liq</td></tr>
+<tr><td>render_html.py / 日报 prompt</td><td>dim_scores + regime + 昨日验证入日报与首页</td></tr>
+</table>
 
-<footer>Hermes Agent 分析 · 数据源：btc_quant 仓库本地快照/脚本/config（截至 2026-09-08）· 本文不构成投资建议</footer>
+<h2>11. 一句话总结</h2>
+<blockquote>v2.1 = <b>先把 10~12 个核心变量跑稳定、把每一个数字的来路钉死、把每一天的预测记账并对账，然后连续积累 30→60→90 天</b>，最后让数据自己决定留下什么。目标不是"预测 BTC 涨跌"，而是"建立一个能证明自己预测能力的研究系统"。</blockquote>
+
+<footer>Hermes Agent · v2.1 冻结稿修订版（吸收第三轮红队 5 条意见）· 数据源：btc_quant 仓库 2026-09-08 · 不构成投资建议</footer>
 </div>
 </body></html>
