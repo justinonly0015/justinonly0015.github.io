@@ -1,86 +1,316 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-title-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报" data-title-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research"><head><meta charset="utf-8">
+<html lang="zh-CN" data-theme="light"
+  data-title-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报" data-title-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research"><head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BTC/ETH + BTCUSDT/ETHUSDT 每日研报</title>
+<meta name="description" content="btc_quant 研究包 · 现货 + 永续双市场 · 7 维度 34 指标 · 每日信号与历史归档">
+<title>BTC/ETH 每日研究日报</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('bqc_theme')}catch(e){}
+if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
 <style>
-:root{--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;
+:root{
+--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;--line2:#f0f2f5;
+--grid:#dfe4ea;--tick:#9aa1ab;
 --up:#d64541;--up-soft:#fbe9e7;--up-strong:#c0392b;
---down:#178a56;--down-soft:#e6f4ec;--down-strong:#178a56;}
-html[lang="en"]{--up:#178a56;--up-soft:#e6f4ec;--up-strong:#178a56;
+--down:#178a56;--down-soft:#e6f4ec;--down-strong:#0f6b42;
+--brand:#14406b;--brand2:#2e8b74;--chip:#eef1f5;--chip-on:#14406b;
+--shadow:0 1px 2px rgba(16,36,62,.05),0 6px 16px rgba(16,36,62,.05);
+--hero1:#0d1f38;--hero2:#143a5e;--hero3:#14614a;--topbar:rgba(255,255,255,.88);}
+html[data-theme="dark"]{
+--bg:#0d1117;--card:#151b24;--ink:#e4e9f0;--sub:#8d99a8;--line:#242c38;--line2:#1b232e;
+--grid:#2b3543;--tick:#6b7686;
+--up:#e5645f;--up-soft:#3a201f;--up-strong:#f08a85;
+--down:#2fb37c;--down-soft:#123024;--down-strong:#5ad3a0;
+--brand:#4a90d9;--brand2:#3ec9a7;--chip:#1c242f;--chip-on:#4a90d9;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 20px rgba(0,0,0,.25);
+--hero1:#09121f;--hero2:#0f2a44;--hero3:#0e4636;--topbar:rgba(21,27,36,.88);}
+html[lang="en"]{--up:#178a56;--up-soft:#e6f4ec;--up-strong:#0f6b42;
 --down:#d64541;--down-soft:#fbe9e7;--down-strong:#c0392b;}
+html[data-theme="dark"][lang="en"]{--up:#2fb37c;--up-soft:#123024;--up-strong:#5ad3a0;
+--down:#e5645f;--down-soft:#3a201f;--down-strong:#f08a85;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
-font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px 44px}
-.hero{position:relative;background:linear-gradient(135deg,#0d1f38 0%,#143a5e 55%,#14614a 100%);color:#fff;
-text-align:center;padding:42px 16px 30px;margin-bottom:22px}
-.langbtn{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.14);
-border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 16px;
-cursor:pointer;letter-spacing:1px;font-family:inherit;font-size:13px;font-weight:600}
-.langbtn:hover{background:rgba(255,255,255,.24)}
-.hero h1{margin:0;font-size:25px;letter-spacing:1px;line-height:1.45}
+font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+transition:background .2s,color .2s}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 56px}
+/* ---- topbar ---- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
+padding:10px 16px;background:var(--topbar);
+-webkit-backdrop-filter:saturate(1.4) blur(8px);backdrop-filter:saturate(1.4) blur(8px);
+border-bottom:1px solid var(--line)}
+.topbar .brand{font-weight:700;font-size:14px;letter-spacing:.5px}
+.topbar .brand i{display:inline-block;width:8px;height:8px;border-radius:50%;
+background:var(--brand2);margin-right:7px;vertical-align:1px}
+.topbar .sp{flex:1}
+.ibtn{background:var(--chip);border:1px solid var(--line);color:var(--sub);
+border-radius:999px;padding:5px 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;
+transition:all .15s}
+.ibtn:hover{color:var(--ink);border-color:var(--sub)}
+/* ---- hero ---- */
+.hero{background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);
+color:#fff;text-align:center;padding:40px 16px 30px;margin-bottom:22px}
+.hero h1{margin:0;font-size:23px;letter-spacing:1px;line-height:1.45}
 .hero .sub{margin-top:8px;font-size:13px;opacity:.72;letter-spacing:1px}
-.hero .latest{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:1px;
+.hero .pill{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:1px;
 background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
-padding:4px 16px;border-radius:999px}
-.stats{display:flex;gap:14px;margin-bottom:6px}
-.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:16px 18px 12px;box-shadow:0 1px 3px rgba(16,36,62,.05)}
-.stat .coin{font-size:12px;color:var(--sub);letter-spacing:3px;font-weight:600}
-.stat .px{font-size:26px;font-weight:700;margin-top:2px;letter-spacing:.5px}
-.stat .px small{font-size:13px;color:var(--sub);font-weight:400;margin-left:3px}
-.stat .chgline{font-size:13px;color:var(--sub)}
+padding:4px 16px;border-radius:999px;margin-left:6px}
+.cov{margin:20px auto 0;max-width:420px;font-size:11px;color:rgba(255,255,255,.75);
+display:flex;flex-direction:column;gap:6px}
+.cov .r{display:flex;align-items:center;gap:8px}
+.cov .r b{width:96px;text-align:right;font-weight:600;letter-spacing:.5px}
+.cov .track{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}
+.cov .fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#3ec9a7,#7ee0c0)}
+.cov .r span.n{width:52px;text-align:left;font-variant-numeric:tabular-nums}
+/* ---- section ---- */
+.sec{font-size:15px;font-weight:700;margin:28px 4px 12px;display:flex;align-items:center;gap:10px}
+.sec small{font-weight:400;font-size:12px;color:var(--sub)}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+/* ---- coin cards ---- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 14px;
+box-shadow:var(--shadow)}
+.coin{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);
+letter-spacing:3px;font-weight:600}
+.coin .tag{letter-spacing:0;font-size:11px;font-weight:600;padding:1px 7px;border-radius:5px;
+background:var(--chip);color:var(--sub)}
+.px{font-size:28px;font-weight:700;margin-top:2px;letter-spacing:.5px;font-variant-numeric:tabular-nums}
+.px small{font-size:13px;color:var(--sub);font-weight:400;margin-left:4px}
+.chgline{font-size:13px;color:var(--sub);margin-top:2px}
 .chg{font-weight:600}
 .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
-.stat .sig{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub)}
 .badge{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:6px}
 .badge.up{background:var(--up-soft);color:var(--up-strong)}
 .badge.down{background:var(--down-soft);color:var(--down-strong)}
-.badge.flat{background:#edeff2;color:#69737f}
-.sec{font-size:15px;font-weight:700;margin:26px 4px 12px;display:flex;align-items:center;gap:10px}
-.sec::after{content:"";flex:1;height:1px;background:var(--line)}
-.chart{background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:16px 14px 10px;box-shadow:0 1px 3px rgba(16,36,62,.05)}
-.legend{display:flex;gap:18px;font-size:12px;color:var(--sub);padding:0 6px 10px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.badge.flat{background:var(--chip);color:var(--sub)}
+.sig{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
+display:flex;align-items:baseline;gap:8px}
+.sig .lb{font-size:12px;color:var(--sub)}
+.sig .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.str{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;color:var(--sub)}
+.str .track{flex:1;height:4px;border-radius:2px;background:var(--line2);overflow:hidden}
+.str .fill{height:100%;background:var(--brand);border-radius:2px}
+.kv{margin-top:10px;font-size:12px;color:var(--sub);display:flex;justify-content:space-between;gap:10px}
+.kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.att{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:9px;padding:6px 10px;
+background:var(--line2);border-radius:8px;font-size:11px;color:var(--sub)}
+.att .lb{font-weight:600;color:var(--ink);letter-spacing:.5px}
+.att b{color:var(--ink);font-size:12px;letter-spacing:.5px}
+.att .pc{font-weight:600;color:var(--brand)}
+.att .raw{color:var(--tick);font-variant-numeric:tabular-nums}
+/* ---- dim matrix ---- */
+.dims{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 4px 4px;
+box-shadow:var(--shadow);overflow-x:auto}
+.drow{display:grid;grid-template-columns:56px repeat(7,minmax(58px,1fr));gap:4px;align-items:center;
+padding:9px 10px}
+.drow+.drow{border-top:1px solid var(--line2)}
+.drow .nm{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--sub)}
+.dcell{text-align:center}
+.dcell .k{font-size:10px;color:var(--sub);letter-spacing:.5px}
+.dcell .bar{position:relative;height:8px;border-radius:2px;background:var(--line2);margin:3px 0 2px;overflow:hidden}
+.dcell .bar::after{content:"";position:absolute;left:50%;top:-1px;bottom:-1px;width:1px;
+background:var(--grid)}
+.dcell .bar i{position:absolute;top:0;bottom:0;border-radius:2px}
+.dcell .val{font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.dcell.na .val{color:var(--tick);font-weight:400}
+.dcell.na .bar{background:repeating-linear-gradient(45deg,var(--line2),var(--line2) 3px,var(--card) 3px,var(--card) 6px)}
+/* ---- chart ---- */
+.chart{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;
+padding:14px 14px 8px;box-shadow:var(--shadow)}
+.legend{display:flex;gap:8px;font-size:12px;color:var(--sub);padding:0 4px 6px}
+.lgi{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;border-radius:999px;
+padding:2px 10px;cursor:pointer;user-select:none;transition:all .15s;background:none;font:inherit;
+font-size:12px;color:var(--sub)}
+.lgi:hover{border-color:var(--line)}
+.lgi i{display:inline-block;width:10px;height:10px;border-radius:3px}
+.lgi.off{opacity:.35}
+.lgi.off i{background:var(--tick)!important}
+.chart svg{display:block;width:100%;height:auto;touch-action:none}
+.grid{stroke:var(--grid);stroke-dasharray:4 3}
+.axis{stroke:var(--line)}
+.tick{fill:var(--tick);font-size:9px}
+.xlabel{fill:var(--tick);font-size:10px}
+.sline{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;transition:opacity .2s}
+.sdot{transition:opacity .2s}
+.hot rect{fill:transparent;cursor:pointer}
+.hot:hover .hline{stroke:var(--grid)}
+.hline{stroke:transparent}
+.hdot{opacity:0;transition:opacity .15s}
+.hot.on .hdot{opacity:1}
+svg[data-off~="btc"] .s-btc{opacity:0}
+svg[data-off~="eth"] .s-eth{opacity:0}
+.tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-6px);
+background:var(--ink);color:var(--card);border-radius:8px;padding:6px 10px;font-size:12px;
+line-height:1.6;white-space:nowrap;transition:opacity .12s;z-index:5;box-shadow:var(--shadow)}
+.tip.on{opacity:1}
+.tip b{font-weight:700}
+.tip .d{opacity:.7;font-size:11px}
+/* ---- toolbar ---- */
+.bar{display:flex;gap:8px;align-items:center;margin:0 0 12px;flex-wrap:wrap}
+.search{flex:1;min-width:170px;position:relative}
+.search input{width:100%;font:inherit;font-size:13px;padding:8px 30px 8px 32px;border-radius:999px;
+border:1px solid var(--line);background:var(--card);color:var(--ink);outline:none;transition:border-color .15s}
+.search input:focus{border-color:var(--brand)}
+.search .ic{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--tick);font-size:13px}
+.search kbd{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:10px;
+color:var(--tick);border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--line2)}
+.chips{display:flex;gap:6px}
+.chip{font:inherit;font-size:12px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);
+background:var(--card);color:var(--sub);cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--sub)}
+.chip.on{background:var(--chip-on);border-color:var(--chip-on);color:#fff}
+/* ---- archive ---- */
 .list{display:flex;flex-direction:column;gap:10px}
-.row{display:grid;grid-template-columns:92px 1fr auto;align-items:center;gap:10px;
-background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;
-text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(16,36,62,.05);transition:border-color .15s}
-.row:hover{border-color:#9db4c8}
-.row .d{font-weight:700;font-size:16px}
-.row .d small{display:block;font-weight:400;color:var(--sub);font-size:11px}
-.row .m{font-size:13px;color:var(--sub)}
-.row .m b{font-weight:600}
-.row .arr{color:#b6bec9;font-size:20px}
-footer{margin-top:32px;text-align:center;font-size:12px;color:#9aa1ab}
-@media (max-width:560px){.stats{flex-direction:column}
-.row{grid-template-columns:76px 1fr}.row .arr{display:none}}
+.row{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;
+padding:13px 16px;text-decoration:none;color:inherit;box-shadow:var(--shadow);
+transition:border-color .15s,transform .12s}
+.row:hover{border-color:var(--brand);transform:translateY(-1px)}
+.row:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.rhd{display:flex;align-items:center;gap:12px}
+.rdate{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;min-width:104px}
+.rdate small{display:block;font-weight:400;color:var(--sub);font-size:11px;letter-spacing:.5px}
+.rmid{flex:1;font-size:13px;color:var(--sub);display:flex;flex-wrap:wrap;gap:4px 14px}
+.rmid b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.rmid .tags{font-size:11px;color:var(--tick);background:var(--line2);border-radius:999px;padding:1px 9px}
+.rend{display:flex;align-items:center;gap:6px;color:var(--tick)}
+.exp{font:inherit;font-size:11px;color:var(--sub);background:var(--chip);border:1px solid var(--line);
+border-radius:999px;padding:2px 9px;cursor:pointer}
+.exp:hover{color:var(--ink)}
+.arr{font-size:20px;line-height:1}
+.rbody{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.row.open .rbody{max-height:1400px}
+.rbody .in{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+font-size:13px;color:var(--sub);line-height:1.75}
+.rbody .in .hd{font-weight:600;color:var(--ink);font-size:12px;letter-spacing:.5px}
+.empty{display:none;text-align:center;padding:26px 0;color:var(--tick);font-size:13px}
+footer{margin-top:34px;text-align:center;font-size:12px;color:var(--tick);line-height:1.9}
+@media (max-width:620px){
+.cards{grid-template-columns:1fr}
+.rhd{flex-wrap:wrap;gap:8px}
+.rmid{width:100%}
+.rend{display:none}
+.cov .r b{width:76px}
+}
 </style></head><body>
-<div class="hero"><button id="langbtn" class="langbtn" type="button" aria-label="Switch language">EN</button>
-<h1><span data-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报" data-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research">BTC/ETH + BTCUSDT/ETHUSDT 每日研报</span></h1>
-<div class="sub"><span data-zh="现货 + 永续 双市场 · btc_quant 研究包 · 7 维度 34 指标 · 引擎信号权威口径" data-en="Spot + Perp dual-market · btc_quant research package · 7 dimensions / 34 indicators · engine signals are authoritative">现货 + 永续 双市场 · btc_quant 研究包 · 7 维度 34 指标 · 引擎信号权威口径</span></div>
-<div class="latest"><span data-zh="最新" data-en="Latest">最新</span> 2026-09-09</div></div>
+<div class="topbar"><span class="brand"><i></i><span data-zh="btc_quant 研究包" data-en="btc_quant Research">btc_quant 研究包</span></span>
+<span class="sp"></span>
+<button class="ibtn" id="themebtn" type="button" title="Toggle theme">🌙</button>
+<button class="ibtn" id="langbtn" type="button" aria-label="Switch language">EN</button></div>
+<div class="hero"><h1><span data-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报" data-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research">BTC/ETH + BTCUSDT/ETHUSDT 每日研报</span></h1>
+<div class="sub"><span data-zh="现货 + 永续 双市场 · 7 维度 34 指标 · 引擎信号为权威口径" data-en="Spot + Perp dual-market · 7 dimensions / 34 indicators · engine signals are authoritative">现货 + 永续 双市场 · 7 维度 34 指标 · 引擎信号为权威口径</span></div>
+<div><span class="pill"><span data-zh="最新" data-en="Latest">最新</span> 2026-09-09</span><span class="pill" data-zh="更新于" data-en="Updated">更新于</span><span class="pill">2026-09-09T00:15Z</span></div>
+<div class="cov"><div class="r"><b>BTC <span data-zh="数据覆盖" data-en="Coverage">数据覆盖</span></b><span class="track"><span class="fill" style="width:47%"></span></span><span class="n">16/34</span></div><div class="r"><b>BTC <span data-zh="有效信号" data-en="Signal">有效信号</span></b><span class="track"><span class="fill" style="width:29%"></span></span><span class="n">10/34</span></div><div class="r"><b>ETH <span data-zh="数据覆盖" data-en="Coverage">数据覆盖</span></b><span class="track"><span class="fill" style="width:41%"></span></span><span class="n">14/34</span></div><div class="r"><b>ETH <span data-zh="有效信号" data-en="Signal">有效信号</span></b><span class="track"><span class="fill" style="width:29%"></span></span><span class="n">10/34</span></div></div></div>
 <div class="wrap">
-<div class="stats"><div class="stat"><div class="coin">BTC</div><div class="px">78,670<small>USD</small></div><div class="chgline">24h <span class="chg down">-0.5%</span></div><div class="sig">composite <span class="chg flat">—</span></div></div><div class="stat"><div class="coin">ETH</div><div class="px">2,493<small>USD</small></div><div class="chgline">24h <span class="chg up">+0.2%</span></div><div class="sig">composite <span class="chg flat">—</span></div></div></div>
-<div class="sec"><span data-zh="信号走势 · composite（A/B/E 加权）" data-en="Signal Trend · composite (A/B/E weighted)">信号走势 · composite（A/B/E 加权）</span></div>
-<div class="chart"><div class="legend"><span><i style="background:#14406b"></i>BTC</span><span><i style="background:#2e8b74"></i>ETH</span></div><svg viewBox="0 0 564 190" style="width:100%;height:auto;display:block"><line x1="40" y1="82.0" x2="556" y2="82.0" stroke="#c9ced6" stroke-dasharray="4 3"/><rect x="50" y="82.0" width="20" height="38.4" rx="2.5" fill="#14406b"><title>2026-09-02 BTC -28.2</title></rect><rect x="76" y="82.0" width="20" height="57.8" rx="2.5" fill="#2e8b74"><title>2026-09-02 ETH -42.5</title></rect><text x="70" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/02</text><rect x="114" y="77.8" width="20" height="4.2" rx="2.5" fill="#14406b"><title>2026-09-03 BTC 3.1</title></rect><rect x="140" y="82.0" width="20" height="11.7" rx="2.5" fill="#2e8b74"><title>2026-09-03 ETH -8.6</title></rect><text x="134" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/03</text><rect x="178" y="82.0" width="20" height="6.5" rx="2.5" fill="#14406b"><title>2026-09-04 BTC -4.8</title></rect><rect x="204" y="77.9" width="20" height="4.1" rx="2.5" fill="#2e8b74"><title>2026-09-04 ETH 3.0</title></rect><text x="198" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/04</text><rect x="242" y="82.0" width="20" height="11.4" rx="2.5" fill="#14406b"><title>2026-09-05 BTC -8.4</title></rect><rect x="268" y="82.0" width="20" height="9.9" rx="2.5" fill="#2e8b74"><title>2026-09-05 ETH -7.3</title></rect><text x="262" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/05</text><rect x="306" y="82.0" width="20" height="14.0" rx="2.5" fill="#14406b"><title>2026-09-06 BTC -10.3</title></rect><rect x="332" y="82.0" width="20" height="2.7" rx="2.5" fill="#2e8b74"><title>2026-09-06 ETH -2.0</title></rect><text x="326" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/06</text><rect x="370" y="82.0" width="20" height="8.3" rx="2.5" fill="#14406b"><title>2026-09-07 BTC -6.1</title></rect><rect x="396" y="82.0" width="20" height="6.7" rx="2.5" fill="#2e8b74"><title>2026-09-07 ETH -4.9</title></rect><text x="390" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/07</text><rect x="434" y="82.0" width="20" height="18.5" rx="2.5" fill="#14406b"><title>2026-09-08 BTC -13.6</title></rect><rect x="460" y="82.0" width="20" height="30.5" rx="2.5" fill="#2e8b74"><title>2026-09-08 ETH -22.4</title></rect><text x="454" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/08</text><text x="518" y="168" text-anchor="middle" font-size="10" fill="#8a929e">09/09</text><text x="36" y="17.0" text-anchor="end" font-size="9" fill="#b3bac3">50</text><text x="36" y="85.0" text-anchor="end" font-size="9" fill="#b3bac3">0</text><text x="36" y="150.0" text-anchor="end" font-size="9" fill="#b3bac3">-50</text></svg></div>
-<div class="sec"><span data-zh="历史归档 · 最新置顶" data-en="Archive · Newest First">历史归档 · 最新置顶</span></div>
-<div class="list"><a class='row' href='2026-09-09.html'><div class='d'>09-09<small>2026</small></div><div class='m'>BTC 78,670 <span class="chg down">-0.5%</span> &nbsp;·&nbsp; ETH 2,493 <span class="chg up">+0.2%</span><br>composite · —</div><div class='arr'>›</div></a><a class='row' href='2026-09-08.html'><div class='d'>09-08<small>2026</small></div><div class='m'>BTC 79,040 <span class="chg down">-1.6%</span> &nbsp;·&nbsp; ETH 2,487 <span class="chg down">-1.1%</span><br>composite · BTC <span class="chg down">-13.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-22.4</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-07.html'><div class='d'>09-07<small>2026</small></div><div class='m'>BTC 80,250 <span class="chg up">+0.4%</span> &nbsp;·&nbsp; ETH 2,512 <span class="chg up">+1.2%</span><br>composite · BTC <span class="chg down">-6.1</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-4.9</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-06.html'><div class='d'>09-06<small>2026</small></div><div class='m'>BTC 79,903 <span class="chg up">+0.3%</span> &nbsp;·&nbsp; ETH 2,482 <span class="chg up">+1.1%</span><br>composite · BTC <span class="chg down">-10.3</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-2.0</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-05.html'><div class='d'>09-05<small>2026</small></div><div class='m'>BTC 79,627 <span class="chg down">-2.1%</span> &nbsp;·&nbsp; ETH 2,454 <span class="chg down">-2.2%</span><br>composite · BTC <span class="chg down">-8.4</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-7.3</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-04.html'><div class='d'>09-04<small>2026</small></div><div class='m'>BTC 80,703 <span class="chg up">+3.69%</span> &nbsp;·&nbsp; ETH 2,501 <span class="chg up">+3.92%</span><br>composite · BTC <span class="chg down">-4.8</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg up">+3.0</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-03.html'><div class='d'>09-03<small>2026</small></div><div class='m'>BTC 77,472 <span class="chg up">+0.43%</span> &nbsp;·&nbsp; ETH 2,394 <span class="chg down">-0.63%</span><br>composite · BTC <span class="chg up">+3.1</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-8.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span></div><div class='arr'>›</div></a><a class='row' href='2026-09-02.html'><div class='d'>09-02<small>2026</small></div><div class='m'>BTC 76,506 <span class="chg down">-1.95%</span> &nbsp;·&nbsp; ETH 2,367 <span class="chg down">-3.52%</span><br>composite · BTC <span class="chg down">-28.2</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-42.5</span> <span data-zh="跌" data-en="Down">跌</span></div><div class='arr'>›</div></a></div>
-<footer><span data-zh="引擎 scripts/compute.py v1.0 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM" data-en="Engine scripts/compute.py v1.0 · Spec config/strategy.yaml v1.0 · Generated by run_daily + LLM">引擎 scripts/compute.py v1.0 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</span></footer>
+<div class="sec"><span data-zh="今日信号" data-en="Today's Signals">今日信号</span><small><span data-zh="composite 由 A/B/E 加权合成" data-en="composite = weighted A/B/E">composite 由 A/B/E 加权合成</span></small></div>
+<div class="cards"><div class="card"><div class="coin">BTC<span class="tag"><span data-zh="主信号 A/B/E" data-en="Main A/B/E">主信号 A/B/E</span></span></div><div class="px">78,670<small>USD</small></div><div class="chgline">24h <span class="chg down">-0.5%</span></div><div class="sig"><span class="lb">composite</span><span class="v chg down">-5.6</span><span class="badge flat"><span data-zh="中性" data-en="Neutral">中性</span></span></div><div class="att"><span class="lb"><span data-zh="主导因子" data-en="Driver">主导因子</span></span><b>B3</b><span class="dim">B <span data-zh="维" data-en="dim">维</span></span><span class="pc"><span data-zh="贡献" data-en="share">贡献</span> 84%</span><span class="raw">raw -60</span></div><div class="str"><span data-zh="强度" data-en="Strength">强度</span><span class="track"><span class="fill" style="width:19%"></span></span><b>0.19x</b></div><div class="kv"><span><span data-zh="24h 参考区间" data-en="24h range">24h 参考区间</span></span><b>77,025 ~ 80,315</b></div></div><div class="card"><div class="coin">ETH<span class="tag"><span data-zh="主信号 A/B/E" data-en="Main A/B/E">主信号 A/B/E</span></span></div><div class="px">2,493<small>USD</small></div><div class="chgline">24h <span class="chg up">+0.2%</span></div><div class="sig"><span class="lb">composite</span><span class="v chg down">-8.6</span><span class="badge flat"><span data-zh="中性" data-en="Neutral">中性</span></span></div><div class="att"><span class="lb"><span data-zh="主导因子" data-en="Driver">主导因子</span></span><b>E3</b><span class="dim">E <span data-zh="维" data-en="dim">维</span></span><span class="pc"><span data-zh="贡献" data-en="share">贡献</span> 91%</span><span class="raw">raw -60</span></div><div class="str"><span data-zh="强度" data-en="Strength">强度</span><span class="track"><span class="fill" style="width:29%"></span></span><b>0.29x</b></div><div class="kv"><span><span data-zh="24h 参考区间" data-en="24h range">24h 参考区间</span></span><b>2,418 ~ 2,568</b></div></div></div>
+<div class="sec"><span data-zh="七维度分解" data-en="Dimension Breakdown">七维度分解</span><small><span data-zh="斜纹=该维度无数据,不计入主信号" data-en="hatched = no data, excluded from main signal">斜纹=该维度无数据,不计入主信号</span></small></div>
+<div class="dims"><div class="drow"><div class="nm">BTC</div><div class="dcell"><div class="k">A</div><div class="bar"><i style="left:49.2%;width:0.8%;background:var(--down)"></i></div><div class="val chg down">-1.7</div></div><div class="dcell"><div class="k">B</div><div class="bar"><i style="left:35.0%;width:15.0%;background:var(--down)"></i></div><div class="val chg down">-30.0</div></div><div class="dcell na"><div class="k">C</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div><div class="dcell na"><div class="k">D</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div><div class="dcell"><div class="k">E</div><div class="bar"><i style="left:50.0%;width:0.5%;background:var(--up)"></i></div><div class="val chg up">+0.9</div></div><div class="dcell" title="F6 反向提示, 不计入主信号"><div class="k">F</div><div class="bar"><i style="left:30.0%;width:20.0%;background:var(--down)"></i></div><div class="val chg down">-40.0</div></div><div class="dcell na"><div class="k">G</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div></div><div class="drow"><div class="nm">ETH</div><div class="dcell"><div class="k">A</div><div class="bar"><i style="left:50.0%;width:1.3%;background:var(--up)"></i></div><div class="val chg up">+2.6</div></div><div class="dcell"><div class="k">B</div><div class="bar"><i style="left:50.0%;width:0.0%;background:var(--tick)"></i></div><div class="val chg flat">+0.0</div></div><div class="dcell na"><div class="k">C</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div><div class="dcell na"><div class="k">D</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div><div class="dcell"><div class="k">E</div><div class="bar"><i style="left:39.5%;width:10.5%;background:var(--down)"></i></div><div class="val chg down">-20.9</div></div><div class="dcell" title="F6 反向提示, 不计入主信号"><div class="k">F</div><div class="bar"><i style="left:30.0%;width:20.0%;background:var(--down)"></i></div><div class="val chg down">-40.0</div></div><div class="dcell na"><div class="k">G</div><div class="bar"></div><div class="val" data-zh="无数据" data-en="n/a">无数据</div></div></div></div>
+<div class="sec"><span data-zh="信号走势" data-en="Signal Trend">信号走势</span><small><span data-zh="composite · 点击图例可隐藏" data-en="composite · click legend to toggle">composite · 点击图例可隐藏</span></small></div>
+<div class="chart"><div class="legend"><button class="lgi" data-k="btc" type="button"><i style="background:#14406b"></i>BTC</button><button class="lgi" data-k="eth" type="button"><i style="background:#2e8b74"></i>ETH</button></div><svg viewBox="0 0 564 208" role="img" aria-label="composite trend"><line class="grid" x1="42" y1="16.0" x2="558" y2="16.0"/><line class="grid" x1="42" y1="92.0" x2="558" y2="92.0"/><line class="grid" x1="42" y1="168.0" x2="558" y2="168.0"/><line class="axis" x1="42" y1="92.0" x2="558" y2="92.0" stroke-width="1.2"/><g class="hot" data-date="2026-09-02" data-btc="-28.2" data-eth="-42.5"><rect x="46.0" y="10" width="64" height="164"/><line class="hline" x1="78.0" y1="10" x2="78.0" y2="174"/><circle class="hdot s-btc" cx="78.0" cy="134.9" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="78.0" cy="156.6" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-03" data-btc="3.1" data-eth="-8.6"><rect x="110.0" y="10" width="64" height="164"/><line class="hline" x1="142.0" y1="10" x2="142.0" y2="174"/><circle class="hdot s-btc" cx="142.0" cy="87.3" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="142.0" cy="105.1" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-04" data-btc="-4.8" data-eth="3.0"><rect x="174.0" y="10" width="64" height="164"/><line class="hline" x1="206.0" y1="10" x2="206.0" y2="174"/><circle class="hdot s-btc" cx="206.0" cy="99.3" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="206.0" cy="87.4" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-05" data-btc="-8.4" data-eth="-7.3"><rect x="238.0" y="10" width="64" height="164"/><line class="hline" x1="270.0" y1="10" x2="270.0" y2="174"/><circle class="hdot s-btc" cx="270.0" cy="104.8" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="270.0" cy="103.1" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-06" data-btc="-10.3" data-eth="-2.0"><rect x="302.0" y="10" width="64" height="164"/><line class="hline" x1="334.0" y1="10" x2="334.0" y2="174"/><circle class="hdot s-btc" cx="334.0" cy="107.7" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="334.0" cy="95.0" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-07" data-btc="-6.1" data-eth="-4.9"><rect x="366.0" y="10" width="64" height="164"/><line class="hline" x1="398.0" y1="10" x2="398.0" y2="174"/><circle class="hdot s-btc" cx="398.0" cy="101.3" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="398.0" cy="99.4" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-08" data-btc="-13.6" data-eth="-22.4"><rect x="430.0" y="10" width="64" height="164"/><line class="hline" x1="462.0" y1="10" x2="462.0" y2="174"/><circle class="hdot s-btc" cx="462.0" cy="112.7" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="462.0" cy="126.0" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><g class="hot" data-date="2026-09-09" data-btc="-5.6" data-eth="-8.6"><rect x="494.0" y="10" width="64" height="164"/><line class="hline" x1="526.0" y1="10" x2="526.0" y2="174"/><circle class="hdot s-btc" cx="526.0" cy="100.5" r="4.5" fill="#14406b" stroke="var(--card)" stroke-width="2"/><circle class="hdot s-eth" cx="526.0" cy="105.1" r="4.5" fill="#2e8b74" stroke="var(--card)" stroke-width="2"/></g><polyline class="sline s-btc" stroke="#14406b" points="78.0,134.9 142.0,87.3 206.0,99.3 270.0,104.8 334.0,107.7 398.0,101.3 462.0,112.7 526.0,100.5"/><g class="sdot s-btc" fill="#14406b"><circle cx="78.0" cy="134.9" r="3"/><circle cx="142.0" cy="87.3" r="3"/><circle cx="206.0" cy="99.3" r="3"/><circle cx="270.0" cy="104.8" r="3"/><circle cx="334.0" cy="107.7" r="3"/><circle cx="398.0" cy="101.3" r="3"/><circle cx="462.0" cy="112.7" r="3"/><circle cx="526.0" cy="100.5" r="3"/></g><polyline class="sline s-eth" stroke="#2e8b74" points="78.0,156.6 142.0,105.1 206.0,87.4 270.0,103.1 334.0,95.0 398.0,99.4 462.0,126.0 526.0,105.1"/><g class="sdot s-eth" fill="#2e8b74"><circle cx="78.0" cy="156.6" r="3"/><circle cx="142.0" cy="105.1" r="3"/><circle cx="206.0" cy="87.4" r="3"/><circle cx="270.0" cy="103.1" r="3"/><circle cx="334.0" cy="95.0" r="3"/><circle cx="398.0" cy="99.4" r="3"/><circle cx="462.0" cy="126.0" r="3"/><circle cx="526.0" cy="105.1" r="3"/></g><text class="xlabel" x="78.0" y="190" text-anchor="middle">09/02</text><text class="xlabel" x="142.0" y="190" text-anchor="middle">09/03</text><text class="xlabel" x="206.0" y="190" text-anchor="middle">09/04</text><text class="xlabel" x="270.0" y="190" text-anchor="middle">09/05</text><text class="xlabel" x="334.0" y="190" text-anchor="middle">09/06</text><text class="xlabel" x="398.0" y="190" text-anchor="middle">09/07</text><text class="xlabel" x="462.0" y="190" text-anchor="middle">09/08</text><text class="xlabel" x="526.0" y="190" text-anchor="middle">09/09</text><text class="tick" x="38" y="19.0" text-anchor="end">50</text><text class="tick" x="38" y="95.0" text-anchor="end">0</text><text class="tick" x="38" y="171.0" text-anchor="end">-50</text></svg><div class="tip"></div></div>
+<div class="sec"><span data-zh="历史归档" data-en="Archive">历史归档</span><small>8 <span data-zh="期" data-en="issues">期</span></small></div>
+<div class="bar"><div class="search"><span class="ic">⌕</span>
+<input id="q" type="search" placeholder="搜索日期 / 结论…" data-ph-zh="搜索日期 / 结论…" data-ph-en="Search date / summary…" autocomplete="off"><kbd>/</kbd></div>
+<div class="chips"><button class="chip on" data-dir="all" type="button"><span data-zh="全部" data-en="All">全部</span></button>
+<button class="chip" data-dir="up" type="button"><span data-zh="偏多" data-en="Bullish">偏多</span></button>
+<button class="chip" data-dir="flat" type="button"><span data-zh="横盘" data-en="Sideways">横盘</span></button>
+<button class="chip" data-dir="down" type="button"><span data-zh="偏空" data-en="Bearish">偏空</span></button></div></div>
+<div class="list" id="list"><a class='row' href='2026-09-09.html' data-dir='flat' data-s='2026-09-09 周三 btc：中性（横盘带）→ 偏向：中性 · 状态：周涨结构内的回调已止跌企稳，短线反弹尝试与量价背离相互牵制，缺方向动能。依据：composite -5.6（贴近零轴，强度 0.19x）、1h/4h 转正、② 显示杠杆温和去化；但 b3 单因子机械背离压制反弹空间。关键价位（引擎 deterministic_v1）：77,025~80,315。 eth：中性（横盘带）→ 偏向：中性 · 状态：7d 上行结构未破的现货缓涨，但多头杠杆连续两日拥挤且 oi 收缩方向未明（②），回落易放大。依据：composite -8.6（强度 0.29x）、a +2.6、e -20.9（e3 -60 真实信号）、价涨 oi 缩更可能为多头减仓。关键价位（引擎 deterministic_v1）：2,418~2,568。 关键价位区间参考（引擎）：btc 77,025~80,315；eth 2,418~2,568（deterministic_v1，由 24d 日波动率 ×0.8 导出；区间宽于人工估计，波动口径所限）。 横盘 横盘'><div class='rhd'><div class='rdate'>09-09<small>2026 · 周三</small></div><div class='rmid'><span>BTC <b>78,670</b> <span class="chg down">-0.5%</span> &nbsp;·&nbsp; ETH <b>2,493</b> <span class="chg up">+0.2%</span></span><span>composite · BTC <span class="chg down">-5.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-8.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 3 条" data-en="3 risks">风险 3 条</span><span data-zh="有效信号 10/34" data-en="signal 10/34">有效信号 10/34</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：中性（横盘带）→ 偏向：中性 · 状态：周涨结构内的回调已止跌企稳，短线反弹尝试与量价背离相互牵制，缺方向动能。依据：composite -5.6（贴近零轴，强度 0.19x）、1h/4h 转正、② 显示杠杆温和去化；但 B3 单因子机械背离压制反弹空间。关键价位（引擎 deterministic_v1）：77,025~80,315。 ETH：中性（横盘带）→ 偏向：中性 · 状态：7d 上行结构未破的现货缓涨，但多头杠杆连续两日拥挤且 OI 收缩方向未明（②），回落易放大。依据：composite -8.6（强度 0.29x）、A +2.6、E -20.9（E3 -60 真实信号）、价涨 OI 缩更可能为多头减仓。关键价位（引擎 deterministic_v1）：2,418~2,568。 关键价位区间参考（引擎）：BTC 77,025~80,315；ETH 2,418~2,568（deterministic_v1，由 24d 日波动率 ×0.8 导出；区间宽于人工估计，波动口径所限）。</div></div></a><a class='row' href='2026-09-08.html' data-dir='flat' data-s='2026-09-08 周二 btc：横盘 → 偏向：偏空 · 状态：周涨结构内的无量回调整固，短线下探动能未尽但缺放量，深跌条件不足。依据：composite -13.6（横盘带内偏弱，强度 0.45x）、a -20.7、资金费率中性、24h 量比未破 0.7。参考 78,000~79,800。 eth：横盘 → 偏向：偏空 · 状态：多头杠杆拥挤 + 价格回落，距「跌」阈值最近（强度 0.75x），破位易放大跌幅。依据：composite -22.4、e -33.3（e3 拥挤多头 -60 真实信号）、24h -1.1%。参考 2,440~2,540。 关键价位区间参考：btc 78,000~79,800；eth 2,440~2,540。 横盘 横盘'><div class='rhd'><div class='rdate'>09-08<small>2026 · 周二</small></div><div class='rmid'><span>BTC <b>79,040</b> <span class="chg down">-1.6%</span> &nbsp;·&nbsp; ETH <b>2,487</b> <span class="chg down">-1.1%</span></span><span>composite · BTC <span class="chg down">-13.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-22.4</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 3 条" data-en="3 risks">风险 3 条</span><span data-zh="有效信号 10/34" data-en="signal 10/34">有效信号 10/34</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘 → 偏向：偏空 · 状态：周涨结构内的无量回调整固，短线下探动能未尽但缺放量，深跌条件不足。依据：composite -13.6（横盘带内偏弱，强度 0.45x）、A -20.7、资金费率中性、24h 量比未破 0.7。参考 78,000~79,800。 ETH：横盘 → 偏向：偏空 · 状态：多头杠杆拥挤 + 价格回落，距「跌」阈值最近（强度 0.75x），破位易放大跌幅。依据：composite -22.4、E -33.3（E3 拥挤多头 -60 真实信号）、24h -1.1%。参考 2,440~2,540。 关键价位区间参考：BTC 78,000~79,800；ETH 2,440~2,540。</div></div></a><a class='row' href='2026-09-07.html' data-dir='flat' data-s='2026-09-07 周一 btc：横盘（偏向中性偏谨慎）。composite -6.1、a -7.6/b -10.0/e -3.4；24h +0.43% 但量比 0.64 + oi -2.6%，反弹缺量与增量资金。参考79,800~80,800。 eth：横盘偏谨慎。composite -4.9（a -0.5/b 0.0/e -10.4）；24h +1.25% 但 oi 骤降 7.8% → 上涨由空头平仓驱动而非多头进场，持续性弱；量比 0.80 亦未到扩张线。参考2,470~2,550。 关键价位区间参考：btc 79,800~80,800；eth 2,470~2,550。 横盘 横盘'><div class='rhd'><div class='rdate'>09-07<small>2026 · 周一</small></div><div class='rmid'><span>BTC <b>80,250</b> <span class="chg up">+0.4%</span> &nbsp;·&nbsp; ETH <b>2,512</b> <span class="chg up">+1.2%</span></span><span>composite · BTC <span class="chg down">-6.1</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-4.9</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 3 条" data-en="3 risks">风险 3 条</span><span data-zh="有效信号 10/34" data-en="signal 10/34">有效信号 10/34</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘（偏向中性偏谨慎）。composite -6.1、A -7.6/B -10.0/E -3.4；24h +0.43% 但量比 0.64 + OI -2.6%，反弹缺量与增量资金。参考79,800~80,800。 ETH：横盘偏谨慎。composite -4.9（A -0.5/B 0.0/E -10.4）；24h +1.25% 但 OI 骤降 7.8% → 上涨由空头平仓驱动而非多头进场，持续性弱；量比 0.80 亦未到扩张线。参考2,470~2,550。 关键价位区间参考：BTC 79,800~80,800；ETH 2,470~2,550。</div></div></a><a class='row' href='2026-09-06.html' data-dir='flat' data-s='2026-09-06 周日 btc：横盘偏弱。依据：composite -10.3（a -5.8 + b -40.0 + e -2.0）——b 维萎缩（量比 0.65 + b3 背离）主导、e 弱负；但 24h +0.35% 反弹收复前日部分跌幅、1h/4h 节奏平稳、a 维 -5.8 显示短线卖压不强——短线企稳信号大于续跌，量价背离压制上行确认。参考区间：79,000~80,500。 eth：横盘（弱化看空）。依据：composite -2.0——b 维 -40.0（量比 0.46 深度萎缩）被 e 维 +12.4（oi +9.3% 价涨同向，增量资金）显著对冲；oi 扩增是本日 eth 最强多头佐证，但现货量能深度萎缩制约持续性。参考区间：2,450~2,550。 关键价位区间参考（综合）：btc 79,000~80,500；eth 2,440~2,530。 横盘 横盘'><div class='rhd'><div class='rdate'>09-06<small>2026 · 周日</small></div><div class='rmid'><span>BTC <b>79,903</b> <span class="chg up">+0.3%</span> &nbsp;·&nbsp; ETH <b>2,482</b> <span class="chg up">+1.1%</span></span><span>composite · BTC <span class="chg down">-10.3</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-2.0</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 4 条" data-en="4 risks">风险 4 条</span><span data-zh="有效信号 10/34" data-en="signal 10/34">有效信号 10/34</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘偏弱。依据：composite -10.3（A -5.8 + B -40.0 + E -2.0）——B 维萎缩（量比 0.65 + B3 背离）主导、E 弱负；但 24h +0.35% 反弹收复前日部分跌幅、1h/4h 节奏平稳、A 维 -5.8 显示短线卖压不强——短线企稳信号大于续跌，量价背离压制上行确认。参考区间：79,000~80,500。 ETH：横盘（弱化看空）。依据：composite -2.0——B 维 -40.0（量比 0.46 深度萎缩）被 E 维 +12.4（OI +9.3% 价涨同向，增量资金）显著对冲；OI 扩增是本日 ETH 最强多头佐证，但现货量能深度萎缩制约持续性。参考区间：2,450~2,550。 关键价位区间参考（综合）：BTC 79,000~80,500；ETH 2,440~2,530。</div></div></a><a class='row' href='2026-09-05.html' data-dir='flat' data-s='2026-09-05 周六 btc：横盘偏弱。依据：composite -8.4 + a 维 -23.06（24h -2.08% 拖累）；但 1h/4h 跌幅已大幅收窄（-0.04/-0.09%）、量比 1.39 未触发放量、rsi 自高位回落至 66.4——短线杀跌动能衰减、企稳概率大于续跌。对冲：7d +1.79% 中期未坏、e5 多头爆仓已释放一轮（81.9%）。参考区间：78,200~80,500。 eth：横盘偏弱。依据：composite -7.3 + a 维 -19.97（24h -2.24%、7d -0.15% 中性）；4h +0.11%、rsi14 62.5、量比 1.48 较 btc 略强；eth/btc 相对结构未恶化。参考区间：2,400~2,510。 关键价位区间参考（综合）：btc 78,200~80,500；eth 2,400~2,510。 横盘 横盘'><div class='rhd'><div class='rdate'>09-05<small>2026 · 周六</small></div><div class='rmid'><span>BTC <b>79,627</b> <span class="chg down">-2.1%</span> &nbsp;·&nbsp; ETH <b>2,454</b> <span class="chg down">-2.2%</span></span><span>composite · BTC <span class="chg down">-8.4</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-7.3</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 4 条" data-en="4 risks">风险 4 条</span><span data-zh="有效信号 10/34" data-en="signal 10/34">有效信号 10/34</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘偏弱。依据：composite -8.4 + A 维 -23.06（24h -2.08% 拖累）；但 1h/4h 跌幅已大幅收窄（-0.04/-0.09%）、量比 1.39 未触发放量、RSI 自高位回落至 66.4——短线杀跌动能衰减、企稳概率大于续跌。对冲：7d +1.79% 中期未坏、E5 多头爆仓已释放一轮（81.9%）。参考区间：78,200~80,500。 ETH：横盘偏弱。依据：composite -7.3 + A 维 -19.97（24h -2.24%、7d -0.15% 中性）；4h +0.11%、RSI14 62.5、量比 1.48 较 BTC 略强；ETH/BTC 相对结构未恶化。参考区间：2,400~2,510。 关键价位区间参考（综合）：BTC 78,200~80,500；ETH 2,400~2,510。</div></div></a><a class='row' href='2026-09-04.html' data-dir='flat' data-s='2026-09-04 周五 btc：横盘偏谨慎（短线回调整固概率高于续涨）。依据：引擎 composite -4.8（中性略负）+ a 维 -7.2（rsi 70.6 近超买、1h/4h 转负、量比 1.45 近放量却回落——急涨后动能衰减）；对冲：7d +3.67% + etf/宏观背景支撑中期结构。参考区间：79,200~82,200。 eth：横盘偏强（补涨动能未衰竭）。依据：composite 3.0、24h +3.92% 动量与 rsi 均未现衰竭、相对 btc 走强结构刚确立。若 btc 整固，eth 或有相对收益；回调则同向跟随。参考区间：2,440~2,580。 前日(9/3)判断复盘：9/3 判"横盘企稳"被 9/3 晚宏观驱动大涨打破（区间 76,400-78,400 大幅上破）——事件型行情超出仅 a/b 驱动的中性信号可预测范围，亦印证 e 维缺失下的信号局限。 关键警示：e 维缺失——本轮由空头挤压（9.6 万人爆仓）驱动，回补完成后上行持续性未知；杠杆侧无任何量化读数。 横盘 横盘'><div class='rhd'><div class='rdate'>09-04<small>2026 · 周五</small></div><div class='rmid'><span>BTC <b>80,703</b> <span class="chg up">+3.69%</span> &nbsp;·&nbsp; ETH <b>2,501</b> <span class="chg up">+3.92%</span></span><span>composite · BTC <span class="chg down">-4.8</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg up">+3.0</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 4 条" data-en="4 risks">风险 4 条</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘偏谨慎（短线回调整固概率高于续涨）。依据：引擎 composite -4.8（中性略负）+ A 维 -7.2（RSI 70.6 近超买、1h/4h 转负、量比 1.45 近放量却回落——急涨后动能衰减）；对冲：7d +3.67% + ETF/宏观背景支撑中期结构。参考区间：79,200~82,200。 ETH：横盘偏强（补涨动能未衰竭）。依据：composite 3.0、24h +3.92% 动量与 RSI 均未现衰竭、相对 BTC 走强结构刚确立。若 BTC 整固，ETH 或有相对收益；回调则同向跟随。参考区间：2,440~2,580。 前日(9/3)判断复盘：9/3 判"横盘企稳"被 9/3 晚宏观驱动大涨打破（区间 76,400-78,400 大幅上破）——事件型行情超出仅 A/B 驱动的中性信号可预测范围，亦印证 E 维缺失下的信号局限。 关键警示：E 维缺失——本轮由空头挤压（9.6 万人爆仓）驱动，回补完成后上行持续性未知；杠杆侧无任何量化读数。</div></div></a><a class='row' href='2026-09-03.html' data-dir='flat' data-s='2026-09-03 周四 btc：横盘（无方向倾向）。依据：引擎 composite 3.1 处中性带（±30 内），方向三分=横盘；短线动量企稳但 7d 下行未改、量比 0.95 反弹无量，不支持反转。参考区间：76,400~78,400。 eth：横盘偏弱。依据：引擎 composite -8.6 贴近中性带下沿，a 维 2.2 弱于 btc、b 维 -30.0（量价背离连续 2 日）构成压制；相对弱势与无量反弹不支持独立走强。参考区间：2,350~2,430。 关键警示：e 维缺失，杠杆拥挤度未知——若衍生品端存在极端仓位，仅凭 a/b 无法察觉；eth 的 b3 背离是结构性偏空佐证，但当前量能级别低，不构成强反转信号。 横盘 横盘'><div class='rhd'><div class='rdate'>09-03<small>2026 · 周四</small></div><div class='rmid'><span>BTC <b>77,472</b> <span class="chg up">+0.43%</span> &nbsp;·&nbsp; ETH <b>2,394</b> <span class="chg down">-0.63%</span></span><span>composite · BTC <span class="chg up">+3.1</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-8.6</span> <span data-zh="横盘" data-en="Sideways">横盘</span></span><span class="tags"><span data-zh="风险 3 条" data-en="3 risks">风险 3 条</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘（无方向倾向）。依据：引擎 composite 3.1 处中性带（±30 内），方向三分=横盘；短线动量企稳但 7d 下行未改、量比 0.95 反弹无量，不支持反转。参考区间：76,400~78,400。 ETH：横盘偏弱。依据：引擎 composite -8.6 贴近中性带下沿，A 维 2.2 弱于 BTC、B 维 -30.0（量价背离连续 2 日）构成压制；相对弱势与无量反弹不支持独立走强。参考区间：2,350~2,430。 关键警示：E 维缺失，杠杆拥挤度未知——若衍生品端存在极端仓位，仅凭 A/B 无法察觉；ETH 的 B3 背离是结构性偏空佐证，但当前量能级别低，不构成强反转信号。</div></div></a><a class='row' href='2026-09-02.html' data-dir='down' data-s='2026-09-02 周三 btc：横盘偏弱（中性偏空）。依据：引擎 composite -28.2 逼近但未破 -30（方向三分=横盘），a 维 -42.2 已表达短线偏空；但量比 0.97 无放量、ma50 上方 1.35σ 中期结构未坏，不支持单边看跌。参考区间：75,300~77,300。 eth：偏空。依据：引擎 composite -42.5 已破 -30（方向=跌），a 维 -63.7 空头动能强于 btc 且带量(1.12)；eth/btc 相对弱势明显。参考区间：2,310~2,410。 关键警示：e 维缺失使两个方向判断都缺少"杠杆拥挤度"这一最强短线证据，若资金费率已转极值，判断可能被推翻。 横盘 跌'><div class='rhd'><div class='rdate'>09-02<small>2026 · 周三</small></div><div class='rmid'><span>BTC <b>76,506</b> <span class="chg down">-1.95%</span> &nbsp;·&nbsp; ETH <b>2,367</b> <span class="chg down">-3.52%</span></span><span>composite · BTC <span class="chg down">-28.2</span> <span data-zh="横盘" data-en="Sideways">横盘</span> &nbsp;·&nbsp; ETH <span class="chg down">-42.5</span> <span data-zh="跌" data-en="Down">跌</span></span><span class="tags"><span data-zh="风险 3 条" data-en="3 risks">风险 3 条</span></span></div><div class='rend'><button class='exp' type='button'><span data-zh="摘要" data-en="Notes">摘要</span></button><span class='arr'>&rsaquo;</span></div></div><div class="rbody"><div class="in"><span class="hd"><span data-zh="未来 24h 判断" data-en="Next 24h">未来 24h 判断</span></span><br>BTC：横盘偏弱（中性偏空）。依据：引擎 composite -28.2 逼近但未破 -30（方向三分=横盘），A 维 -42.2 已表达短线偏空；但量比 0.97 无放量、MA50 上方 1.35σ 中期结构未坏，不支持单边看跌。参考区间：75,300~77,300。 ETH：偏空。依据：引擎 composite -42.5 已破 -30（方向=跌），A 维 -63.7 空头动能强于 BTC 且带量(1.12)；ETH/BTC 相对弱势明显。参考区间：2,310~2,410。 关键警示：E 维缺失使两个方向判断都缺少"杠杆拥挤度"这一最强短线证据，若资金费率已转极值，判断可能被推翻。</div></div></a></div>
+<div class="empty" id="empty"><span data-zh="没有匹配的日报" data-en="No matching report">没有匹配的日报</span></div>
+<footer><span data-zh="引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM" data-en="Engine scripts/compute.py v1.2 · Spec config/strategy.yaml v1.0 · Generated by run_daily + LLM">引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</span><br>
+<span data-zh="快捷键: / 搜索 · ↑↓ 选择 · Enter 打开 · ←→ 展开" data-en="Keys: / search · ↑↓ select · Enter open · ←→ expand">快捷键: / 搜索 · ↑↓ 选择 · Enter 打开 · ←→ 展开</span></footer>
 </div>
 <script>
 (function(){
-var d=document,r=d.documentElement,b=d.getElementById('langbtn');
-function set(l){r.setAttribute('lang',l);
+var d=document,r=d.documentElement;
+/* ---------- 主题 ---------- */
+var tb=d.getElementById('themebtn');
+function paintTheme(){tb.textContent=r.getAttribute('data-theme')==='dark'?'☀':'🌙';}
+tb.addEventListener('click',function(){
+var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+r.setAttribute('data-theme',n);paintTheme();
+try{localStorage.setItem('bqc_theme',n)}catch(e){}});
+paintTheme();
+/* ---------- 中英 ---------- */
+var lb=d.getElementById('langbtn');
+function setLang(l){r.setAttribute('lang',l);
 d.querySelectorAll('[data-zh]').forEach(function(e){
 e.textContent=l==='en'?e.getAttribute('data-en'):e.getAttribute('data-zh');});
-d.title=l==='en'?r.getAttribute('data-title-en'):r.getAttribute('data-title-zh');
-b.textContent=l==='en'?'中文':'EN';
+d.querySelectorAll('[data-ph-zh]').forEach(function(e){
+e.placeholder=l==='en'?e.getAttribute('data-ph-en'):e.getAttribute('data-ph-zh');});
+var t=l==='en'?r.getAttribute('data-title-en'):r.getAttribute('data-title-zh');
+if(t){d.title=t;}
+lb.textContent=l==='en'?'中文':'EN';
 try{localStorage.setItem('bqc_lang',l)}catch(e){}}
 var s=null;try{s=localStorage.getItem('bqc_lang')}catch(e){}
-b.addEventListener('click',function(){set(r.getAttribute('lang')==='en'?'zh':'en')});
-set(s==='en'?'en':'zh');
+lb.addEventListener('click',function(){setLang(r.getAttribute('lang')==='en'?'zh':'en')});
+setLang(s==='en'?'en':'zh');
+/* ---------- 图表: 图例开关 + tooltip ---------- */
+var svg=d.querySelector('.chart svg'),tip=d.querySelector('.tip');
+if(svg){
+d.querySelectorAll('.lgi').forEach(function(b){
+b.addEventListener('click',function(){
+var k=b.getAttribute('data-k'),off=(svg.getAttribute('data-off')||'').split(/\s+/).filter(Boolean);
+var i=off.indexOf(k);
+if(i>=0){off.splice(i,1);b.classList.remove('off');}else{off.push(k);b.classList.add('off');}
+if(off.length){svg.setAttribute('data-off',off.join(' '));}else{svg.removeAttribute('data-off');}
+});});
+var card=d.querySelector('.chart');
+function show(g){if(tip){tip.classList.add('on');
+var lines='<div class="d">'+g.getAttribute('data-date')+'</div>';
+['btc','eth'].forEach(function(k){
+var v=g.getAttribute('data-'+k);
+if(v===null||v===''){return;}
+var n=parseFloat(v);
+lines+='<div><b>'+k.toUpperCase()+'</b> '+n.toFixed(1)+'</div>';});
+tip.innerHTML=lines;
+var gb=g.getBoundingClientRect(),cb=card.getBoundingClientRect();
+tip.style.left=(gb.left-cb.left+gb.width/2)+'px';
+tip.style.top=(gb.top-cb.top)+'px';}}
+function hide(){if(tip){tip.classList.remove('on');}
+d.querySelectorAll('.hot').forEach(function(x){x.classList.remove('on');});}
+d.querySelectorAll('.hot').forEach(function(g){
+g.addEventListener('mouseenter',function(){g.classList.add('on');show(g);});
+g.addEventListener('mouseleave',hide);
+g.addEventListener('touchstart',function(){g.classList.add('on');show(g);},{passive:true});});
+d.addEventListener('touchstart',function(e){if(!e.target.closest||!e.target.closest('.hot')){hide();}},{passive:true});
+}
+/* ---------- 归档: 搜索 + 方向筛选 + 展开 + 键盘 ---------- */
+var list=d.getElementById('list'),empty=d.getElementById('empty'),q=d.getElementById('q');
+var rows=[].slice.call(list.querySelectorAll('.row'));
+var cur='all';
+function apply(){var k=(q.value||'').trim().toLowerCase(),n=0;
+rows.forEach(function(r){
+var okDir=cur==='all'||r.getAttribute('data-dir')===cur;
+var okQ=!k||r.getAttribute('data-s').indexOf(k)>=0;
+var v=okDir&&okQ;r.style.display=v?'':'none';if(v){n++;}
+if(!v){r.classList.remove('open');}});
+empty.style.display=n?'none':'block';}
+q.addEventListener('input',apply);
+d.querySelectorAll('.chip').forEach(function(c){
+c.addEventListener('click',function(){
+d.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+c.classList.add('on');cur=c.getAttribute('data-dir');apply();});});
+list.addEventListener('click',function(e){
+var ex=e.target.closest?e.target.closest('.exp'):null;
+if(ex){e.preventDefault();e.stopPropagation();
+var row=ex.closest('.row');row.classList.toggle('open');
+ex.textContent=row.classList.contains('open')?(d.documentElement.lang==='en'?'Collapse':'收起'):(d.documentElement.lang==='en'?'摘要':'摘要');
+return;}
+});
+list.addEventListener('keydown',function(e){
+var vis=rows.filter(function(r){return r.style.display!=='none';});
+var i=vis.indexOf(d.activeElement);
+if(e.key==='ArrowDown'&&i<vis.length-1){e.preventDefault();vis[i+1].focus();}
+else if(e.key==='ArrowUp'&&i>0){e.preventDefault();vis[i-1].focus();}
+else if(e.key==='ArrowRight'&&i>=0){e.preventDefault();vis[i].classList.add('open');}
+else if(e.key==='ArrowLeft'&&i>=0){e.preventDefault();vis[i].classList.remove('open');}
+else if(e.key==='Enter'&&i>=0){e.preventDefault();location.href=vis[i].getAttribute('href');}});
+d.addEventListener('keydown',function(e){
+var t=e.target.tagName;
+if(e.key==='/'&&t!=='INPUT'&&t!=='TEXTAREA'){e.preventDefault();q.focus();}
+else if(e.key==='Escape'&&t==='INPUT'){q.value='';apply();q.blur();}});
 })();
 </script>
 </body></html>
