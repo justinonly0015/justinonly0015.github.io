@@ -49,7 +49,7 @@ b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18
 <h2>⑪ 置信度与数据覆盖度</h2>
 <ul><li>数据覆盖度：BTC 16/34、ETH 14/34（读数可得，含代理/留档）；有效信号覆盖 signal_of_34=10/34（主信号 A/B/E 实际计分指标数）。coverage.missing 为空，但 F 量化/D/G/C 完整指标仍无数据。</li><li>对⑨判断置信度：中（BTC）/ 中低（ETH）。理由：A/B/E 主信号齐全但 E2 受口径切换污染、E 维可信度打折，ETH 判断额外依赖 E3 单一真实负分；历史仅积累 7 日，宏观/事件无数据，风险需保留。</li></ul>
 <hr>
-<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml v1.0 | 本文档由 LLM 基于 research_input 生成*</p>
+<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml v1.0 | 本文档由 LLM 基于 research_input 生成*</p><h2>V2 派生信号</h2><div style="font-size:12px;color:#69737f;margin:-4px 0 6px">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-13.6→-7.5</td><td>中性</td><td>中性</td><td>-</td><td>high</td><td>E2剔除</td></tr><tr><td>ETH</td><td>-22.4→-20.9</td><td>中性</td><td>中性</td><td>-</td><td>high</td><td>E2剔除</td></tr></table>
 <footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
 生成: btc_quant 研究包 run_daily + LLM</footer>
 </div></body></html>

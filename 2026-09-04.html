@@ -49,7 +49,7 @@ b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18
 <h2>⑪ 置信度与数据覆盖度</h2>
 <ul><li>数据覆盖度：BTC <strong>13/34</strong>（A 7+B 2+F6+C0 代理 3）；ETH <strong>11/34</strong>（A 7+B 2+F6+C6）。缺失：E/D 全维 + F 维宏观量化 + C 完整指标；G 事件经公开检索补背景（不入计分）。</li><li>对 ⑨ 判断置信度：<strong>低</strong>。理由：① 主信号缺 E 维(25%)；② composite 近中性，方向性结论证据弱；③ 历史仅 3 天（分位/回测不可用）；④ 本轮为事件/宏观驱动，A/B 动量信号天然滞后；⑤ C 维代理不参与信号。</li></ul>
 <hr>
-<p>*引擎：scripts/compute.py v1.0 | 口径：config/strategy.yaml v1.0 | 数据覆盖：Tier-0 源 + ⑦ 公开检索(V4) | 生成：run_daily + harness + LLM | 本版经 verify_report.py 对账校验*</p>
+<p>*引擎：scripts/compute.py v1.0 | 口径：config/strategy.yaml v1.0 | 数据覆盖：Tier-0 源 + ⑦ 公开检索(V4) | 生成：run_daily + harness + LLM | 本版经 verify_report.py 对账校验*</p><h2>V2 派生信号</h2><div style="font-size:12px;color:#69737f;margin:-4px 0 6px">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-4.8</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr><tr><td>ETH</td><td>+3.0</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr></table>
 <footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
 生成: btc_quant 研究包 run_daily + LLM</footer>
 </div></body></html>

@@ -49,7 +49,7 @@ b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18
 <h2>⑪ 置信度与数据覆盖度</h2>
 <ul><li>数据覆盖度：BTC 16/34、ETH 14/34（读数可得，含代理/留档）；有效信号覆盖 signal_of_34=10/34。coverage.missing 为空，但 F 量化/D/G/C 完整指标仍无数据。</li><li>对⑨判断置信度：中（BTC）/ 中（ETH）。理由：A/B/E 主信号齐全，E2 连续第二日同源、无口径污染，E 维可信度较昨恢复；但 BTC 判断含单一机械背离分、ETH 判断受 E3 拥挤多头牵制；历史仅积累 8 日且宏观/事件无数据，风险需保留。</li></ul>
 <hr>
-<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml v1.0 | 本文档由 LLM 基于 research_input 生成*</p>
+<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml v1.0 | 本文档由 LLM 基于 research_input 生成*</p><h2>V2 派生信号</h2><div style="font-size:12px;color:#69737f;margin:-4px 0 6px">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-5.6</td><td>中性</td><td>多头去杠杆 <small>(价跌、OI降)</small></td><td>0.67</td><td>high</td><td>—</td></tr><tr><td>ETH</td><td>-8.6</td><td>中性</td><td>空头回补 <small>(价涨、OI降)</small></td><td>0.67</td><td>high</td><td>—</td></tr></table>
 <footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
 生成: btc_quant 研究包 run_daily + LLM</footer>
 </div></body></html>

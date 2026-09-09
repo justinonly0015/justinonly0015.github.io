@@ -49,7 +49,7 @@ b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18
 <h2>⑪ 置信度与数据覆盖度</h2>
 <ul><li>数据覆盖度：BTC <strong>13/34</strong> 项指标可用（A 7 + B 2 + F6 + C 链上代理 3）；ETH <strong>11/34</strong>（A 7 + B 2 + F6 + C6 TVL）。缺失：E/D/G 全维 + F 维宏观大部 + C 维完整指标（活跃地址/大额流向）。</li><li>对 ⑨ 判断置信度：<strong>低</strong>。理由：① 主信号缺 E 维(25% 权重)，仅由 A/B 驱动；② 两币 composite 均近中性，本身指向"无方向"，对方向性结论的支撑天然弱；③ 历史上下文仅 2 天（分位/回测仍不可用，需持续归档至 ≥30 日）；④ C 维仅背景代理，不参与信号。</li></ul>
 <hr>
-<p>*引擎：scripts/compute.py v0.3 | 口径：config/strategy.yaml | 数据覆盖：Tier-0/1 源（binance_vision/alternative.me/blockchair/blockchain.info/defillama）| 生成：run_daily + harness + LLM | 本版经 verify_report.py 对账校验*</p>
+<p>*引擎：scripts/compute.py v0.3 | 口径：config/strategy.yaml | 数据覆盖：Tier-0/1 源（binance_vision/alternative.me/blockchair/blockchain.info/defillama）| 生成：run_daily + harness + LLM | 本版经 verify_report.py 对账校验*</p><h2>V2 派生信号</h2><div style="font-size:12px;color:#69737f;margin:-4px 0 6px">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>+3.1</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr><tr><td>ETH</td><td>-8.6</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr></table>
 <footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
 生成: btc_quant 研究包 run_daily + LLM</footer>
 </div></body></html>
