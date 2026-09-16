@@ -1,184 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light" data-title-zh="BTC/ETH 每日研究日报 2026-09-02" data-title-en="BTC/ETH Daily Research Report 2026-09-02"><head>
-<meta charset="utf-8">
+<html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="btc_quant 研究包 · 2026-09-02 每日研报 · 现货 + 永续双市场 · 7 维度 34 指标">
-<title>BTC/ETH 每日研究日报 2026-09-02</title>
-<script>
-(function(){var t=null;try{t=localStorage.getItem('bqc_theme')}catch(e){}
-if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
-document.documentElement.setAttribute('data-theme',t);})();
-</script>
+<title>BTC/ETH 日报 2026-09-02</title>
 <style>
-:root{
---bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;--line2:#f0f2f5;
---grid:#dfe4ea;--tick:#9aa1ab;
---up:#d64541;--up-soft:#fbe9e7;--up-strong:#c0392b;
---down:#178a56;--down-soft:#e6f4ec;--down-strong:#0f6b42;
---brand:#14406b;--brand2:#2e8b74;--chip:#eef1f5;--chip-on:#14406b;
---shadow:0 1px 2px rgba(16,36,62,.05),0 6px 16px rgba(16,36,62,.05);
---hero1:#0d1f38;--hero2:#143a5e;--hero3:#14614a;--topbar:rgba(255,255,255,.88);}
-html[data-theme="dark"]{
---bg:#0d1117;--card:#151b24;--ink:#e4e9f0;--sub:#8d99a8;--line:#242c38;--line2:#1b232e;
---grid:#2b3543;--tick:#6b7686;
---up:#e5645f;--up-soft:#3a201f;--up-strong:#f08a85;
---down:#2fb37c;--down-soft:#123024;--down-strong:#5ad3a0;
---brand:#4a90d9;--brand2:#3ec9a7;--chip:#1c242f;--chip-on:#4a90d9;
---shadow:0 1px 2px rgba(0,0,0,.35),0 8px 20px rgba(0,0,0,.25);
---hero1:#09121f;--hero2:#0f2a44;--hero3:#0e4636;--topbar:rgba(21,27,36,.88);}
-html[lang="en"]{--up:#178a56;--up-soft:#e6f4ec;--up-strong:#0f6b42;
---down:#d64541;--down-soft:#fbe9e7;--down-strong:#c0392b;}
-html[data-theme="dark"][lang="en"]{--up:#2fb37c;--up-soft:#123024;--up-strong:#5ad3a0;
---down:#e5645f;--down-soft:#3a201f;--down-strong:#f08a85;}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-transition:background .2s,color .2s}
-.wrap{max-width:900px;margin:0 auto;padding:0 16px 56px}
-/* ---- topbar ---- */
-.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
-padding:10px 16px;background:var(--topbar);
--webkit-backdrop-filter:saturate(1.4) blur(8px);backdrop-filter:saturate(1.4) blur(8px);
-border-bottom:1px solid var(--line)}
-.topbar .bk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
-border-radius:9px;background:var(--chip);border:1px solid var(--line);color:var(--sub);
-text-decoration:none;font-size:17px;line-height:1;transition:all .15s}
-.topbar .bk:hover{color:var(--ink);border-color:var(--sub)}
-.topbar .brand{font-weight:700;font-size:14px;letter-spacing:.5px}
-.topbar .brand i{display:inline-block;width:8px;height:8px;border-radius:50%;
-background:var(--brand2);margin-right:7px;vertical-align:1px}
-.topbar .sp{flex:1}
-.topbar .dt{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;letter-spacing:.5px}
-.ibtn{background:var(--chip);border:1px solid var(--line);color:var(--sub);
-border-radius:999px;padding:5px 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;
-transition:all .15s}
-.ibtn:hover{color:var(--ink);border-color:var(--sub)}
-/* ---- hero ---- */
-.hero{background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);
-color:#fff;text-align:center;padding:34px 16px 26px;margin-bottom:20px}
-.hero h1{margin:0;font-size:21px;letter-spacing:1px;line-height:1.5}
-.hero .sub{margin-top:7px;font-size:13px;opacity:.72;letter-spacing:1px}
-.hero .pill{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:1px;
-background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
-padding:4px 16px;border-radius:999px;margin-left:6px}
-/* ---- section / card / colors ---- */
-.sec{font-size:15px;font-weight:700;margin:28px 4px 12px;display:flex;align-items:center;gap:10px}
-.sec small{font-weight:400;font-size:12px;color:var(--sub)}
-.sec::after{content:"";flex:1;height:1px;background:var(--line)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 14px;
-box-shadow:var(--shadow)}
-.chg{font-weight:600}
-.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
-.badge{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:6px}
-.badge.up{background:var(--up-soft);color:var(--up-strong)}
-.badge.down{background:var(--down-soft);color:var(--down-strong)}
-.badge.flat{background:var(--chip);color:var(--sub)}
-footer{margin-top:34px;text-align:center;font-size:12px;color:var(--tick);line-height:1.9}
-@media (max-width:620px){
-.wrap{padding:0 12px 44px}
-.hero{padding:28px 14px 22px}
-.topbar{padding:9px 12px}
-}
-
-
-.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:12px 14px;background:var(--card);
-border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
-.toc a{display:inline-block;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-font-size:12px;color:var(--sub);text-decoration:none;padding:3px 11px;border-radius:999px;
-background:var(--line2);transition:all .15s}
-.toc a:hover{color:var(--ink)}
-.toc a.on{background:var(--chip-on);color:#fff}
-.doc{display:flex;flex-direction:column;gap:14px}
-.doc>.card{padding:4px 20px 16px}
-.doc h2{scroll-margin-top:70px;font-size:15px;font-weight:700;margin:16px 0 12px;padding:0 0 9px;
-border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:8px;line-height:1.5}
-.doc h2 .no{color:var(--brand);font-size:14px;flex:none}
-.doc h3{font-size:13px;margin:16px 0 6px;color:var(--sub);letter-spacing:.5px}
-.doc p{margin:8px 0}
-.tblwrap{overflow-x:auto;margin:10px 0}
-table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;
-border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:7px 11px;text-align:left;border-bottom:1px solid var(--line2)}
-th{background:var(--line2);font-weight:600;font-size:12px;color:var(--sub);white-space:nowrap}
-tbody tr:last-child td{border-bottom:none}
-tbody tr:nth-child(2n) td{background:var(--line2)}
-.doc ul{margin:8px 0;padding-left:20px}
-.doc li{margin:3px 0}
-.doc ol{margin:8px 0;padding-left:22px}
-blockquote{margin:10px 0;padding:8px 14px;background:var(--line2);border-left:3px solid var(--brand2);
-border-radius:0 8px 8px 0;color:var(--sub);font-size:13px}
-code{background:var(--line2);padding:1px 5px;border-radius:4px;font-size:12.5px}
-hr{border:none;border-top:1px solid var(--line);margin:18px 0}
-.note2{font-size:12px;color:var(--sub);margin:-4px 0 8px}
-.nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.nav a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 16px;
-text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:border-color .15s,transform .12s}
-.nav a:hover{border-color:var(--brand);transform:translateY(-1px)}
-.nav a.nx{text-align:right}
-.nav .lab{display:block;font-size:11px;color:var(--tick);letter-spacing:1px}
-.nav .val{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
-.nav .none{opacity:.4;pointer-events:none}
-@media (max-width:620px){.toc a{max-width:150px}}
-
-</style></head><body>
-<div class="topbar"><a class="bk" href="index.html" title="全部日报">&lsaquo;</a>
-<span class="brand"><i></i><span data-zh="btc_quant 研究包" data-en="btc_quant Research">btc_quant 研究包</span></span>
-<span class="sp"></span><span class="dt">2026-09-02</span>
-<button class="ibtn" id="themebtn" type="button" title="Toggle theme">🌙</button>
-<button class="ibtn" id="langbtn" type="button" aria-label="Switch language" title="切换界面语言 / 正文为中文原文">EN</button></div>
-<div class="hero"><h1>BTC/ETH 每日研究日报</h1>
-<div class="sub">每日研究员级日报 · btc_quant 研究包</div>
-<div><span class="pill">2026-09-02 周三</span><span class="pill"><span data-zh="引擎信号为权威口径" data-en="engine signals are authoritative">引擎信号为权威口径</span></span></div></div>
-<div class="wrap">
-<div class="toc" id="toc"><a href='#s1'>① 市场状态</a><a href='#s2'>② 核心趋势（A 价格动量 + B 成交量）</a><a href='#s3'>③ 衍生品（E）</a><a href='#s4'>④ 链上（C）</a><a href='#s5'>⑤ 宏观（F）</a><a href='#s6'>⑥ 情绪（D）</a><a href='#s7'>⑦ 事件（G）</a><a href='#s8'>⑧ 引擎信号（权威，不改写）</a><a href='#s9'>⑨ 未来 24h 判断</a><a href='#s10'>⑩ 风险</a><a href='#s11'>⑪ 置信度与数据覆盖度</a><a href='#s-v2'>V2 派生信号</a></div>
-<div class="doc"><div class="card"><blockquote>说明：本份为研究包首日<strong>冒烟样例</strong>，于 2026/09/02 17:46(北京) 由完整流水线产出（非 8:00 正式时点）；验证 Agent Execution Pack 端到端闭环可用。</blockquote></div><div class="card" id="s1"><h2><span class="no">①</span>市场状态</h2><ul><li>BTC: 76,506 USD（24h <strong>-1.95%</strong>）</li><li>ETH: 2,367 USD（24h <strong>-3.52%</strong>）</li><li>数据时间: 2026-09-02T09:46Z（引擎 UTC 时点）</li></ul></div><div class="card" id="s2"><h2><span class="no">②</span>核心趋势（A 价格动量 + B 成交量）</h2><p>BTC：短周期动量全面转负——1h -0.48%、4h -1.50%、24h -1.95%、7d -3.21%，跌势在 4h 周期加速；RSI14 62 回落、价格仍高于 MA50 约 1.35σ（中期多头结构未破坏）。量比 0.97 贴近常态，下跌未放量——更像<strong>缩量阴跌</strong>而非恐慌抛售。<br>ETH：跌势显著强于 BTC——24h -3.52%、7d -5.58%，4h -2.29% 显示抛压加速；量比 1.12 略放量，跌势有成交配合，确认相对弱势。</p></div><div class="card" id="s3"><h2><span class="no">③</span>衍生品（E）</h2><p>无数据（E 维源 binance_fapi 在本次执行环境不可达）。E 维权重 25% 缺失——本日报主信号仅由 A/B 维驱动，<strong>信号可信度打折</strong>（见 ⑪）。</p></div><div class="card" id="s4"><h2><span class="no">④</span>链上（C）</h2><p>无数据（C 维需 Whale Alert / Glassnode Key，Tier-2 源未启用）。链上资金流向暂无法佐证。</p></div><div class="card" id="s5"><h2><span class="no">⑤</span>宏观（F）</h2><p>F&amp;G 恐惧贪婪指数 = <strong>63（Greed）</strong>，处贪婪区但未到极端（&gt;80 才预警反向）。其余 F 维（美债/DXY/美股）无数据（FRED/Yahoo 未启用）。BTC-ETH 联动下跌与 F&amp;G 贪婪高位并存——情绪与价格背离，提示短期风险偏好可能正在收缩。</p></div><div class="card" id="s6"><h2><span class="no">⑥</span>情绪（D）</h2><p>无数据（需 LunarCrush Key，未启用）。</p></div><div class="card" id="s7"><h2><span class="no">⑦</span>事件（G）</h2><p>无数据（G1 需 Whale Alert；G2/G3 人工通道未录入）。今日无已知重大事件条目。</p></div><div class="card" id="s8"><h2><span class="no">⑧</span>引擎信号（权威，不改写）</h2><div class='tblwrap'><table><thead><tr><th>币</th><th>composite(-100~+100)</th><th>方向三分</th><th>强度</th><th>A</th><th>B</th><th>E</th></tr></thead><tbody><tr><td>BTC</td><td>-28.2</td><td>横盘</td><td>0.94x</td><td>-42.2</td><td>0.0</td><td>无数据</td></tr><tr><td>ETH</td><td>-42.5</td><td>跌</td><td>1.42x</td><td>-63.7</td><td>0.0</td><td>无数据</td></tr></tbody></table></div></div><div class="card" id="s9"><h2><span class="no">⑨</span>未来 24h 判断</h2><ul><li><strong>BTC：横盘偏弱（中性偏空）</strong>。依据：引擎 composite -28.2 逼近但未破 -30（方向三分=横盘），A 维 -42.2 已表达短线偏空；但量比 0.97 无放量、MA50 上方 1.35σ 中期结构未坏，不支持单边看跌。参考区间：75,300~77,300。</li><li><strong>ETH：偏空</strong>。依据：引擎 composite -42.5 已破 -30（方向=跌），A 维 -63.7 空头动能强于 BTC 且带量(1.12)；ETH/BTC 相对弱势明显。参考区间：2,310~2,410。</li><li>关键警示：<strong>E 维缺失</strong>使两个方向判断都缺少"杠杆拥挤度"这一最强短线证据，若资金费率已转极值，判断可能被推翻。</li></ul></div><div class="card" id="s10"><h2><span class="no">⑩</span>风险</h2><p>1. <strong>E 维（衍生品）整维缺失</strong>：无法评估杠杆拥挤与爆仓风险，主信号可信度系统性下降。<br>2. 情绪与价格背离：F&amp;G 63(贪婪) vs BTC/ETH 连续阴跌，若转为恐慌可能引发加速下跌。<br>3. ETH 相对 BTC 显著走弱（7d -5.58% vs -3.21%），若延续，ETH 或有独立的下行/补跌风险。</p></div><div class="card" id="s11"><h2><span class="no">⑪</span>置信度与数据覆盖度</h2><ul><li>数据覆盖度：10/34 项指标可用。可用：A 维 7 项 + B 维 2 项 + F6。缺失：E/C/D/G 全维 + F 维宏观大部。</li><li>对 ⑨ 判断置信度：<strong>低-中</strong>。理由：① 主信号缺少 E 维(25% 权重)，仅由 A/B 驱动；② 链上/宏观/情绪均无佐证；③ 历史上下文仅 1 天（首日运行，分位参考尚不可用，需持续归档积累 ≥30 日后回测/分位才有效）。</li></ul>
+:root{--bg:#faf9f7;--card:#fff;--ink:#1f2430;--sub:#6b7280;--accent:#1a7f4e;--line:#e8e6e1;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+header{background:linear-gradient(135deg,#10243e,#1a7f4e);color:#fff;border-radius:14px;
+padding:20px 22px;margin-bottom:18px}
+header h1{margin:0 0 6px;font-size:21px;line-height:1.4;letter-spacing:.5px}header .meta{opacity:.85;font-size:13px}
+.back{font-size:13px;color:var(--sub);text-decoration:none;display:inline-block;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+padding:16px 20px;margin-bottom:14px}
+h2{font-size:17px;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #eef1ec}
+h3{font-size:15px;margin:14px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:#f3f5f2;font-weight:600}tr:nth-child(2n) td{background:#fafbfa}
+ul{margin:8px 0;padding-left:22px}li{margin:3px 0}
+blockquote{margin:10px 0;padding:8px 14px;background:#f6f8f5;border-left:4px solid var(--accent);
+border-radius:0 8px 8px 0;color:var(--sub);font-size:14px}
+.note{font-size:13px;color:var(--sub)}
+b,strong{color:#10243e}hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+</style></head><body><div class="wrap">
+<header><h1>BTC/ETH 日报 2026-09-02</h1><div class='meta'>每日研究员级日报 · btc_quant 研究包</div></header><a class='back' href='index.html'>← 全部日报</a><blockquote>说明：本份为研究包首日<strong>冒烟样例</strong>，于 2026/09/02 17:46(北京) 由完整流水线产出（非 8:00 正式时点）；验证 Agent Execution Pack 端到端闭环可用。</blockquote>
+<h2>① 市场状态</h2>
+<ul><li>BTC: 76,506 USD（24h <strong>-1.95%</strong>）</li><li>ETH: 2,367 USD（24h <strong>-3.52%</strong>）</li><li>数据时间: 2026-09-02T09:46Z（引擎 UTC 时点）</li></ul>
+<h2>② 核心趋势（A 价格动量 + B 成交量）</h2>
+<p>BTC：短周期动量全面转负——1h -0.48%、4h -1.50%、24h -1.95%、7d -3.21%，跌势在 4h 周期加速；RSI14 62 回落、价格仍高于 MA50 约 1.35σ（中期多头结构未破坏）。量比 0.97 贴近常态，下跌未放量——更像<strong>缩量阴跌</strong>而非恐慌抛售。<br>ETH：跌势显著强于 BTC——24h -3.52%、7d -5.58%，4h -2.29% 显示抛压加速；量比 1.12 略放量，跌势有成交配合，确认相对弱势。</p>
+<h2>③ 衍生品（E）</h2>
+<p>无数据（E 维源 binance_fapi 在本次执行环境不可达）。E 维权重 25% 缺失——本日报主信号仅由 A/B 维驱动，<strong>信号可信度打折</strong>（见 ⑪）。</p>
+<h2>④ 链上（C）</h2>
+<p>无数据（C 维需 Whale Alert / Glassnode Key，Tier-2 源未启用）。链上资金流向暂无法佐证。</p>
+<h2>⑤ 宏观（F）</h2>
+<p>F&amp;G 恐惧贪婪指数 = <strong>63（Greed）</strong>，处贪婪区但未到极端（&gt;80 才预警反向）。其余 F 维（美债/DXY/美股）无数据（FRED/Yahoo 未启用）。BTC-ETH 联动下跌与 F&amp;G 贪婪高位并存——情绪与价格背离，提示短期风险偏好可能正在收缩。</p>
+<h2>⑥ 情绪（D）</h2>
+<p>无数据（需 LunarCrush Key，未启用）。</p>
+<h2>⑦ 事件（G）</h2>
+<p>无数据（G1 需 Whale Alert；G2/G3 人工通道未录入）。今日无已知重大事件条目。</p>
+<h2>⑧ 引擎信号（权威，不改写）</h2>
+<table><thead><tr><th>币</th><th>composite(-100~+100)</th><th>方向三分</th><th>强度</th><th>A</th><th>B</th><th>E</th></tr></thead><tbody><tr><td>BTC</td><td>-28.2</td><td>横盘</td><td>0.94x</td><td>-42.2</td><td>0.0</td><td>无数据</td></tr><tr><td>ETH</td><td>-42.5</td><td>跌</td><td>1.42x</td><td>-63.7</td><td>0.0</td><td>无数据</td></tr></tbody></table>
+<h2>⑨ 未来 24h 判断</h2>
+<ul><li><strong>BTC：横盘偏弱（中性偏空）</strong>。依据：引擎 composite -28.2 逼近但未破 -30（方向三分=横盘），A 维 -42.2 已表达短线偏空；但量比 0.97 无放量、MA50 上方 1.35σ 中期结构未坏，不支持单边看跌。参考区间：75,300~77,300。</li><li><strong>ETH：偏空</strong>。依据：引擎 composite -42.5 已破 -30（方向=跌），A 维 -63.7 空头动能强于 BTC 且带量(1.12)；ETH/BTC 相对弱势明显。参考区间：2,310~2,410。</li><li>关键警示：<strong>E 维缺失</strong>使两个方向判断都缺少"杠杆拥挤度"这一最强短线证据，若资金费率已转极值，判断可能被推翻。</li></ul>
+<h2>⑩ 风险</h2>
+<p>1. <strong>E 维（衍生品）整维缺失</strong>：无法评估杠杆拥挤与爆仓风险，主信号可信度系统性下降。<br>2. 情绪与价格背离：F&amp;G 63(贪婪) vs BTC/ETH 连续阴跌，若转为恐慌可能引发加速下跌。<br>3. ETH 相对 BTC 显著走弱（7d -5.58% vs -3.21%），若延续，ETH 或有独立的下行/补跌风险。</p>
+<h2>⑪ 置信度与数据覆盖度</h2>
+<ul><li>数据覆盖度：10/34 项指标可用。可用：A 维 7 项 + B 维 2 项 + F6。缺失：E/C/D/G 全维 + F 维宏观大部。</li><li>对 ⑨ 判断置信度：<strong>低-中</strong>。理由：① 主信号缺少 E 维(25% 权重)，仅由 A/B 驱动；② 链上/宏观/情绪均无佐证；③ 历史上下文仅 1 天（首日运行，分位参考尚不可用，需持续归档积累 ≥30 日后回测/分位才有效）。</li></ul>
 <hr>
-<p>*引擎：scripts/compute.py v0.3 | 口径：config/strategy.yaml | 数据覆盖：Tier-0/1 源（binance_vision/alternative.me）| 生成：harness + LLM*</p></div><div class="card" id="s-v2"><h2><span class="no">V2</span>派生信号</h2><div class="note2">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-28.2</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr><tr><td>ETH</td><td>-42.5</td><td>偏空</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr></table></div></div>
-<div class="nav"><a class="pv none" href="index.html"><span class="lab">← 已是最早一期</span><span class="val">—</span></a><a class="nx" href="2026-09-03.html"><span class="lab">下一期 →</span><span class="val">2026-09-03</span></a></div>
-<footer><span data-zh="引擎 scripts/compute.py v1.0 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM" data-en="Engine scripts/compute.py v1.0 · Spec config/strategy.yaml v1.0 · Generated by run_daily + LLM">引擎 scripts/compute.py v1.0 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</span><br>
-<span data-zh="中英切换仅作用于界面文案,研报正文为中文原文" data-en="Language toggle affects UI text only; report body stays original Chinese">中英切换仅作用于界面文案,研报正文为中文原文</span></footer>
-</div>
-<script>
-(function(){
-var d=document,r=d.documentElement;
-/* ---------- 主题 ---------- */
-var tb=d.getElementById('themebtn');
-function paintTheme(){if(tb){tb.textContent=r.getAttribute('data-theme')==='dark'?'☀':'🌙';}}
-if(tb){tb.addEventListener('click',function(){
-var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
-r.setAttribute('data-theme',n);paintTheme();
-try{localStorage.setItem('bqc_theme',n)}catch(e){}});}
-paintTheme();
-/* ---------- 中英 ---------- */
-var lb=d.getElementById('langbtn');
-function setLang(l){r.setAttribute('lang',l);
-d.querySelectorAll('[data-zh]').forEach(function(e){
-var v=l==='en'?e.getAttribute('data-en'):e.getAttribute('data-zh');if(v){e.textContent=v;}});
-d.querySelectorAll('[data-ph-zh]').forEach(function(e){
-e.placeholder=l==='en'?e.getAttribute('data-ph-en'):e.getAttribute('data-ph-zh');});
-var t=l==='en'?r.getAttribute('data-title-en'):r.getAttribute('data-title-zh');
-if(t){d.title=t;}
-if(lb){lb.textContent=l==='en'?'中文':'EN';}
-try{localStorage.setItem('bqc_lang',l)}catch(e){}}
-var s=null;try{s=localStorage.getItem('bqc_lang')}catch(e){}
-if(lb){lb.addEventListener('click',function(){setLang(r.getAttribute('lang')==='en'?'zh':'en')});}
-setLang(s==='en'?'en':'zh');
-})();
-
-
-(function(){
-var links=[].slice.call(document.querySelectorAll('.toc a'));
-if(!links.length){return;}
-function mark(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
-var secs=links.map(function(a){return d.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
-if('IntersectionObserver' in window){
-var io=new IntersectionObserver(function(es){
-var vis=es.filter(function(e){return e.isIntersecting;})
-.sort(function(a,b){return a.boundingClientRect.top-b.boundingClientRect.top;});
-if(vis.length){mark(vis[0].target.id);}},{rootMargin:'-80px 0px -55% 0px'});
-secs.forEach(function(s){io.observe(s);});}
-links.forEach(function(a){a.addEventListener('click',function(){mark(a.getAttribute('href').slice(1));});});
-})();
-
-</script>
-</body></html>
+<p>*引擎：scripts/compute.py v0.3 | 口径：config/strategy.yaml | 数据覆盖：Tier-0/1 源（binance_vision/alternative.me）| 生成：harness + LLM*</p><h2>V2 派生信号</h2><div style="font-size:12px;color:#69737f;margin:-4px 0 6px">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-28.2</td><td>中性</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr><tr><td>ETH</td><td>-42.5</td><td>偏空</td><td>中性</td><td>-</td><td>low</td><td>—</td></tr></table>
+<footer class="note">引擎: scripts/compute.py | 口径: config/strategy.yaml v1.0 |
+生成: btc_quant 研究包 run_daily + LLM</footer>
+</div></body></html>
