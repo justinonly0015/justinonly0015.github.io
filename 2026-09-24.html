@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-title-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报 2026-09-24" data-title-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research 2026-09-24"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="btc_quant 研究包 · 2026-09-24 每日研报 · 现货 + 永续双市场 · 7 维度 34 指标">
+<title>BTC/ETH + BTCUSDT/ETHUSDT 每日研报 2026-09-24</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('bqc_theme')}catch(e){}
+if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
+<style>
+:root{
+--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;--line2:#f0f2f5;
+--grid:#dfe4ea;--tick:#9aa1ab;
+--up:#d64541;--up-soft:#fbe9e7;--up-strong:#c0392b;
+--down:#178a56;--down-soft:#e6f4ec;--down-strong:#0f6b42;
+--brand:#14406b;--brand2:#2e8b74;--chip:#eef1f5;--chip-on:#14406b;
+--shadow:0 1px 2px rgba(16,36,62,.05),0 6px 16px rgba(16,36,62,.05);
+--hero1:#0d1f38;--hero2:#143a5e;--hero3:#14614a;--topbar:rgba(255,255,255,.88);}
+html[data-theme="dark"]{
+--bg:#0d1117;--card:#151b24;--ink:#e4e9f0;--sub:#8d99a8;--line:#242c38;--line2:#1b232e;
+--grid:#2b3543;--tick:#6b7686;
+--up:#e5645f;--up-soft:#3a201f;--up-strong:#f08a85;
+--down:#2fb37c;--down-soft:#123024;--down-strong:#5ad3a0;
+--brand:#4a90d9;--brand2:#3ec9a7;--chip:#1c242f;--chip-on:#4a90d9;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 20px rgba(0,0,0,.25);
+--hero1:#09121f;--hero2:#0f2a44;--hero3:#0e4636;--topbar:rgba(21,27,36,.88);}
+html[lang="en"]{--up:#178a56;--up-soft:#e6f4ec;--up-strong:#0f6b42;
+--down:#d64541;--down-soft:#fbe9e7;--down-strong:#c0392b;}
+html[data-theme="dark"][lang="en"]{--up:#2fb37c;--up-soft:#123024;--up-strong:#5ad3a0;
+--down:#e5645f;--down-soft:#3a201f;--down-strong:#f08a85;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+transition:background .2s,color .2s}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 56px}
+/* ---- topbar ---- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
+padding:10px 16px;background:var(--topbar);
+-webkit-backdrop-filter:saturate(1.4) blur(8px);backdrop-filter:saturate(1.4) blur(8px);
+border-bottom:1px solid var(--line)}
+.topbar .bk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+border-radius:9px;background:var(--chip);border:1px solid var(--line);color:var(--sub);
+text-decoration:none;font-size:17px;line-height:1;transition:all .15s}
+.topbar .bk:hover{color:var(--ink);border-color:var(--sub)}
+.topbar .brand{font-weight:700;font-size:14px;letter-spacing:.5px}
+.topbar .brand i{display:inline-block;width:8px;height:8px;border-radius:50%;
+background:var(--brand2);margin-right:7px;vertical-align:1px}
+.topbar .sp{flex:1}
+.topbar .dt{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.ibtn{background:var(--chip);border:1px solid var(--line);color:var(--sub);
+border-radius:999px;padding:5px 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;
+transition:all .15s}
+.ibtn:hover{color:var(--ink);border-color:var(--sub)}
+/* ---- hero ---- */
+.hero{background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);
+color:#fff;text-align:center;padding:34px 16px 26px;margin-bottom:20px}
+.hero h1{margin:0;font-size:21px;letter-spacing:1px;line-height:1.5}
+.hero .sub{margin-top:7px;font-size:13px;opacity:.72;letter-spacing:1px}
+.hero .pill{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:1px;
+background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+padding:4px 16px;border-radius:999px;margin-left:6px}
+/* ---- section / card / colors ---- */
+.sec{font-size:15px;font-weight:700;margin:28px 4px 12px;display:flex;align-items:center;gap:10px}
+.sec small{font-weight:400;font-size:12px;color:var(--sub)}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 14px;
+box-shadow:var(--shadow)}
+.chg{font-weight:600}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
+.badge{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:6px}
+.badge.up{background:var(--up-soft);color:var(--up-strong)}
+.badge.down{background:var(--down-soft);color:var(--down-strong)}
+.badge.flat{background:var(--chip);color:var(--sub)}
+footer{margin-top:34px;text-align:center;font-size:12px;color:var(--tick);line-height:1.9}
+@media (max-width:620px){
+.wrap{padding:0 12px 44px}
+.hero{padding:28px 14px 22px}
+.topbar{padding:9px 12px}
+}
+
+
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:12px 14px;background:var(--card);
+border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.toc a{display:inline-block;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+font-size:12px;color:var(--sub);text-decoration:none;padding:3px 11px;border-radius:999px;
+background:var(--line2);transition:all .15s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{background:var(--chip-on);color:#fff}
+.doc{display:flex;flex-direction:column;gap:14px}
+.doc>.card{padding:4px 20px 16px}
+.doc h2{scroll-margin-top:70px;font-size:15px;font-weight:700;margin:16px 0 12px;padding:0 0 9px;
+border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:8px;line-height:1.5}
+.doc h2 .no{color:var(--brand);font-size:14px;flex:none}
+.doc h3{font-size:13px;margin:16px 0 6px;color:var(--sub);letter-spacing:.5px}
+.doc p{margin:8px 0}
+.tblwrap{overflow-x:auto;margin:10px 0}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;
+border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:7px 11px;text-align:left;border-bottom:1px solid var(--line2)}
+th{background:var(--line2);font-weight:600;font-size:12px;color:var(--sub);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(2n) td{background:var(--line2)}
+.doc ul{margin:8px 0;padding-left:20px}
+.doc li{margin:3px 0}
+.doc ol{margin:8px 0;padding-left:22px}
+blockquote{margin:10px 0;padding:8px 14px;background:var(--line2);border-left:3px solid var(--brand2);
+border-radius:0 8px 8px 0;color:var(--sub);font-size:13px}
+code{background:var(--line2);padding:1px 5px;border-radius:4px;font-size:12.5px}
+hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+.note2{font-size:12px;color:var(--sub);margin:-4px 0 8px}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.nav a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 16px;
+text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:border-color .15s,transform .12s}
+.nav a:hover{border-color:var(--brand);transform:translateY(-1px)}
+.nav a.nx{text-align:right}
+.nav .lab{display:block;font-size:11px;color:var(--tick);letter-spacing:1px}
+.nav .val{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.nav .none{opacity:.4;pointer-events:none}
+@media (max-width:620px){.toc a{max-width:150px}}
+
+</style></head><body>
+<div class="topbar"><a class="bk" href="index.html" title="全部日报">&lsaquo;</a>
+<span class="brand"><i></i><span data-zh="btc_quant 研究包" data-en="btc_quant Research">btc_quant 研究包</span></span>
+<span class="sp"></span><span class="dt">2026-09-24</span>
+<button class="ibtn" id="themebtn" type="button" title="Toggle theme">🌙</button>
+<button class="ibtn" id="langbtn" type="button" aria-label="Switch language" title="切换界面语言 / 正文为中文原文">EN</button></div>
+<div class="hero"><h1>BTC/ETH + BTCUSDT/ETHUSDT 每日研报</h1>
+<div class="sub">现货 + 永续 双市场 · 7 维度 34 指标 · btc_quant 研究包</div>
+<div><span class="pill">2026-09-24 周四</span><span class="pill"><span data-zh="引擎信号为权威口径" data-en="engine signals are authoritative">引擎信号为权威口径</span></span></div></div>
+<div class="wrap">
+<div class="toc" id="toc"><a href='#s1'>① 市场状态（现货 BTC / ETH）</a><a href='#s2'>② 永续合约市场（BTCUSDT / ETHUSDT）</a><a href='#s3'>③ 核心趋势（现货 A 价格动量 + B 成交量）</a><a href='#s4'>④ 链上（C）</a><a href='#s5'>⑤ 宏观（F）</a><a href='#s6'>⑥ 情绪（D）</a><a href='#s7'>⑦ 事件（G）</a><a href='#s8'>⑧ 引擎信号（权威，不改写）</a><a href='#s9'>⑨ 未来 24h 判断</a><a href='#s10'>⑩ 风险</a><a href='#s11'>⑪ 置信度与数据覆盖度</a><a href='#s-v2'>V2 派生信号</a></div>
+<div class="doc"><div class="card" id="s1"><h2><span class="no">①</span>市场状态（现货 BTC / ETH）</h2><ul><li>BTC: 84,419 USD（24h -2.24%）</li><li>ETH: 2,688 USD（24h -2.49%）</li><li>数据时间: 2026-09-24T00:00:00Z (UTC)</li></ul></div><div class="card" id="s2"><h2><span class="no">②</span>永续合约市场（BTCUSDT / ETHUSDT）</h2><ul><li>BTCUSDT 永续: 资金费率 <strong>+0.000256%</strong>(8h,较 9/23 +0.001367% <strong>下降 81.3%,接近零成本</strong>) · OI <strong>$83.08亿</strong>(24h <strong>-9.80%</strong>,源 binance_fapi,<strong>同源</strong>,9/23 -2.13% <strong>加速去杠杆</strong>) · 多空比 <strong>1.1608</strong>(账户级,9/23 0.9037,<strong>由偏空翻至偏多,逆转 +28.5%</strong>) · 爆仓 无数据(源不提供 E4/E5) · 现货-永续价差 无数据(本轮未采集 mark)</li><li>ETHUSDT 永续: 资金费率 <strong>+0.005372%</strong>(9/23 +0.0100% <strong>下降 46.3%,由拥挤线回落</strong>) · OI <strong>$61.82亿</strong>(24h <strong>-3.09%</strong>,源 binance_fapi,<strong>同源</strong>,9/23 -1.44% <strong>由小转大去杠杆</strong>) · 多空比 <strong>2.7779</strong>(账户级,9/23 2.4095,<strong>继续上行 +15.3%,创阶段新高</strong>) · 爆仓 无数据(源不提供 E4/E5) · 现货-永续价差 无数据(本轮未采集 mark)</li><li>永续状态(规则派生,非概率):<strong>BTC=空头回补/杠杆清洗待判</strong>(evidence:价 -2.24% + OI -9.80% 同向(去杠杆结构) + 资金费率 +0.0003% 接近零 + L/S 1.16 由偏空翻至偏多,<strong>典型存量空头回补+杠杆收缩</strong>);<strong>ETH=空头回补</strong>(evidence:价 -2.49% + OI -3.09% 同向(去杠杆) + 资金费率 0.005% 由拥挤线回落 + L/S 2.78 创阶段新高,<strong>存量空头大幅回补+杠杆成本下行</strong>)。</li><li>对现货方向的含义:<strong>BTC 杠杆端由 9/23"多头去杠杆"转为"空头回补+杠杆收缩"</strong>——9/23 报告"O 维 -2.13% + 资金费率 +0.0014% 极低"本日<strong>加速去杠杆至 OI -9.80%</strong>(单日跨度 7.67 个百分点,9/14 以来最大单日减仓),但 L/S 由 0.90 偏空翻至 1.16 偏多表明<strong>存量空头平仓驱动</strong>;<strong>ETH 杠杆端"存量拥挤改善+杠杆成本下行"双解除</strong>——L/S 2.78 创阶段新高但资金费率 0.005% 由 0.01% 拥挤线回落,<strong>存量空头持续回补+新增空头成本下降</strong>,与 9/23"存量拥挤+增量成本上行+OI 转负"形成完全反向。</li></ul></div><div class="card" id="s3"><h2><span class="no">③</span>核心趋势（现货 A 价格动量 + B 成交量）</h2><p>BTC:24h <strong>-2.24%</strong>(9/23 -0.15%,<strong>动能由窄幅整理转为明显走弱</strong>)、4h <strong>+0.22%</strong>(短线企稳)、7d <strong>+10.47%</strong>(9/23 +13.33%,<strong>7d 中期动能由阶段高位显著回落</strong>),A 维分 <strong>-18.88</strong>;RSI14=<strong>65.57</strong>、RSI6=<strong>66.82</strong>(9/23 82.28,<strong>大幅脱离 &gt;80 极值区回落至中性区</strong>);A5 MA50 z=<strong>+1.340</strong>(9/23 +1.649,偏离收敛)。<strong>9/23 报告"RSI6=82.28 仍处 &gt;80 极值触发反向"本日完全解除</strong>——A6 RSI6 由 82.28 大幅回落至 66.82(单日跨度 15.46 个点位,<strong>完全脱离超买区</strong>);<strong>A3 由 -0.15% 走弱至 -2.24%</strong>(单日跨度 2.09 个百分点),A1 +0.02% / A2 +0.22% 显示<strong>短线仍企稳</strong>,但<strong>A6 机械分由 -75.24 改善至 -51.89</strong>仍主导压制 A 维分由 -10.91 走弱至 -18.88(主因 A3 -2.24% 拖累)。</p>
+<p>ETH:24h <strong>-2.49%</strong>(9/23 -0.60%,<strong>动能由窄幅整理转为明显走弱</strong>)、4h <strong>+0.64%</strong>(短线企稳)、7d <strong>+9.85%</strong>(9/23 +14.02%,<strong>7d 中期动能由阶段高位显著回落</strong>),A 维分 <strong>-12.37</strong>;RSI14=<strong>63.49</strong>、RSI6=<strong>62.24</strong>(9/23 77.26,<strong>继续脱离超买区至中性区</strong>);A5 MA50 z=<strong>+1.236</strong>(9/23 +1.511,偏离收敛)。<strong>9/23"价格健康放量+杠杆拥挤"三向分裂延续但方向走弱</strong>——A3 由 -0.60% 走弱至 -2.49%(单日跨度 1.89 个百分点),A6 RSI6 由 77.26 继续回落至 62.24(机械分 -66.66 改善至 -44.96);<strong>A 维分由 -11.66 走弱至 -12.37</strong>(主因 A3 -2.49% 拖累抵消 A6 改善)。</p>
+<p>量价:<strong>BTC 量比 1.205</strong>(9/23 1.257,<strong>小幅回落 4.1%,仍处 &gt;1.1 健康线、未触 ≥1.5 expansion 线</strong>);<strong>B2 = 0</strong>(量比 1.205 介于 0.7~1.5 之间,B2 不触发);B3 = 0(无背离)。<strong>ETH 量比 1.004</strong>(9/23 0.952,<strong>由健康线下方回升 5.5% 至健康线附近</strong>);<strong>B2 = 0</strong>(量比 1.004 跌破 1.1 健康线 8.7%,未触 ≤0.7 contraction 线,B2 不触发);B3 = 0(无背离)。<strong>两币量比双双维持中性区</strong>——BTC 由 9/23 1.257 回落至 1.205(仍健康线以上);<strong>ETH 由 9/23 0.952 回升至 1.004</strong>(重回健康线附近),<strong>两币均处 B 维无信号区</strong>(B2=0)。</p></div><div class="card" id="s4"><h2><span class="no">④</span>链上（C）</h2><ul><li><strong>C1 活跃地址</strong>:无数据(<code>scripts/collect_extra.py</code> 本轮未运行,extra_indicators.json 为空)。</li><li><strong>C5 交易所净流入 [代理]</strong>(DeFiLlama CEX 储备净变化):无数据(本轮未采集)。</li><li><strong>C3 大额转账条数 [抽样]</strong>(mempool.space 未确认池采样):无数据(本轮未采集)。</li><li><strong>C8 稳定币 [代理]</strong>(供应量口径):无数据(本轮未采集)。</li><li><strong>C6 ETH TVL</strong>:引擎 readings 已记 <strong>$535.66亿</strong>(9/23 $544.35 亿,<strong>-1.60%,由 -0.28% 微幅回落转为明显回落</strong>);DeFiLlama 24h 变化本轮未采集(引擎侧 <code>C6_eth_tvl_chg_24h_pct=null</code>)。</li><li>引擎侧 C0 代理读数(非 34 指标,仅背景):BTC 24h 交易 <strong>58.76 万笔</strong>(9/23 61.96 万,<strong>-5.2%</strong>)、<strong>-1.9% 趋势</strong>(9/23 -22.37%,<strong>由 9/14 以来最大反向跨度回缩至接近零,负向放缓 20.5 个百分点</strong>)、平均手续费 $0.41(9/23 $0.44,<strong>-6.8%</strong>)、最大单笔 <strong>$42.07亿</strong>(9/23 $42.53 亿,<strong>-1.1%,高位维持</strong>)。</li><li><strong>结论</strong>:C 维本日<strong>仅引擎层 + C0 代理</strong>,免费源补齐层未运行(extra_filled=0),与 9/16-9/23 完全一致。<strong>核心新信号</strong>:<strong>BTC C0 趋势由 -22.37% 回缩至 -1.9%</strong>(单日跨度 20.47 个百分点,<strong>负向趋势放缓</strong>,9/23 报告的"9/14 以来最大反向跨度"得到部分回缩)——<strong>链上活动负向冲击未进一步扩大</strong>,但仍处负值;<strong>BTC 最大单笔 $42.07 亿</strong>(9/23 $42.53 亿,<strong>-1.1%</strong>,<strong>维持 9/22 以来 $40 亿+ 高位</strong>),与 9/23 报告"巨鲸再活跃"的结构延续;<strong>ETH TVL $535.66亿由 -0.28% 微幅回落转为 -1.60% 明显回落</strong>——<strong>DeFi 资金流出加速</strong>,与价格端 ETH -2.49% 同步走弱。但 34 指标真实项仍无新读数,无法对 C1/C3/C5/C8 给出独立结论。</li></ul></div><div class="card" id="s5"><h2><span class="no">⑤</span>宏观（F）</h2><ul><li><strong>F6 恐惧贪婪</strong>:<strong>71</strong>(9/23 为 71,<strong>持平,延续 9/22"由 78 降至 71"后的贪婪中段</strong>)。71 距 &gt;80 极值阈值 <strong>9 点</strong>——<strong>情绪极值风险延续解除</strong>(9/22 由 78 降至 71 后本日持平),<strong>情绪面稳定</strong>。</li><li><strong>F1 10Y 美债 / F3 DXY / F4 SP500 / F5 VIX / F7 纳指</strong>:无数据(本轮未采集)。<strong>F 维宏观日历层风险面本日报观测为零</strong>,9/15 VIX +7.95% 至 17.10 的风险偏好转弱信号<strong>本日报仍无法确认是否已修复</strong>——但 ③ BTC -2.24%/ETH -2.49% 的明显走弱 + BTC 量比 1.205 维持健康线 + ETH 量比 1.004 重回健康线 + F6 71 持平,<strong>暗示风险偏好边际改善中(BTC 量价尚健康)+ 情绪持平(贪婪中段)+ 价格端明显回吐</strong>的混合状态。</li><li>与主信号的关系:按 02 §4.2,F 维不进 composite。F6 71 与 BTC/ETH 24h -2.24%/-2.49% 走弱 + A6 RSI6 BTC 由 82.28 回落至 66.82 / ETH 由 77.26 回落至 62.24,<strong>情绪端"贪婪中段持平+RSI 脱离极值"</strong>显示<strong>情绪面与价格端超买消化同步</strong>;宏观日历项的缺席是 9/14 以来<strong>持续盲区</strong>,本日报无新增缓解。</li></ul></div><div class="card" id="s6"><h2><span class="no">⑥</span>情绪（D）</h2><p>D 维无协议口径数据；以下 D1/D2/D4 均为代理读数，<strong>有读数 ≠ D 维达标</strong>。</p>
+<ul><li><strong>F6 恐惧贪婪(真实口径, F 维)</strong>=<strong>71</strong>,处"贪婪"中段,较 9/23 持平。结合 ③ BTC/ETH 24h -2.24%/-2.49% 明显走弱 + 量比 BTC 1.205 维持健康线 / ETH 1.004 重回健康线附近 + A6 RSI6=66.82/62.24 两币<strong>均完全脱离超买区</strong>——<strong>情绪端与价格端超买消化同步</strong>,9/23 报告"两币 RSI 状态分化(BTC 极值/ETH 改善)"本日<strong>完全统一为中性区</strong>;<strong>F6 71 持平延续 9/22 由 78 降至 71 后的"贪婪中段"位置</strong>,情绪面无新边际信号。</li><li><strong>D1 社媒量 [代理]</strong> / <strong>D2 情绪分 [代理]</strong> / <strong>D4 Trending [代理]</strong>:无数据(本轮未采集);D 维仍为<strong>结构性盲区</strong>——本日 BTC 杠杆端"空头回补+杠杆收缩"+ETH 杠杆端"存量拥挤改善+杠杆成本下行"的社媒讨论度信号<strong>无法量化观测</strong>。</li></ul></div><div class="card" id="s7"><h2><span class="no">⑦</span>事件（G）</h2><ul><li><strong>G2 新闻流(Cointelegraph RSS)</strong>:无数据(本轮未采集)。</li><li><strong>G1 大额转账实时(抽样)</strong>:无数据(本轮未采集)。</li><li><strong>G3 监管事件</strong>:<strong>人工通道未填报</strong>——外生冲击(如政策/司法)仍是本系统的结构性盲区。</li><li><strong>结论</strong>:本日无触发级事件可观测,<strong>不做事件驱动的方向修正</strong>;但 ② BTC OI 24h -9.80%(9/23 -2.13%,<strong>加速去杠杆创 9/14 以来最大单日减仓</strong>)+ 资金费率 +0.0003% 接近零(典型存量空头回补)+ L/S 1.16 由偏空翻至偏多,<strong>BTC 杠杆端进入"存量空头回补+杠杆收缩"结构</strong>;<strong>ETH 资金费率 +0.005% 由 0.01% 拥挤线回落 + L/S 2.78 创阶段新高 + OI -3.09% 加速去杠杆</strong>,<strong>ETH 杠杆端"存量空头持续回补+杠杆成本下行"</strong>;<strong>BTC C0 趋势由 -22.37% 回缩至 -1.9%</strong>(负向放缓),<strong>BTC 最大单笔 $42.07 亿维持 $40 亿+ 高位</strong>,<strong>事件维整体可观测度与 9/16-9/23 一致</strong>;<strong>BTC/ETH 9/23"杠杆去杠杆/拥挤加剧"结构在 9/24 进一步演化</strong>——BTC 进入存量空头回补+杠杆收缩、ETH 进入存量空头回补+杠杆成本下行的"双回补"格局。</li></ul></div><div class="card" id="s8"><h2><span class="no">⑧</span>引擎信号（权威，不改写）</h2><div class='tblwrap'><table><thead><tr><th>币</th><th>composite(-100~+100)</th><th>方向六态</th><th>方向三分</th><th>强度</th><th>A</th><th>B</th><th>E</th></tr></thead><tbody><tr><td>BTC</td><td>-6.4</td><td>NEUTRAL</td><td>横盘</td><td>0.21x</td><td>-18.9</td><td>-30.0</td><td>+13.1</td></tr><tr><td>ETH</td><td>-17.2</td><td>NEUTRAL</td><td>横盘</td><td>0.57x</td><td>-12.4</td><td>-30.0</td><td>-15.9</td></tr></tbody></table></div>
+<p>(⑧ 后注) 主导因子与贡献:<strong>BTC 负压主要来自 A 维贡献 -377.62(占比 38%,主导指标 A3 raw -56.03,A3 24h -2.24% 反向触发)+ B 维贡献 -300.00(占比 30%,主导指标 B3 raw -60,B3 背离触发)+ E 维贡献 +326.67(占比 32% 正向,E2 OI 24h -9.80% 同源同向,E1/E3 中性)</strong>,<strong>A+B 同向负压制 composite -6.4</strong>;<strong>ETH 负压主要来自 E 维贡献 -396.67(占比 42%,主导指标 E3 raw -60,L/S 2.78 创阶段新高触发 -60 拥挤扣分)+ B 维贡献 -300.00(占比 32%,B3 raw -60 背离触发)+ A 维贡献 -247.40(占比 26% 负向,A3 raw -62.30,A3 24h -2.49% 反向触发)</strong>。权重 A/B/E=20/10/25,分母=55。<strong>BTC composite -6.4 较 9/23 的 -2.7 单日走弱 3.7 个点位</strong>(处 21 日均值 avg=-5.1 下方),<strong>9/23"A 主导压制"本日转为"A+B 双重压制"</strong>(B 维由 9/23 0.0 转为 -30.0,B3 触发扣分);<strong>ETH composite -17.2 较 9/23 的 -12.5 单日走弱 4.7 个点位</strong>(9/14 以来接近最大值,仅高于 9/14 的 min=-42.5 但接近样本中下区,21 日均值 avg=-11.5 下方 5.7 个点位),<strong>9/23"A+E 同向负压制"本日转为"E+B+A 三压同向"</strong>(B 维由 0 转为 -30.0,E 维由 -18.1 改善至 -15.9 但仍负向)。</p></div><div class="card" id="s9"><h2><span class="no">⑨</span>未来 24h 判断</h2><ul><li>BTC:<strong>中性</strong>(引擎 NEUTRAL)· 偏向:<strong>中性偏空</strong> · 状态:"A 维 24h -2.24% 明显走弱+B 维 B3 背离触发扣分+E 维由多头去杠杆翻转为空头回补+杠杆收缩,价格端明显走弱但杠杆端反向改善"。依据:composite <strong>-6.4</strong>(9/23 -2.7,<strong>单日走弱 3.7 个点位</strong>)+ 引擎区间 <strong>82,834~86,003</strong>(deterministic_v1,锚价 84,418.57,半幅 ±1.877%)+ A3 24h <strong>-2.24%</strong>(9/23 -0.15%,<strong>动能明显走弱</strong>)+ A4 7d <strong>+10.47%</strong>(9/23 +13.33%,<strong>中期动能由阶段高位显著回落</strong>)+ A6 RSI6 <strong>66.82</strong>(9/23 82.28,<strong>大幅脱离超买区 15.46 个点位,完全解除情绪反向触发</strong>)+ B2 量比 <strong>1.205</strong>(9/23 1.257,<strong>小幅回落 4.1%,仍维持健康线</strong>)+ B3 <strong>-60</strong>(9/23 0,<strong>B3 背离触发扣分</strong>)+ E2 OI 24h <strong>-9.80%</strong>(9/23 -2.13%,<strong>加速去杠杆 7.67 个百分点,9/14 以来最大单日减仓</strong>)+ L/S <strong>1.1608</strong>(9/23 0.9037,<strong>由偏空翻至偏多,逆转 +28.5%</strong>)+ 资金费率 <strong>+0.000256%</strong>(9/23 +0.001367%,<strong>大幅下降 81.3%,接近零成本</strong>)+ C0 趋势 <strong>-1.9%</strong>(9/23 -22.37%,<strong>负向放缓 20.47 个百分点,链上负向冲击部分回缩</strong>)+ F6 71(9/23 71,<strong>持平,延续贪婪中段</strong>)。解读:<strong>BTC 9/23"杠杆去杠杆+链上趋势反转"本日进一步演化</strong>——composite 由 -2.7 走弱至 -6.4(单日 3.7 个点位);<strong>E 维由"多头去杠杆"翻转为"空头回补+杠杆收缩"</strong>(OI 24h -9.80% 创 9/14 以来最大单日减仓 + 资金费率 +0.0003% 接近零 + L/S 1.16 由偏空翻至偏多,<strong>典型存量空头平仓+杠杆收缩结构</strong>);<strong>B 维由中性(0)转为 -30.0</strong>——B3 背离触发 -60 扣分,这是 9/14 以来首次 B3 触发;<strong>C0 链上趋势由 -22.37% 回缩至 -1.9%</strong>——9/23 报告的"9/14 以来最大反向跨度"得到<strong>部分回缩</strong>,链上负向冲击未进一步扩大;<strong>F6 71 持平</strong>延续 9/22 以来"贪婪中段";<strong>最大单笔 $42.07 亿维持 $40 亿+ 高位</strong>显示<strong>巨鲸活动延续</strong>。<strong>核心冲突</strong>:B 维量比 1.205 维持健康线 + A6 RSI6=66.82 完全脱离超买区 + E 维由去杠杆翻转为存量空头回补 vs A3 24h -2.24% 明显走弱 + B3 背离触发扣分 + OI -9.80% 加速去杠杆——<strong>价格端明显走弱 + 量价端尚健康 + 杠杆端存量空头回补对冲新增空头成本下行</strong>的混合结构。<strong>结构判断</strong>:BTC 是 9/14 以来<strong>首次出现的"价格端明显走弱+B3 背离触发扣分+存量空头回补"组合</strong>——9/23 报告的"杠杆去杠杆+链上趋势反转"组合<strong>升级为"价格端明显走弱+B3 扣分+存量空头回补"</strong>;<strong>A1 +0.02% + A2 +0.22% 显示短线企稳</strong>,<strong>E 维已先于价格端完成去杠杆并进入存量空头回补阶段</strong>(OI -9.80% + 资金费率极低 + L/S 翻正),若 24h 内价格继续走弱跌破下沿将确认"杠杆端存量回补+价格端走弱"的分裂;下沿 <strong>82,834</strong> 是 forecast_range 半幅支撑,<strong>若失守且量比回落至 &lt;1.0 + OI 24h 维持 &lt;0% + A6 RSI6 维持 &lt;70 三项中任两项满足将确认"价格端走弱传导"</strong>;上沿 <strong>86,003</strong> 需 OI 24h 转正 + L/S 回落至 &lt;1.05 + 资金费率回升至 &gt;0.005% 三项中至少两项满足(当前 -9.80%/1.16/0.0003% 均不满足)。</li></ul>
+<ul><li>ETH:<strong>中性</strong>(引擎 NEUTRAL)· 偏向:<strong>中性偏空</strong> · 状态:"A 维 24h -2.49% 明显走弱+B 维 B3 背离触发扣分+E 维存量空头回补+杠杆成本下行,价格端走弱但杠杆端反向改善"。依据:composite <strong>-17.2</strong>(9/23 -12.5,<strong>单日走弱 4.7 个点位,接近 9/14 以来最大值</strong>)+ 引擎区间 <strong>2,635~2,742</strong>(deterministic_v1,锚价 2,688.36,半幅 ±1.998%)+ A3 24h <strong>-2.49%</strong>(9/23 -0.60%,<strong>动能由窄幅整理转为明显走弱</strong>)+ A4 7d <strong>+9.85%</strong>(9/23 +14.02%,<strong>中期动能由阶段高位显著回落</strong>)+ A6 RSI6 <strong>62.24</strong>(9/23 77.26,<strong>继续脱离超买区 15.02 个点位,完全中性化</strong>)+ B2 量比 <strong>1.004</strong>(9/23 0.952,<strong>由健康线下方回升 5.5% 至健康线附近</strong>)+ B3 <strong>-60</strong>(9/23 0,<strong>B3 背离触发扣分</strong>)+ E3 L/S <strong>2.7779</strong>(9/23 2.4095,<strong>继续上行 +15.3%,创 9/14 以来新高</strong>)+ E1 资金费率 <strong>+0.005372%</strong>(9/23 +0.0100%,<strong>由拥挤线回落 46.3%</strong>)+ OI 24h <strong>-3.09%</strong>(9/23 -1.44%,<strong>由小转大去杠杆</strong>)+ C6 TVL <strong>$535.66亿</strong>(9/23 $544.35 亿,<strong>-1.60%,由 -0.28% 微幅回落转为明显回落</strong>)。解读:<strong>ETH 信号结构进一步走弱</strong>——composite 由 -12.5 走弱至 -17.2(单日 4.7 个点位,<strong>接近 9/14 以来最大值,21 日均值 avg=-11.5 下方 5.7 个点位</strong>);<strong>A 维由 -11.66 走弱至 -12.37</strong>(主因 A3 -2.49% 拖累抵消 A6 改善);<strong>B 维由 0 转为 -30.0</strong>——B3 背离触发扣分,这是 9/14 以来首次 B3 触发;<strong>E 维由 -18.1 改善至 -15.9</strong>(L/S 2.78 创阶段新高但资金费率由拥挤线回落),<strong>杠杆层"存量空头持续回补+增量空头成本下行"改善</strong>。<strong>核心冲突</strong>:A6 RSI6=62.24 完全中性化 + E1 资金费率由拥挤线回落 + E2 OI -3.09% 由小转大去杠杆 + C6 TVL -1.60% 边际走弱 vs A3 24h -2.49% 明显走弱 + B3 背离触发扣分 + E3 L/S 2.78 创阶段新高——<strong>杠杆端存量拥挤改善+资金费率回落+情绪端中性化 vs 价格端明显走弱 + B3 背离触发 + L/S 创阶段新高</strong>。<strong>结构判断</strong>:ETH 是 9/14 以来<strong>首次出现的"价格端明显走弱+B3 背离触发扣分+存量空头持续回补+资金费率由拥挤线回落"四向结构</strong>——composite -17.2 接近 9/14 以来最大值(仅次于 min=-42.5 的 9/14 极值);<strong>L/S 2.78 创 9/14 以来新高</strong> + 资金费率 0.005% 由拥挤线回落 46.3%——这是 9/14 以来<strong>首次"存量拥挤缓解+杠杆成本下行"组合</strong>;<strong>A6 RSI6=62.24 完全中性化与价格端走弱不同步</strong>(价格端反向恶化);<strong>杠杆层先于价格端完成存量空头回补</strong>。下沿 <strong>2,635</strong> 是 forecast_range 半幅支撑,<strong>若失守且 L/S 维持 &gt;2.7 + 资金费率维持 &gt;0.005% + 量比维持 &lt;1.0 三项中任两项满足将确认"价格端走弱+存量空头回补分裂"</strong>;上沿 <strong>2,742</strong> 需 L/S 回落至 &lt;2.3 + 资金费率回落至 &lt;0.005% + A6 RSI6 维持 &lt;70 三项中至少两项满足(当前 2.78/0.0054/62.24 仅 RSI6 部分满足,L/S+资金费率均不满足)。</li></ul>
+<ul><li>关键价位区间参考(引擎):BTC <strong>82,834~86,003</strong>;ETH <strong>2,635~2,742</strong>。</li></ul></div><div class="card" id="s10"><h2><span class="no">⑩</span>风险</h2><p>1. <strong>BTC OI 单日 -9.80% 创 9/14 以来最大减仓</strong>:BTC E2 OI 24h -9.80%(9/23 -2.13%,<strong>单日跨度 7.67 个百分点</strong>)+ 资金费率 +0.000256%(9/23 +0.001367%,<strong>下降 81.3%,处接近零水平</strong>)+ L/S 1.1608 由偏空翻至偏多——<strong>9/23 报告"O 维收缩+资金费率极低"完全演化为"杠杆端存量空头回补+加速去杠杆"</strong>;<strong>E 维由 9/23 +2.8 转为 +13.1(单日上升 10.3 个点位)</strong>,<strong>杠杆端进入存量空头回补+杠杆收缩阶段</strong>;若 24h 内价格继续走弱跌破下沿将确认"杠杆端存量回补+价格端走弱"分裂。<br>2. <strong>BTC/ETH B3 背离触发扣分(9/14 以来首次)</strong>:BTC B3 由 9/23 0 转为 -60,ETH B3 由 9/23 0 转为 -60(<strong>B3 背离触发 -60 扣分同时发生</strong>);<strong>B 维由 9/23 0.0 转 -30.0</strong>(两币同步)——这是 9/14 以来<strong>首次出现两币 B3 同时扣分</strong>,<strong>量价端发出"价格下行但成交未充分放大"的背离信号</strong>;若 24h 内两币量比维持 &lt;1.1 + 价格继续走弱将确认"量价背离持续"。<br>3. <strong>ETH 杠杆层"存量空头持续回补+杠杆成本下行"双解除</strong>:L/S 2.7779(9/23 2.4095,<strong>继续上行 +15.3%,创 9/14 以来新高</strong>)+ 资金费率 +0.005372%(9/23 +0.0100%,<strong>由拥挤线回落 46.3%</strong>)+ OI 24h -3.09%(9/23 -1.44%,<strong>由小转大去杠杆</strong>)——<strong>9/23 报告"存量拥挤加剧+增量成本上行+OI 转负"完全反转为"存量拥挤持续(空头回补)+增量成本下行+OI 加速去杠杆"</strong>;<strong>L/S 2.78 创阶段新高但价格端 -2.49%</strong>显示<strong>存量拥挤仍处高位+价格端明显走弱</strong>,若 24h 内价格继续走弱,<strong>存量拥挤将放大跌幅</strong>;<strong>L/S 持续上行至 2.78 与价格端 -2.49% 同向</strong>显示<strong>存量空头正在被套中平仓</strong>。<br>4. <strong>BTC/ETH A6 RSI6 完全中性化 + 价格端明显走弱分裂</strong>:BTC RSI6=66.82(9/23 82.28,<strong>大幅回落 15.46 个点位,完全脱离超买区</strong>)+ ETH RSI6=62.24(9/23 77.26,<strong>继续回落 15.02 个点位,完全中性化</strong>)——<strong>两币 RSI6 均完全脱离超买区</strong>(BTC 由极值回落 15+ 个点位,ETH 由超买区继续回落 15+ 个点位);<strong>价格端 BTC -2.24% / ETH -2.49% 明显走弱与 RSI6 中性化形成"价格走弱领先于情绪修正"的结构</strong>;若 24h 内 BTC/ETH 价格继续走弱 + RSI6 维持 &lt;70 + A6 RSI6 不再下行(失速)将形成"价格端走弱+情绪端先到位"的去杠杆前奏。<br>5. <strong>9/14 以来持续盲区</strong>:本轮 collect_extra 未运行(extra_filled=0,缺口结构与 9/16-9/23 完全一致),F1/F3/F4/F5/F7、C1/C3/C5/C7/C8、D1/D2/D4、G1/G2 均无读数;9/15 VIX +7.95% 至 17.10 的风险偏好转弱信号<strong>本日报仍无法确认是否修复</strong>;<strong>BTC/ETH 杠杆端"存量空头回补+杠杆收缩/存量空头回补+杠杆成本下行"的结构性驱动(ETF 流入/降息预期/巨鲸调仓)</strong>事件维未捕获;<strong>BTC OI -9.80% 单日跨度 7.67 个百分点创 9/14 以来最大减仓的可持续性是 9/14 以来最大不确定性</strong>。<br>6. <strong>BTC/ETH 主信号强度结构差异收敛</strong>:BTC composite -6.4 / 强度 0.21x vs ETH composite -17.2 / 强度 0.57x(9/23 反向:BTC -2.7/0.09x vs ETH -12.5/0.42x),<strong>两币信号方向均走弱但 ETH 强度仍显著高于 BTC</strong>(ETH -17.2 vs BTC -6.4,<strong>ETH 信号幅度仍大</strong>);<strong>BTC A6 RSI6=66.82 完全中性化 + E 维 OI -9.80% 加速去杠杆 + L/S 翻正 + C0 -1.9% 负向放缓</strong>意味着 BTC 杠杆端<strong>由去杠杆翻转为存量空头回补+杠杆收缩</strong>;<strong>ETH A6 RSI6=62.24 完全中性化 + E 维 L/S 2.78 创阶段新高 + 资金费率由拥挤线回落 + OI -3.09% 加速去杠杆 + B3 首次触发扣分</strong>意味着 ETH 杠杆层"存量空头持续回补+杠杆成本下行+B3 背离扣分"——<strong>两币均处"价格端明显走弱+杠杆端反向(BTC 存量空头回补/ETH 存量空头回补+成本下行)"的反向风险区</strong>,<strong>B3 首次同步扣分</strong>是 9/14 以来新增的量价端风险信号;24h 内任一价格突破下沿 + BTC 量比回落至 &lt;1.0 / ETH L/S 维持 &gt;2.7 将确认反向触发。</p></div><div class="card" id="s11"><h2><span class="no">⑪</span>置信度与数据覆盖度</h2><ul><li>数据覆盖度(严格口径):<strong>BTC 13/34、ETH 14/34</strong>(引擎 <code>of_34</code> 原值 BTC 16/34、ETH 14/34,差额为 C0 链上代理读数 <strong>3</strong> 项,按 02 §3 <strong>不属 34 指标</strong>)。</li><li>代理/抽样清单(引用时必须保留标记,均不计入覆盖度):C5(代理,同时代表 C4)、C3(抽样)、C8(供应量口径代理)、G1(抽样)、D1/D2/D4(代理)。本轮 C5/C3/C8/D1/D2/D4 均无新采集值。</li><li>本轮未取到:E4、E5(爆仓)+ F1/F3/F4/F5/F7(宏观)+ C1/C3/C5/C6 变化/C7/C8(链上补齐层)+ G1/G2(事件)+ D1/D2/D4(情绪补齐层)——<strong>与 9/16-9/23 缺口结构完全一致</strong>。</li><li>仍无数据:D2 真实口径(LunarCrush 需付费 key)、G3 监管事件(人工通道)。</li><li>永续覆盖:E1~E3 齐全且 binance_fapi 同源(与 9/23 同源),E2 同源守卫 PASS;E4/E5 缺失(主源不提供聚合);现货-永续价差本轮未采集(mark)。</li><li>对 ⑨ 判断置信度:<strong>中</strong>。理由:(a) 主信号维 A/B/E 数据完整同源,<strong>BTC 三角共振 A 强负 + B 强负 + E 弱正</strong>(composite -6.4 较 9/23 -2.7 单日走弱 3.7 点);<strong>ETH 三角共振 A 负 + B 强负 + E 强负</strong>(composite -17.2 较 9/23 -12.5 单日走弱 4.7 点,9/14 以来接近最大值);两币方向<strong>结构性走弱</strong>(BTC 中性偏空 vs ETH 中性偏空),(b) 永续端本日<strong>BTC OI 单日 -9.80% 创 9/14 以来最大减仓</strong>(9/23 -2.13% 加速去杠杆),<strong>BTC 进入"存量空头回补+杠杆收缩"结构</strong>(资金费率 +0.0003% 接近零 + L/S 1.16 由偏空翻正 + OI -9.80%);<strong>ETH L/S 2.78 创阶段新高 + 资金费率 +0.005% 由拥挤线回落 46.3% + OI -3.09% 由小转大去杠杆</strong>——<strong>杠杆层"存量空头持续回补+增量空头成本下行+OI 加速去杠杆"双解除</strong>;(c) <strong>B3 首次同步扣分</strong>(BTC/ETH B3 均由 9/23 0 转为 -60),<strong>量价端发出"价格下行+成交未充分放大"的背离信号</strong>;(d) C/F/D/G 大部分维度本轮未采集(extra_filled=0),宏观面无法确认 9/15 风险偏好转弱是否已修复、BTC 杠杆存量空头回补+ETH 存量空头回补+杠杆成本下行的结构性驱动是否真实存在、BTC OI -9.80% 单日减仓 7.67 个百分点是否可持续——这是本日报置信度无法升至"高"的核心原因;(e) 历史一致性:<strong>BTC composite -6.4 接近 21 日均值(avg=-5.1),处样本中下区</strong>;<strong>ETH -17.2 接近 21 日均值(avg=-11.5)下方 5.7 个点位,接近 9/14 以来最大值</strong>(仅次于 min=-42.5 的 9/14 极值);(f) <strong>BTC A6 RSI6=66.82 大幅回落 15.46 个点位完全脱离超买区 + ETH RSI6=62.24 继续回落 15.02 个点位完全中性化</strong>,9/23 报告"双超买格局"完全解除;(g) <strong>F6=71 持平延续 9/22 由 78 降至 71 后的"贪婪中段",情绪面无新边际信号</strong>;(h) <strong>BTC OI -9.80% 单日减仓 7.67 个百分点是 9/14 以来最大单日减仓</strong>(9/23 报告 OI -2.13% + 6.84%,本日 OI -9.80% 进一步加速),需 24h 延续确认方向;(i) <strong>BTC/ETH B3 首次同步扣分是 9/14 以来新增的量价端风险信号</strong>,需 24h 延续确认是否形成"量价背离持续"。</li></ul>
+<hr>
+<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml | 结构 L4：现货+永续平行 | 本文档由 LLM 基于 research_input 生成*</p></div><div class="card" id="s-v2"><h2><span class="no">V2</span>派生信号</h2><div class="note2">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-6.4</td><td>中性</td><td>杠杆去化 <small>(价跌、OI降)</small></td><td>2/3</td><td>high</td><td>—</td></tr><tr><td>ETH</td><td>-17.2</td><td>中性</td><td>多头去杠杆 <small>(价跌、OI降、L/S偏多)</small></td><td>3/4</td><td>high</td><td>—</td></tr></table></div></div>
+<div class="nav"><a class="pv" href="2026-09-23.html"><span class="lab">← 上一期</span><span class="val">2026-09-23</span></a><a class="nx none" href="index.html"><span class="lab">→ 已是最新一期</span><span class="val">—</span></a></div>
+<footer><span data-zh="引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM" data-en="Engine scripts/compute.py v1.2 · Spec config/strategy.yaml v1.0 · Generated by run_daily + LLM">引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</span><br>
+<span data-zh="中英切换仅作用于界面文案,研报正文为中文原文" data-en="Language toggle affects UI text only; report body stays original Chinese">中英切换仅作用于界面文案,研报正文为中文原文</span></footer>
+</div>
+<script>
+(function(){
+var d=document,r=d.documentElement;
+/* ---------- 主题 ---------- */
+var tb=d.getElementById('themebtn');
+function paintTheme(){if(tb){tb.textContent=r.getAttribute('data-theme')==='dark'?'☀':'🌙';}}
+if(tb){tb.addEventListener('click',function(){
+var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+r.setAttribute('data-theme',n);paintTheme();
+try{localStorage.setItem('bqc_theme',n)}catch(e){}});}
+paintTheme();
+/* ---------- 中英 ---------- */
+var lb=d.getElementById('langbtn');
+function setLang(l){r.setAttribute('lang',l);
+d.querySelectorAll('[data-zh]').forEach(function(e){
+var v=l==='en'?e.getAttribute('data-en'):e.getAttribute('data-zh');if(v){e.textContent=v;}});
+d.querySelectorAll('[data-ph-zh]').forEach(function(e){
+e.placeholder=l==='en'?e.getAttribute('data-ph-en'):e.getAttribute('data-ph-zh');});
+var t=l==='en'?r.getAttribute('data-title-en'):r.getAttribute('data-title-zh');
+if(t){d.title=t;}
+if(lb){lb.textContent=l==='en'?'中文':'EN';}
+try{localStorage.setItem('bqc_lang',l)}catch(e){}}
+var s=null;try{s=localStorage.getItem('bqc_lang')}catch(e){}
+if(lb){lb.addEventListener('click',function(){setLang(r.getAttribute('lang')==='en'?'zh':'en')});}
+setLang(s==='en'?'en':'zh');
+})();
+
+
+(function(){
+var links=[].slice.call(document.querySelectorAll('.toc a'));
+if(!links.length){return;}
+function mark(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+var secs=links.map(function(a){return d.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){
+var vis=es.filter(function(e){return e.isIntersecting;})
+.sort(function(a,b){return a.boundingClientRect.top-b.boundingClientRect.top;});
+if(vis.length){mark(vis[0].target.id);}},{rootMargin:'-80px 0px -55% 0px'});
+secs.forEach(function(s){io.observe(s);});}
+links.forEach(function(a){a.addEventListener('click',function(){mark(a.getAttribute('href').slice(1));});});
+})();
+
+</script>
+</body></html>
