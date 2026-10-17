@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-title-zh="BTC/ETH + BTCUSDT/ETHUSDT 每日研报 2026-10-17" data-title-en="BTC/ETH + BTCUSDT/ETHUSDT Daily Research 2026-10-17"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="btc_quant 研究包 · 2026-10-17 每日研报 · 现货 + 永续双市场 · 7 维度 34 指标">
+<title>BTC/ETH + BTCUSDT/ETHUSDT 每日研报 2026-10-17</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('bqc_theme')}catch(e){}
+if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
+<style>
+:root{
+--bg:#f4f6f8;--card:#fff;--ink:#151a26;--sub:#69737f;--line:#e5e8ec;--line2:#f0f2f5;
+--grid:#dfe4ea;--tick:#9aa1ab;
+--up:#d64541;--up-soft:#fbe9e7;--up-strong:#c0392b;
+--down:#178a56;--down-soft:#e6f4ec;--down-strong:#0f6b42;
+--brand:#14406b;--brand2:#2e8b74;--chip:#eef1f5;--chip-on:#14406b;
+--shadow:0 1px 2px rgba(16,36,62,.05),0 6px 16px rgba(16,36,62,.05);
+--hero1:#0d1f38;--hero2:#143a5e;--hero3:#14614a;--topbar:rgba(255,255,255,.88);}
+html[data-theme="dark"]{
+--bg:#0d1117;--card:#151b24;--ink:#e4e9f0;--sub:#8d99a8;--line:#242c38;--line2:#1b232e;
+--grid:#2b3543;--tick:#6b7686;
+--up:#e5645f;--up-soft:#3a201f;--up-strong:#f08a85;
+--down:#2fb37c;--down-soft:#123024;--down-strong:#5ad3a0;
+--brand:#4a90d9;--brand2:#3ec9a7;--chip:#1c242f;--chip-on:#4a90d9;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 8px 20px rgba(0,0,0,.25);
+--hero1:#09121f;--hero2:#0f2a44;--hero3:#0e4636;--topbar:rgba(21,27,36,.88);}
+html[lang="en"]{--up:#178a56;--up-soft:#e6f4ec;--up-strong:#0f6b42;
+--down:#d64541;--down-soft:#fbe9e7;--down-strong:#c0392b;}
+html[data-theme="dark"][lang="en"]{--up:#2fb37c;--up-soft:#123024;--up-strong:#5ad3a0;
+--down:#e5645f;--down-soft:#3a201f;--down-strong:#f08a85;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+transition:background .2s,color .2s}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 56px}
+/* ---- topbar ---- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
+padding:10px 16px;background:var(--topbar);
+-webkit-backdrop-filter:saturate(1.4) blur(8px);backdrop-filter:saturate(1.4) blur(8px);
+border-bottom:1px solid var(--line)}
+.topbar .bk{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+border-radius:9px;background:var(--chip);border:1px solid var(--line);color:var(--sub);
+text-decoration:none;font-size:17px;line-height:1;transition:all .15s}
+.topbar .bk:hover{color:var(--ink);border-color:var(--sub)}
+.topbar .brand{font-weight:700;font-size:14px;letter-spacing:.5px}
+.topbar .brand i{display:inline-block;width:8px;height:8px;border-radius:50%;
+background:var(--brand2);margin-right:7px;vertical-align:1px}
+.topbar .sp{flex:1}
+.topbar .dt{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.ibtn{background:var(--chip);border:1px solid var(--line);color:var(--sub);
+border-radius:999px;padding:5px 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;
+transition:all .15s}
+.ibtn:hover{color:var(--ink);border-color:var(--sub)}
+/* ---- hero ---- */
+.hero{background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);
+color:#fff;text-align:center;padding:34px 16px 26px;margin-bottom:20px}
+.hero h1{margin:0;font-size:21px;letter-spacing:1px;line-height:1.5}
+.hero .sub{margin-top:7px;font-size:13px;opacity:.72;letter-spacing:1px}
+.hero .pill{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:1px;
+background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+padding:4px 16px;border-radius:999px;margin-left:6px}
+/* ---- section / card / colors ---- */
+.sec{font-size:15px;font-weight:700;margin:28px 4px 12px;display:flex;align-items:center;gap:10px}
+.sec small{font-weight:400;font-size:12px;color:var(--sub)}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px 14px;
+box-shadow:var(--shadow)}
+.chg{font-weight:600}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
+.badge{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:6px}
+.badge.up{background:var(--up-soft);color:var(--up-strong)}
+.badge.down{background:var(--down-soft);color:var(--down-strong)}
+.badge.flat{background:var(--chip);color:var(--sub)}
+footer{margin-top:34px;text-align:center;font-size:12px;color:var(--tick);line-height:1.9}
+@media (max-width:620px){
+.wrap{padding:0 12px 44px}
+.hero{padding:28px 14px 22px}
+.topbar{padding:9px 12px}
+}
+
+
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:12px 14px;background:var(--card);
+border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.toc a{display:inline-block;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+font-size:12px;color:var(--sub);text-decoration:none;padding:3px 11px;border-radius:999px;
+background:var(--line2);transition:all .15s}
+.toc a:hover{color:var(--ink)}
+.toc a.on{background:var(--chip-on);color:#fff}
+.doc{display:flex;flex-direction:column;gap:14px}
+.doc>.card{padding:4px 20px 16px}
+.doc h2{scroll-margin-top:70px;font-size:15px;font-weight:700;margin:16px 0 12px;padding:0 0 9px;
+border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:8px;line-height:1.5}
+.doc h2 .no{color:var(--brand);font-size:14px;flex:none}
+.doc h3{font-size:13px;margin:16px 0 6px;color:var(--sub);letter-spacing:.5px}
+.doc p{margin:8px 0}
+.tblwrap{overflow-x:auto;margin:10px 0}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;
+border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:7px 11px;text-align:left;border-bottom:1px solid var(--line2)}
+th{background:var(--line2);font-weight:600;font-size:12px;color:var(--sub);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(2n) td{background:var(--line2)}
+.doc ul{margin:8px 0;padding-left:20px}
+.doc li{margin:3px 0}
+.doc ol{margin:8px 0;padding-left:22px}
+blockquote{margin:10px 0;padding:8px 14px;background:var(--line2);border-left:3px solid var(--brand2);
+border-radius:0 8px 8px 0;color:var(--sub);font-size:13px}
+code{background:var(--line2);padding:1px 5px;border-radius:4px;font-size:12.5px}
+hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+.note2{font-size:12px;color:var(--sub);margin:-4px 0 8px}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.nav a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 16px;
+text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:border-color .15s,transform .12s}
+.nav a:hover{border-color:var(--brand);transform:translateY(-1px)}
+.nav a.nx{text-align:right}
+.nav .lab{display:block;font-size:11px;color:var(--tick);letter-spacing:1px}
+.nav .val{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.nav .none{opacity:.4;pointer-events:none}
+@media (max-width:620px){.toc a{max-width:150px}}
+
+</style></head><body>
+<div class="topbar"><a class="bk" href="index.html" title="全部日报">&lsaquo;</a>
+<span class="brand"><i></i><span data-zh="btc_quant 研究包" data-en="btc_quant Research">btc_quant 研究包</span></span>
+<span class="sp"></span><span class="dt">2026-10-17</span>
+<button class="ibtn" id="themebtn" type="button" title="Toggle theme">🌙</button>
+<button class="ibtn" id="langbtn" type="button" aria-label="Switch language" title="切换界面语言 / 正文为中文原文">EN</button></div>
+<div class="hero"><h1>BTC/ETH + BTCUSDT/ETHUSDT 每日研报</h1>
+<div class="sub">现货 + 永续 双市场 · 7 维度 34 指标 · btc_quant 研究包</div>
+<div><span class="pill">2026-10-17 周六</span><span class="pill"><span data-zh="引擎信号为权威口径" data-en="engine signals are authoritative">引擎信号为权威口径</span></span></div></div>
+<div class="wrap">
+<div class="toc" id="toc"><a href='#s1'>① 市场状态（现货 BTC / ETH）</a><a href='#s2'>② 永续合约市场（BTCUSDT / ETHUSDT）</a><a href='#s3'>③ 核心趋势（现货 A 价格动量 + B 成交量）</a><a href='#s4'>④ 链上（C）</a><a href='#s5'>⑤ 宏观（F）</a><a href='#s6'>⑥ 情绪（D）</a><a href='#s7'>⑦ 事件（G）</a><a href='#s8'>⑧ 引擎信号（权威，不改写）</a><a href='#s9'>⑨ 未来 24h 判断</a><a href='#s10'>⑩ 风险</a><a href='#s11'>⑪ 置信度与数据覆盖度</a><a href='#s-v2'>V2 派生信号</a></div>
+<div class="doc"><div class="card" id="s1"><h2><span class="no">①</span>市场状态（现货 BTC / ETH）</h2><ul><li>BTC: 81,628 USD（24h -0.9%）</li><li>ETH: 2,422 USD（24h -0.9%）</li><li>数据时间: 2026-10-17T00:00:00Z(anchor=UTC 00:00)</li></ul></div><div class="card" id="s2"><h2><span class="no">②</span>永续合约市场（BTCUSDT / ETHUSDT）</h2><ul><li>BTCUSDT 永续: 资金费率 +0.0100% · OI $76.81亿(24h -0.95%,源 binance_fapi·同源) · 多空比 1.73 · 爆仓 无数据(binance_fapi 主源不提供聚合) · 现货-永续价差 无数据(readings 未给,按缺失声明)</li><li>ETHUSDT 永续: 资金费率 +0.0054% · OI $54.51亿(24h -1.26%,源 binance_fapi·同源) · 多空比 2.92 · 爆仓 无数据(binance_fapi 主源不提供聚合) · 现货-永续价差 无数据(readings 未给,按缺失声明)</li><li>永续状态（规则派生，非概率）：BTC=空头回补（OI -0.95% 配价 -0.87% 同向略下行，价跌+O I 跌=空头主动减仓而非爆，费率 +0.0100% 略偏多，L/S 1.73 中性偏多=多单未动,杠杆温和出清）；ETH=空头回补（OI -1.26% 配价 -0.94% 价格下行+OI 跌=空头主动平仓，费率 +0.0054% 近零中性，L/S 2.92 极端偏多=多单仍拥挤,杠杆出清进行中）。</li><li>对现货方向的含义：BTC 杠杆温和出清、多空比中性，未给独立方向信号；ETH 空头回补但多单仍极端拥挤(2.92)，反向爆多头风险留存，杠杆出清尚有空间。</li></ul></div><div class="card" id="s3"><h2><span class="no">③</span>核心趋势（现货 A 价格动量 + B 成交量）</h2><ul><li>A 动量：BTC 24h -0.87%/7d -1.64%，RSI6 39.1、RSI14 46.7 中性偏弱，A5 z=+0.09(MA50 附近)；ETH 24h -0.94%/7d -3.36%，RSI6 31.6、RSI14 38.5 中性偏弱，A5 z=-1.13(MA50 下方)。两币 24h 同幅温和下行、7d 同步走弱，ETH 弱势程度重于 BTC 且 RSI6 跌入超卖区。</li><li>B 量价：BTC B2 量比 1.05(平量)，B3=0 无背离扣分；ETH B2 量比 1.02(平量)，B3=0 无背离扣分。两币均呈"价小跌+量基本持平"形态，B 维未释放量价背离信号，价格下行缺乏量能配合。</li></ul></div><div class="card" id="s4"><h2><span class="no">④</span>链上（C）</h2><ul><li>BTC：C0 [代理] 24h 交易数 69.51万、平均手续费 $0.30、单笔最大转账 $16.81亿(blockchair/blockchain.info 免费公开代理，非 C1 活跃地址原口径，仅参考)。C1/C3/C4/C5/C6/C7/C8 全部无数据(本次未采集)。</li><li>ETH：C6 TVL $498.55亿(DeFiLlama，日级)，日变化无数据(chg=null)。C1/C3/C4/C5/C7/C8 全部无数据(本次未采集)。</li><li>口径声明：BTC 链上仅 C0 代理(非 34 指标)，ETH 仅 C6 TVL；均无法形成独立方向证据。</li></ul></div><div class="card" id="s5"><h2><span class="no">⑤</span>宏观（F）</h2><ul><li>F6 恐惧贪婪：55.0(两币同源)，中性，未到 80 极端，无强方向反转提示。</li><li>F1/F3/F4/F5/F7：无数据(本次未采集，F1 美债/F3 DXY/F4 SP500/F5 VIX/F7 纳指均未补)。</li><li><strong>F8 BTC/NDX 相对强弱(背景，无预测力)</strong>：无数据(本次未采集)。仅描述：回放 IC≈0 无预测力，不作信号。</li></ul></div><div class="card" id="s6"><h2><span class="no">⑥</span>情绪（D）</h2><p>D 维无协议口径数据；以下 D1/D2/D4 均为代理读数，<strong>有读数 ≠ D 维达标</strong>。</p>
+<ul><li>D1/D2/D4 全部无数据(LunarCrush 需付费 key，免费替代全败，本次亦未采集代理)。本节实际无任何读数。</li></ul></div><div class="card" id="s7"><h2><span class="no">⑦</span>事件（G）</h2><ul><li>G1 大额转账：无数据(mempool.space 抽样未采集)。</li><li>G2 新闻流：无数据(Cointelegraph RSS 本次未采集)。</li><li>G3 监管事件：无数据(人工通道未填报，非技术问题)。</li></ul></div><div class="card" id="s8"><h2><span class="no">⑧</span>引擎信号（权威，不改写）</h2><div class='tblwrap'><table><thead><tr><th>币</th><th>composite(-100~+100)</th><th>方向六态</th><th>方向三分</th><th>强度</th><th>A</th><th>B</th><th>E</th></tr></thead><tbody><tr><td>BTC</td><td>-0.5</td><td>NEUTRAL</td><td>横盘</td><td>0.02x</td><td>-3.1</td><td>0.0</td><td>1.3</td></tr><tr><td>ETH</td><td>-6.6</td><td>NEUTRAL</td><td>横盘</td><td>0.22x</td><td>4.7</td><td>0.0</td><td>-18.3</td></tr></tbody></table></div>
+<p>（⑧ 后注）主导因子与贡献：BTC 主导因子 A3（24h -0.87% 给负 -21.80 机械分），A 维贡献 -61.78（占比 66%）拉负；E 维 +31.67 部分对冲（E2 OI -0.95% 价跌同向给弱正）；B 维 0.0 量价平淡。ETH 主导因子 E3（L/S 2.92 极端偏多=空头回补信号反向，机械分 -60），E 维贡献 -458.33（占比 83%）拉负；A 维 +93.11、B 维 0.0 与 E 负压相抵，composite 偏弱负。权重为相对权重（20/10/25），分母=55。两币 B 维均平淡无贡献；BTC 24h 价跌主导弱负、ETH 杠杆端空头回补+多单拥挤主导负压。</p></div><div class="card" id="s9"><h2><span class="no">⑨</span>未来 24h 判断</h2><ul><li>BTC：NEUTRAL → 偏向：中性 / 状态：弱势窄幅，方向信号极弱。依据：composite -0.5 + 引擎区间 80852~82404(deterministic_v1) + 24h -0.87% + A3 主导弱负 + 量比 1.05 平量无方向弹性 + OI -0.95% 价跌同向温和空头减仓 + L/S 1.73 中性偏多；下沿 80852 为短期支撑，关注量能是否放大。</li><li>ETH：NEUTRAL → 偏向：中性偏空 / 状态：杠杆空头回补进行中，多单拥挤未消化。依据：composite -6.6 + 引擎区间 2389~2455(deterministic_v1) + 24h -0.94% + L/S 2.92 极端偏多 + OI -1.26% 跌势减仓回补 + A5 z=-1.13 均线下方 + RSI6=31.6 弱势区；下沿 2389 为短期支撑，破位则杠杆出清加速。</li><li>关键价位区间参考（引擎）：BTC 80852~82404；ETH 2389~2455。</li></ul></div><div class="card" id="s10"><h2><span class="no">⑩</span>风险</h2><ul><li>数据缺口：宏观 F1/F3/F4/F5/F7/F8 全部未采、C 维真实指标全部未采、D/G 维全部无数据——宏观背景与外生冲击仍盲区，仅 F6 单一情绪锚。</li><li>永续杠杆：ETH 多空比 2.92 偏高（多单拥挤）+ OI 24h -1.26% + 价跌 = 空头回补驱动的杠杆出清，多单未减=反向爆多头风险留存（无 E4/E5 量化）；BTC L/S 1.73 中性偏多+O I -0.95% 价跌同向，杠杆清淡无明显方向。</li><li>微观结构：ETH RSI6=31.6 跌入超卖区 + A5 z=-1.13 均线下方 + 7d -3.36% 弱通道，下沿 2389 若跌破存在加速下行风险；BTC composite -0.5 强度 0.02 信号极弱，需警惕突然方向突破。</li></ul></div><div class="card" id="s11"><h2><span class="no">⑪</span>置信度与数据覆盖度</h2><ul><li>数据覆盖度（严格口径）：<strong>BTC 13/34、ETH 14/34</strong>（引擎 <code>of_34</code> 原值 BTC 15/34、ETH 14/34，差额为 C0 链上代理读数 <strong>2</strong> 项，按 02 §3 不属 34 指标）。</li><li>代理/抽样清单（<strong>引用时必须保留标记，均不计入覆盖度</strong>）：C0_btc_tx_24h、C0_btc_fee_usd_24h（均为引擎代理，仅作背景不打分）；C6 ETH TVL 由 DeFiLlama 提供但本轮未采集到 24h 变化；D1、D2、D4 无数据（代理项未采集）；C5、C8、C3、G1、G2、G3 本轮均无数据。</li><li>对 ⑨ 判断置信度：中。理由：A/B/E 三主信号维完整、historical 46 日参考；冲突=BTC 量能平淡无方向 vs 24h 价跌主导弱负、ETH 多单拥挤+空头回补+均线下方三组信号混杂；永续杠杆 ETH 反向爆仓风险但无 E4/E5 量化；宏观全盲仅 F6 单一锚；BTC 强度 0.02 极弱、ETH 强度 0.22 略高于 BTC，ETH 杠杆端负压为主但 A 维正面略抵冲，故中性偏空但信号强度不高。</li></ul>
+<hr>
+<p>*引擎：scripts/compute.py | 口径：config/strategy.yaml | 结构 L4：现货+永续平行 | 本文档由 LLM 基于 research_input 生成*</p></div><div class="card" id="s-v2"><h2><span class="no">V2</span>派生信号</h2><div class="note2">composite(v1→v2): E2 同源守卫修正 · 方向6态/regime: 规则派生(rule_match 非概率) · 读数=当日归档快照,零前视</div><table><tr><th>coin</th><th>composite</th><th>方向6态</th><th>regime</th><th>rule_match</th><th>DQ</th><th>守卫</th></tr><tr><td>BTC</td><td>-0.5</td><td>中性</td><td>多头去杠杆 <small>(价跌、OI降、L/S偏多)</small></td><td>3/4</td><td>high</td><td>—</td></tr><tr><td>ETH</td><td>-6.6</td><td>中性</td><td>多头去杠杆 <small>(价跌、OI降、L/S偏多)</small></td><td>3/4</td><td>high</td><td>—</td></tr></table></div></div>
+<div class="nav"><a class="pv" href="2026-10-16.html"><span class="lab">← 上一期</span><span class="val">2026-10-16</span></a><a class="nx none" href="index.html"><span class="lab">→ 已是最新一期</span><span class="val">—</span></a></div>
+<footer><span data-zh="引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM" data-en="Engine scripts/compute.py v1.2 · Spec config/strategy.yaml v1.0 · Generated by run_daily + LLM">引擎 scripts/compute.py v1.2 · 口径 config/strategy.yaml v1.0 · 生成 run_daily + LLM</span><br>
+<span data-zh="中英切换仅作用于界面文案,研报正文为中文原文" data-en="Language toggle affects UI text only; report body stays original Chinese">中英切换仅作用于界面文案,研报正文为中文原文</span></footer>
+</div>
+<script>
+(function(){
+var d=document,r=d.documentElement;
+/* ---------- 主题 ---------- */
+var tb=d.getElementById('themebtn');
+function paintTheme(){if(tb){tb.textContent=r.getAttribute('data-theme')==='dark'?'☀':'🌙';}}
+if(tb){tb.addEventListener('click',function(){
+var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+r.setAttribute('data-theme',n);paintTheme();
+try{localStorage.setItem('bqc_theme',n)}catch(e){}});}
+paintTheme();
+/* ---------- 中英 ---------- */
+var lb=d.getElementById('langbtn');
+function setLang(l){r.setAttribute('lang',l);
+d.querySelectorAll('[data-zh]').forEach(function(e){
+var v=l==='en'?e.getAttribute('data-en'):e.getAttribute('data-zh');if(v){e.textContent=v;}});
+d.querySelectorAll('[data-ph-zh]').forEach(function(e){
+e.placeholder=l==='en'?e.getAttribute('data-ph-en'):e.getAttribute('data-ph-zh');});
+var t=l==='en'?r.getAttribute('data-title-en'):r.getAttribute('data-title-zh');
+if(t){d.title=t;}
+if(lb){lb.textContent=l==='en'?'中文':'EN';}
+try{localStorage.setItem('bqc_lang',l)}catch(e){}}
+var s=null;try{s=localStorage.getItem('bqc_lang')}catch(e){}
+if(lb){lb.addEventListener('click',function(){setLang(r.getAttribute('lang')==='en'?'zh':'en')});}
+setLang(s==='en'?'en':'zh');
+})();
+
+
+(function(){
+var links=[].slice.call(document.querySelectorAll('.toc a'));
+if(!links.length){return;}
+function mark(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+var secs=links.map(function(a){return d.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){
+var vis=es.filter(function(e){return e.isIntersecting;})
+.sort(function(a,b){return a.boundingClientRect.top-b.boundingClientRect.top;});
+if(vis.length){mark(vis[0].target.id);}},{rootMargin:'-80px 0px -55% 0px'});
+secs.forEach(function(s){io.observe(s);});}
+links.forEach(function(a){a.addEventListener('click',function(){mark(a.getAttribute('href').slice(1));});});
+})();
+
+</script>
+</body></html>
